@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dnd Classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Hit die</th>
+      <th>Skill points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dnd_classes.each do |dnd_class| %>
+      <tr>
+        <td><%= dnd_class.name %></td>
+        <td><%= dnd_class.description %></td>
+        <td><%= dnd_class.hit_die %></td>
+        <td><%= dnd_class.skill_points %></td>
+        <td><%= link_to 'Show', dnd_class %></td>
+        <td><%= link_to 'Edit', edit_dnd_class_path(dnd_class) %></td>
+        <td><%= link_to 'Destroy', dnd_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dnd Class', new_dnd_class_path %>

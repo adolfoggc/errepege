@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Listando Ambientes</h2>
+	
+	<% cont = 1 %>
+	<table>
+		<thead>
+			<th>
+				Ambiente
+			</th>
+			<th>
+				Numeração
+			</th>
+		</thead>
+		<tbody>
+		<% @kindsEnv.each do |ke| %>	
+		<tr>
+			<td>
+				<%="#{ke.kind}"%>
+			</td>
+			<td>
+				<%="#{cont}"%>
+			</td>
+			<% cont +=1 %>
+		</tr>
+		<% end %>
+	    </tbody>
+    </table>
+
+    <h2>Listagem de Ambientes</h2>
+    <% @kindsEnv.each do |ke| %>
+    	<%= "'#{ke.kind}', "%> 
+    <% end %>
+
+	<% cont = 1 %>
+	<h2>Listando Tipos de Monstro </h2>
+    <table>
+		<thead>
+			<th>
+				Tipo de Monstro
+			</th>
+			<th>
+				Numeração
+			</th>
+		</thead>
+		<tbody>
+		<% @kindsMon.each do |km| %>	
+		<tr>
+			<td>
+				<%="#{km.kind}"%>
+			</td>
+			<td>
+				<%="#{cont}"%>
+			</td>
+			<% cont +=1 %>
+		</tr>
+		<% end %>
+	    </tbody>
+    </table>
+    <h2>Listagem de Tipos</h2>
+    <% @kindsMon.each do |km| %>
+    	<%= "'#{km.kind}', "%> 
+    <% end %>
+
+</body>
+</html>

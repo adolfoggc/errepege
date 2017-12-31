@@ -1,0 +1,2 @@
+class KindsOfMonster < ApplicationRecord
+end

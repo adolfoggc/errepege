@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dnd_class.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @dnd_class.description %>
+</p>
+
+<p>
+  <strong>Hit die:</strong>
+  <%= @dnd_class.hit_die %>
+</p>
+
+<p>
+  <strong>Skill points:</strong>
+  <%= @dnd_class.skill_points %>
+</p>
+
+<%= link_to 'Edit', edit_dnd_class_path(@dnd_class) %> |
+<%= link_to 'Back', dnd_classes_path %>

@@ -1,0 +1,52 @@
+<%= form_with(model: skill, local: true) do |form| %>
+  <% if skill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(skill.errors.count, "error") %> prohibited this skill from being saved:</h2>
+
+      <ul>
+      <% skill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :skill_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :skill_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :related_ability %>
+    <%= form.number_field :related_ability, id: :skill_related_ability %>
+  </div>
+
+  <div class="field">
+    <%= form.label :graduation %>
+    <%= form.number_field :graduation, id: :skill_graduation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :trained %>
+    <%= form.check_box :trained, id: :skill_trained %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dex_penalty %>
+    <%= form.check_box :dex_penalty, id: :skill_dex_penalty %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight_penalty %>
+    <%= form.check_box :weight_penalty, id: :skill_weight_penalty %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
