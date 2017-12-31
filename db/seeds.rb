@@ -95,68 +95,7 @@ print 'Gerando Classes... '
 puts '[OK]'
 
 #INCOMPLETO
-print 'Gerando Perícias... '
-	skills = [
-		{name: 'Abrir Fechaduras', trained: true, related_ability: 1 },
-		{name: 'Acrobacia', trained: true, dex_penalty: true, related_ability: 1 },
-		{name: 'Adestrar Animais', trained: true, related_ability: 5 },
-		{name: 'Arte da Fuga', dex_penalty: true, related_ability: 1 },
-		{name: 'Atuação',  related_ability: 5 },
-		{name: 'Avaliação', related_ability: 3 },
-		{name: 'Blefar', related_ability: 5 },
-		{name: 'Conhecimento: Arcano', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Arquitetura e Engenharia', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Masmorras', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Geografia', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: História', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Local', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Natureza', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Nobreza e Realeza', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Religião', trained: true, related_ability: 3 },
-		{name: 'Conhecimento: Planos', trained: true, related_ability: 3 },
-		{name: 'Cura', related_ability: 4 },
-		{name: 'Decifrar Escrita', trained: true, related_ability: 3 },
-		{name: 'Diplomacia', related_ability: 5 },
-		{name: 'Disfarces', related_ability: 5 },
-		{name: 'Equilíbrio', dex_penalty: true, related_ability: 1 },
-		{name: 'Escalar', dex_penalty: true, related_ability: 0 },
-		{name: 'Esconder-se', dex_penalty: true, related_ability: 1 },
-		{name: 'Falar Idioma: Abissal', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Anão', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Aquan', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Auran', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Celestial', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Comum', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Dracônico', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Druidico', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Élfico', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Gnomo', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Goblin', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Gigante', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Gnoll', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Halfling', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Ignan', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Infernal', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Ore', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Silvestre', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Suberrâneo', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Terran', trained: true, related_ability: 3 },
-		{name: 'Falsificação', related_ability: 3 },
-		{name: 'Furtividade', trained: true, related_ability: 1 },
-		{name: 'Identificar Magia', trained: true, related_ability: 3 },
-		{name: 'Intimidação', related_ability: 5 },
-		{name: 'Natação', weigth_penalty: true, related_ability: 0 },
-		{name: 'Observar', related_ability: 4 },
-		{name: 'Obter Informação', related_ability: 5 },
-		{name: 'Ofícios: Alquimia', trained: true, related_ability: 3 },
-		{name: 'Falar Idioma: Arquearia', trained: true, related_ability: 3 },
-		{name: 'Ofícios: Armeiro', trained: true, related_ability: 3 },
-		{name: 'Ofícios: ', trained: true, related_ability: 3 },
-	]
-	skills.each do |s| 
-		Skill.create!( s )
-	end
-puts '[OK]'
+
 
 
 
