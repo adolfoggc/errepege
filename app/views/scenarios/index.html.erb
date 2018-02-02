@@ -1,0 +1,25 @@
+<%= render 'public/menu' %>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Rena</h1>
+<p>Rena é uma pequena cidade fundada a 115 anos próxima ao riacho Esperança e próximo ao Monte dos Anões.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scenarios.each do |scenario| %>
+      <tr>
+        <td><%= scenario.name %></td>
+        <td><%= link_to 'Mostrar', scenario %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

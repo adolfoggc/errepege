@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 body {
   background-color: #fff;
   color: #333;
+  margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 1.5em;
-  margin: 0;
+  
 }
 
 p, ol, ul, td {
@@ -88,6 +87,12 @@ label {
 
 .header_img {
   width: 100%;
+  margin: 0;
+  border: 0;
+}
+
+body {
+ margin: 0 ;
 }
 
 .menu-list {
@@ -96,19 +101,18 @@ label {
     padding: 0;
     overflow: hidden;
     background-color: #2b3b4b;
-    margin:  0 0 20px 0;
-    color: #FFFFFF;
+    margin:  0 0 20px 0 !important;
 }
 
-.list-item {
+#list-item {
     float: left;
 }
 /* cores azul 2b3b4b branco e2e5ea escuro 343331*/
 
-.list-element {
+#list-element {
     font-size: 20px;
     display: block;
-    color: #FFFFFF !important;
+    color: #e2e5ea;
     text-decoration: none;
     width: 150px;
     text-align: center;
@@ -117,7 +121,6 @@ label {
     border-width: 0px 0px 5px 0px; 
     border-style: solid;
     border-color: #2b3b4b;
-    font-size: 1.5em;
     -webkit-transition: background-color 2s; /* For Safari 3.1 to 6.0 */
     transition: background-color 0.75s;
     
@@ -128,39 +131,57 @@ label {
   }
 }
 
-.text-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #FFFFFF;
-  text-align: center;
-  margin: 0 0 0 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2em;
-}
 
-h1 {
+.location-name {
   font-family: 'Gloria Hallelujah', cursive;
-  font-size: 2em;
+  font-size: 30px;
   text-align: center;
   padding: 20px 0 20px 0;
 }
 
-.header-div {
+.titulo-central {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-size: 1.5em !important;
+}
+
+
+.container {
     position: relative;
     text-align: center;
+    color: white;
 }
 
-.site-body {
-  padding: 0 2em 0 2em;
-  font-family: 'Gloria Hallelujah', cursive;
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
 }
 
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
 
+.top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
 
+.bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
 
-
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

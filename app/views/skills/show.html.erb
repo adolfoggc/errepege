@@ -1,3 +1,4 @@
+<%= render 'public/menu' %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -12,7 +13,19 @@
 
 <p>
   <strong>Related ability:</strong>
-  <%= @skill.related_ability %>
+  <% if @skill.related_ability == 0  %>
+    <%= 'Força' %>
+  <% elsif @skill.related_ability == 1  %>
+    <%= 'Destreza' %>
+  <% elsif @skill.related_ability == 2  %>
+    <%= 'Constituição' %>
+  <% elsif @skill.related_ability == 3  %>
+    <%= 'Inteligência' %>
+  <% elsif @skill.related_ability == 4  %>
+    <%= 'Sabedoria' %>
+  <% else %>
+    <%= 'Carisma' %>
+  <% end %>
 </p>
 
 <p>

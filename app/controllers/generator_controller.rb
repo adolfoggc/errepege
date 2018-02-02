@@ -16,6 +16,10 @@ def random_encounter
 	roll_encounter
 end
 
+def npc
+	
+end
+
 private
 	def room_details
 		@description = ['A sala possui ', 'O local tem '].sample

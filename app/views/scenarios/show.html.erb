@@ -1,0 +1,15 @@
+<%= render 'public/menu' %>
+
+
+<p id="notice"><%= notice %></p>
+<div class="site-body">
+	<div class = "location-name">
+  		<%= @scenario.name %>
+	</div>
+<p class="scenario">
+<%= @scenario.description %>
+<p>
+
+
+
+<%= link_to 'Voltar', scenarios_path %>

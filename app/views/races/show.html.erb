@@ -1,0 +1,10 @@
+<%= render 'public/menu' %>
+<h1>Raças</h1>
+<h3><%= @race.name %></h3>
+<h4>Descrição</h4>
+<p><%= @race.description %></p>
+<h4>Faixa-Etária</h4>
+<p><%= "Infância até #{@race.child} anos" %></p>
+<p><%= "Adolescência entre #{ (@race.child) +1} e #{@race.teen} anos" %></p>
+<p><%= "Adulto entre entre #{ (@race.teen) +1} e #{@race.adult} anos" %></p>
+<p><%= "Idade máxima: #{@race.ancient} anos" %></p>

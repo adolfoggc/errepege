@@ -1,0 +1,47 @@
+<%= form_with(model: npc, local: true) do |form| %>
+  <% if npc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(npc.errors.count, "error") %> prohibited this npc from being saved:</h2>
+
+      <ul>
+      <% npc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :npc_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :race_id %>
+    <%= form.text_field :race_id, id: :npc_race_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :background %>
+    <%= form.text_area :background, id: :npc_background %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :npc_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age, id: :npc_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender, id: :npc_gender %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

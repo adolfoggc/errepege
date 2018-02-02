@@ -1,0 +1,16 @@
+<% #menu %>
+<div class="header-div">
+	<%= image_tag("errepege.jpg",  alt: "imagem de título", class: "header_img" ) %>
+	
+	<div class="text-title">#eRrePeGe</div>
+		
+</div>
+
+
+
+	<ul class="menu-list">
+	  	<li class="list-item"><%= link_to "Início", root_path, class: "list-element" %></li>
+	  	<li class="list-item"><%= link_to "NPCs", npcs_path, class: "list-element" %></li>
+	  	<li class="list-item"><%= link_to "Localizações", scenarios_path, class: "list-element" %></li>
+	  	<li class="list-item"><%= link_to "Perícias", skills_path, class: "list-element" %></li>
+	</ul> 
