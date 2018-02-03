@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
+@import url('https://fonts.googleapis.com/css?family=Fondamento|UnifrakturMaguntia|Gloria+Hallelujah');
+
+
+
 body {
   background-color: #fff;
   color: #333;
@@ -98,6 +101,7 @@ label {
     background-color: #2b3b4b;
     margin:  0 0 20px 0;
     color: #FFFFFF;
+    display:block;
 }
 
 .list-item {
@@ -118,6 +122,7 @@ label {
     border-style: solid;
     border-color: #2b3b4b;
     font-size: 1.5em;
+    font-family: 'Fondamento', cursive;
     -webkit-transition: background-color 2s; /* For Safari 3.1 to 6.0 */
     transition: background-color 0.75s;
     
@@ -141,10 +146,12 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2em;
+  font-family: 'Fondamento', cursive;
+  display: block;
 }
 
 h1 {
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Fondamento', cursive;
   font-size: 2em;
   text-align: center;
   padding: 20px 0 20px 0;
@@ -153,11 +160,15 @@ h1 {
 .header-div {
     position: relative;
     text-align: center;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    
 }
 
 .site-body {
   padding: 0 2em 0 2em;
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: 'Fondamento', cursive;
 }
 
 .row-element {
@@ -196,4 +207,28 @@ h1 {
 
 #elements tr:hover {background-color: #ddd;}
 
+.title-section-name {
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 2em;
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
 
+.title-royal-name {
+  font-family: 'Fondamento', cursive;
+  font-size: 2em;
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+
+.mid-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+p {
+  font-size: 0.75em;
+  line-height: 1.5em;
+}

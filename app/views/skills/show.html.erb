@@ -1,10 +1,9 @@
 <%= render 'public/menu' %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
+<div class="title-royal-name">
   <%= @skill.name %>
-</p>
+</div>
 
 <p>
   <strong>Descrição:</strong>
@@ -31,26 +30,34 @@
 <p>
   <strong>Requer Treinamento:</strong>
   <% if @skill.trained? %>
-    <%'Sim'%>
+    <%='Sim'%>
   <% else %>
-    <%'Não'%>
+    <%='Não'%>
   <% end %>
 </p>
 
 <p>
-  <strong>Dex penalty:</strong>
-  <%= @skill.dex_penalty %>
+  <strong>Penalidade de Destreza:</strong>
+  <% if @skill.dex_penalty? %>
+    <%='Sim'%>
+  <% else %>
+    <%='Não'%>
+  <% end %>
 </p>
 
 <p>
-  <strong>Weight penalty:</strong>
-  <%= @skill.weight_penalty %>
+  <strong>Penalidade por Peso:</strong>
+  <% if @skill.weight_penalty? %>
+    <%='Sim'%>
+  <% else %>
+    <%='Não'%>
+  <% end %>
 </p>
 
 <p>
   <strong>Classes Relacionadas:</strong>
   <% class_skill = @skill_class.where(skill_id: @skill.id) %>
-  <% limit = 0 %>
+  <% limit = 1 %>
   <% class_skill.each do |c| %>
     <%= c.dnd_class.name %>
     <% if limit< class_skill.count %>
