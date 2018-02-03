@@ -160,7 +160,40 @@ h1 {
   font-family: 'Gloria Hallelujah', cursive;
 }
 
+.row-element {
+  
+  border-style: solid;
+  border-width: 2px;
+}
 
+.tabela-dados {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#elements {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#elements td, #elements th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#elements th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 0.75em;
+    text-align: center;
+    background-color: #343331;
+    color: white;
+}
+
+#elements tr:nth-child(even){background-color: #f2f2f2;}
+
+#elements tr:hover {background-color: #ddd;}
 
 

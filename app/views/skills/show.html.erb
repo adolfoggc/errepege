@@ -2,17 +2,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nome:</strong>
   <%= @skill.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descrição:</strong>
   <%= @skill.description %>
 </p>
 
 <p>
-  <strong>Related ability:</strong>
+  <strong>Habilidade Relacionada:</strong>
   <% if @skill.related_ability == 0  %>
     <%= 'Força' %>
   <% elsif @skill.related_ability == 1  %>
@@ -29,13 +29,12 @@
 </p>
 
 <p>
-  <strong>Graduation:</strong>
-  <%= @skill.graduation %>
-</p>
-
-<p>
-  <strong>Trained:</strong>
-  <%= @skill.trained %>
+  <strong>Requer Treinamento:</strong>
+  <% if @skill.trained? %>
+    <%'Sim'%>
+  <% else %>
+    <%'Não'%>
+  <% end %>
 </p>
 
 <p>
@@ -47,5 +46,18 @@
   <strong>Weight penalty:</strong>
   <%= @skill.weight_penalty %>
 </p>
+
+<p>
+  <strong>Classes Relacionadas:</strong>
+  <% class_skill = @skill_class.where(skill_id: @skill.id) %>
+  <% limit = 0 %>
+  <% class_skill.each do |c| %>
+    <%= c.dnd_class.name %>
+    <% if limit< class_skill.count %>
+      <%= ', '%>
+      <% limit += 1 %>
+    <% end %>
+  <% end %>
+<p>
 
 <%= link_to 'Back', skills_path %>

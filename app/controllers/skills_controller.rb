@@ -10,6 +10,7 @@ class SkillsController < ApplicationController
   # GET /skills/1
   # GET /skills/1.json
   def show
+    skill_x_classes
   end
 
   # GET /skills/new
@@ -70,5 +71,9 @@ class SkillsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def skill_params
       params.require(:skill).permit(:name, :description, :related_ability, :graduation, :trained, :dex_penalty, :weight_penalty)
+    end
+
+    def skill_x_classes
+      @skill_class = DndClassesSkill.all
     end
 end

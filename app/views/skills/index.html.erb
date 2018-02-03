@@ -3,27 +3,26 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Skills</h1>
-
-<table>
+<div id="align">
+<table id="elements">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Related ability</th>
-      <th>Graduation</th>
-      <th>Trained</th>
-      <th>Dex penalty</th>
-      <th>Weight penalty</th>
-      <th colspan="1"></th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Habilidade Relacionada</th>
+      <th>Requer Treinamento?</th>
+      <th>Penalidade de Destreza?</th>
+      <th>Penalidade por Peso?</th>
+      <th>Mostrar Detalhes</th>
     </tr>
   </thead>
 
   <tbody>
     <% @skills.each do |skill| %>
       <tr>
-        <td><%= skill.name %></td>
-        <td><%= skill.description %></td>
-        <td>
+        <td class="row-element"><%= skill.name %></td>
+        <td class="row-element"><%= skill.description %></td>
+        <td class="row-element">
             <% if skill.related_ability == 0  %>
               <%= 'Força' %>
             <% elsif skill.related_ability == 1  %>
@@ -38,14 +37,32 @@
               <%= 'Carisma' %>
             <% end %>
         </td>
-        <td><%= skill.graduation %></td>
-        <td><%= skill.trained %></td>
-        <td><%= skill.dex_penalty %></td>
-        <td><%= skill.weight_penalty %></td>
-        <td><%= link_to 'Mostrar', skill %></td>
+        <td class="row-element">
+          <% if skill.trained? %>
+            <%= 'Sim'%>
+          <% else %>
+            <%= 'Não'%>
+          <% end %>
+        </td>
+        <td class="row-element">
+          <% if skill.dex_penalty? %>
+            <%= 'Sim'%>
+          <% else %>
+            <%= 'Não'%>
+          <% end %>
+        </td>
+        <td class="row-element">
+          <% if skill.weight_penalty? %>
+            <%= 'Sim'%>
+          <% else %>
+            <%= 'Não'%>
+          <% end %>
+        </td>
+        <td class="row-element"><%= link_to 'Mostrar', skill %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+</div>
