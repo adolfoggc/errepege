@@ -79,5 +79,103 @@
 	  	<li>Todos personagens são de nível 1. Boa sorte =]</li>
 	</ul> 
 
+<%= '15 pessoas. São 6 casais.' %>
+<% g1 = Array.new %>
+<% pessoas = 15 %>
+<% familias1 = 0 %>
+<% r = Random.new %>
+<% while familias1 < 6 do %>
+	<% d100 = r.rand(1..100) %>
+	<% if d100 <= 5 %>
+		<% g1<<1 %>
+	<% elsif d100 <= 15 %>
+		<% g1<<2 %>
+	<% elsif d100 <= 30 %>
+		<% g1<<3 %>
+	<% elsif d100 <= 70 %>
+		<% g1<<4 %>
+	<% elsif d100 <= 85 %>
+		<% g1<<5 %>
+	<% elsif d100 <= 95 %>
+		<% g1<<6 %>
+	<% elsif d100 <= 100 %>
+		<% g1<<7 %>
+	<% end %>
+	<% familias1 +=1 %>
+<% end %>
+<p>
+	
+</p>
+<%= "Geração 1" %>
+<% mulheres = 7 %>
+<% homens = 6 %>
+<p>
+<%= 'Nascimentos: ' %>
+</p>
+<% g1.each do |g| %>
+	<%= "#{g} " %>
+<% end %>
+<p></p>
+<% 'Sobreviventes até 10 anos: ' %>
+<% pos = 0 %>
+<% g1.each do |g| %>
+	<% vivos = 0 %>
+	<% num = 0 %>
+	<% while num < g do %>
+		<% d100 = r.rand(1..100) %>
+		<% if d100 > 30 %>
+			<% vivos +=1 %>
+		<% end %>
+		<% num+=1 %>
+	<% end %>
+	<% g1[pos] = vivos %>
+	<% pos+=1 %>
+<% end %>
+<p></p>
+<% pos = 1 %>
+<% g1.each do |g| %>
+	<%= "Família #{pos}: #{g} filhos " %>
+	<% meninas = 0 %>
+	<% meninos = 0 %>
+	<% num = 0 %>
+	<% while num < g do %>
+		<% sex = r.rand(0..1) %>
+		<% if sex == 0 %>
+			<% mulheres +=1 %>
+			<% meninas +=1 %>
+		<% else %>
+			<% homens +=1 %>
+			<% meninos +=1 %>
+		<% end %>
+		<% num+=1 %>
+	<% end %>
+	<% pos +=1 %>
+	<%= "Meninas = #{meninas} Meninos = #{meninos}" %>
+	<p></p>
+<% end %>
+
+<p>	
+</p>
+
+<%= "mulheres = #{mulheres} homens = #{homens}" %>
+
+
 
 </div>
+
+ Nascimentos:
+4 4 4 5 5 7
+
+Família 1: 2 filhos Meinas = 1 Meninos = 1
+
+Família 2: 3 filhos Meinas = 3 Meninos = 0
+
+Família 3: 3 filhos Meinas = 2 Meninos = 1
+
+Família 4: 4 filhos Meinas = 2 Meninos = 2
+
+Família 5: 5 filhos Meinas = 0 Meninos = 5
+
+Família 6: 7 filhos Meinas = 3 Meninos = 4 
+
+mulheres = 18 homens = 19 

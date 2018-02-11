@@ -2,6 +2,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Npcs</h1>
+<% if @npcs.count > 0  %>
+
 <p><b>Dados de NPCs</b></p>
 
 <table>
@@ -81,3 +83,6 @@
 
 <br>
 
+<% else %>
+  <%= 'Sem NPCS Cadastrados' %>
+<% end %>

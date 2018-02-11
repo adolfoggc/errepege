@@ -1,0 +1,2 @@
+class FemaleHumanName < ApplicationRecord
+end
