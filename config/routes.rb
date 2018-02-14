@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :scenarios
-  resources :npcs
+  #resources :npcs
   resources :skills
   resources :dnd_classes
   resources :races

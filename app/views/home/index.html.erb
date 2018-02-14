@@ -1,12 +1,11 @@
 <%= render 'public/menu' %>
 <div class="site-body"> 
 	<h1>Atualizações</h1>
-	<p><%= link_to 'NPCs', npcs_path %> estão disponíveis. </p>
 	<p>Mais informações em <a href="#religiao">Religão</a>: Ordem da Mãos da Glória Justiceira e Ordem da Mãos da Glória de Imalter</p>
 	<p>Mais informações em <a href="#familia">Família</a>: Sobrenomes, formas de nomeação e outros detalhes.</p>
 	<p>Lista de <%= link_to 'Famílias', families_path %>.</p>
 	<p><%= link_to 'Lugares', scenarios_path %> estão atualizados. </p>
-	<p><strong>Em breve:</strong> Lista de "problemas" que cercam a cidade.</p>
+	<p><strong>Em breve:</strong> Lista de "problemas" que cercam a cidade e lista de NPCs.</p>
 
 
 	<h1 id="descricao">Descrição Básica</h1>
@@ -104,7 +103,6 @@
 	  	<li>Todos personagens são de nível 1. Boa sorte =]</li>
 	</ul> 
 
-<%= '15 pessoas. São 6 casais.' %>
 <% g1 = Array.new %>
 <% pessoas = 15 %>
 <% familias1 = 0 %>
@@ -128,9 +126,5 @@
 	<% end %>
 	<% familias1 +=1 %>
 <% end %>
-
-
-
-
 
 </div>
