@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201173121) do
+ActiveRecord::Schema.define(version: 20180213121049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20180201173121) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "female_human_names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "kinds_of_monsters", force: :cascade do |t|
     t.string "kind"
     t.datetime "created_at", null: false
@@ -59,6 +65,12 @@ ActiveRecord::Schema.define(version: 20180201173121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["scenario_id"], name: "index_locations_on_scenario_id"
+  end
+
+  create_table "male_human_names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "monsters", force: :cascade do |t|
@@ -82,6 +94,7 @@ ActiveRecord::Schema.define(version: 20180201173121) do
     t.bigint "role_id"
     t.string "age_range"
     t.text "secret"
+    t.string "family"
     t.index ["race_id"], name: "index_npcs_on_race_id"
     t.index ["role_id"], name: "index_npcs_on_role_id"
   end

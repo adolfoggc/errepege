@@ -11,14 +11,16 @@
     </div>
   <% end %>
 
+  
+
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :npc_name %>
+    <%# form.label :race_id %>
+    <%# form.collection_select(:race_id, Race.all, :id, :name) %>
   </div>
 
   <div class="field">
-    <%= form.label :race_id %>
-    <%= form.text_field :race_id, id: :npc_race_id %>
+    <%# form.label :role_id %>
+    <%# form.collection_select(:role_id, Role.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -28,7 +30,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description, id: :npc_description %>
+    <%= form.text_area :description, id: :npc_description %>
   </div>
 
   <div class="field">
@@ -38,7 +40,12 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.text_field :gender, id: :npc_gender %>
+    <%= form.select(:gender,['Masculino','Feminino']) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :family %>
+    <%= form.select(:family,['Hann','Flambard', 'Wolfgang', 'Mathghamhain', 'Mainnet', 'Gregory']) %>
   </div>
 
   <div class="actions">

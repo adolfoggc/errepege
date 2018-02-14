@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get '/room' => 'generator#room', as: :rooms 
   get '/encounter' => 'generator#random_encounter', as: :random_encounter
   get '/npc_list' => 'generator#npc', as: :random_npcs
+  get '/families' => 'home#families', as: :families
 end

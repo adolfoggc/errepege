@@ -232,3 +232,11 @@ p {
   font-size: 0.75em;
   line-height: 1.5em;
 }
+
+@media screen and (min-width: 100px) {
+    .site-body {
+        padding: 0 2em 0 2em;
+        font-family: 'Fondamento', cursive;
+        margin: 10%;
+      }
+}

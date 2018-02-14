@@ -1,14 +1,20 @@
 <%= render 'public/menu' %>
 <div class="site-body"> 
+	<h1>Atualizações</h1>
+	<p><%= link_to 'NPCs', npcs_path %> estão disponíveis. </p>
+	<p>Mais informações em <a href="#religiao">Religão</a>: Ordem da Mãos da Glória Justiceira e Ordem da Mãos da Glória de Imalter</p>
+	<p>Mais informações em <a href="#familia">Família</a>: Sobrenomes, formas de nomeação e outros detalhes.</p>
+	<p>Lista de <%= link_to 'Famílias', families_path %>.</p>
+	<p><%= link_to 'Lugares', scenarios_path %> estão atualizados. </p>
+	<p><strong>Em breve:</strong> Lista de "problemas" que cercam a cidade.</p>
 
 
-
-	<h1>Descrição Básica</h1>
+	<h1 id="descricao">Descrição Básica</h1>
 	<%= image_tag("autumn-1072827_960_720.jpg",  alt: "Imagem de floresta no outono. Imagem gratuita. Fonte: https://pixabay.com/pt/outono-floresta-mata-natureza-1072827/  ", class: "mid-img" ) %>
 	<p>Rena é um pequena cidade fundada a 115 anos próxima ao Riacho (erroneamente chamado de "Rio" pelos habitantes da cidade) das Fadas e próximo ao Monte dos Anões por um grupo de emigrantes de Shoppan que estavam insatisfeitos com as leis na cidade.</p>
 	<p>Cercada por florestas, os habitantes vivem de suas plantações, coleta de alimentos, criação, treinamento e caça de animais.</p>
 
-	<h1>Comércio</h1>
+	<h1 id="comercio">Comércio</h1>
 	<%= image_tag("Novgorod_torg.JPG",  alt: "Imagem de comércio medieval. Imagem gratuita. Fonte: https://commons.wikimedia.org/wiki/File:Novgorod_torg.JPG", class: "mid-img" ) %>
 	<p>A cidade consegue gerar divisas monetárias com produtos de caça exóticos como peles e partes de animais, minérios diversos e com a venda de erva chamada Sussurradora, muito utilizada em ritos religiosos.</p> 
 	<p>A cidade fica a um dia de viagem da cidade Shoppan, a sudoeste e com ela realiza a maioria do comércio direto, vendendo peles, ervas e alguns legumes e verduras e comprando material para caça, ferramentas e outros objetos feitos de metal.</p> 
@@ -16,27 +22,25 @@
 	<p>Finalmente, ao menos uma vez por mês um grupo de religiosos viajantes chegam em caravana na cidade em busca das ervas Sussurradora e por ela pagam bastante. Os religiosos vendem poções de cura e elixires, mas muitas vezes realizam multirões de cura, onde cuidam de ferimentos e doenças.</p>
 	<p>A erva Sussurradora é uma grande fonte de dinheiro para a cidade mas as mudas são cultivadas próximo a cidade não são tão valiosas quanto as que nascem na Florestas Proibida.</p>
 
-	<h1>Sociedade</h1>
+	<h1 id="sociedade">Sociedade</h1>
 	<p>A maioria das pessoas que vivem na cidade possuem conhecimento básico do fazer e são aversas a novidades. Para a grande maioria, esta cidade é seu mundo e sonham em constituir família próximo a casa dos pais.</p>
 
 	<p>Instrumentos de percussão são mais fáceis de se encontrar e fazer mas não é raro ouvir o som de flautas (nem sempre afinadas) nas noites de comemoração, que são muitas. Não há uma cultura em relação a dança, preferindo expressão livre com pulos, giros e mãos dadas em grupo. Uma vez ao ano, no entanto, realizam a Dança da Colheita que é composta de casais. Os mais jovens, no entanto, aproveitam este momento para convidar seus interesses. Sim. É uma noite de sorrisos e lágrimas.</p>
 
 	<p>Quanto aos papéis, a sociedade ainda não se fixou por completo e busca ainda crescer mais. Com isto, não há papéis definidos para mulheres e homens e toda força é bem-vinda para conquistar a natureza ao redor.</p>
 
-	<p>As famílias costumam ter entre 5 e 6 filhos e a taxa de mortalidade é de 30% até os 10 anos. Quando se tornam adultos, 40% abandonam a cidade em busca de maiores oportunidades. Destes, apenas 20% voltam. Em números, a cada 100 nascimentos, 70 sobrevivem até os 10 anos. Ao chegar na idade adulta, 28 abandonam a cidade e apenas 5 ou 6 voltam para Rena.</p>
-
-	<h1>Religião</h1>
+	<h1 id="religiao">Religião</h1>
 	<p>Os religiosos da atualidade costumam pregar sua religião com fervor e diminuem as religiões diferentes, às vezes gerando brigas. Há os que dizem que os deuses entraram em combate entre si em busca de obter supremacia. Há os que consideram que os deuses bons e maus lutaram entre si e não sobreviveram ou que a batalha foi tão extenuante que muitos deles dormiram. Mas é de consenso atual que os deuses se afastaram.</p>
 
 	<p>Mesmo que os deuses tenham "desaparecido", há religiões das mais diversas espalhadas pelo mundo. Devido a era conturbada que passou, religiões menores foram engolidas, tendo talvez poucas dezenas de adoradores pelo mundo. Muitos religiosos abandonaram suas crenças também, por cansarem de fazer suas preces sem sentir que eram ouvidos.</p> 
 
 	<p>Na cidade de Rena, alguns prestam reverência à Mielikki, deusa da floresta e da caça; Selûne, deusa da lua; Chauntea, deusa da colheira e Lathander, deus do Alvorecer e Juventude. Há também algumas preces a Sune, deusa da beleza e amor; nos dias próximos a Festa da Colheita. Há também os que rezam por Rena, uma das pessoas que morreram para estabelecer a cidade. No entanto, nenhum dos moradores pode ser tido como um "religioso", acreditando mais nos diversos aspectos de cada deus do que em um para sobrepujar os demais.</p>
 
-	<p>Sobre organizações religiosas, existem sim e a grande maioria prega que os deuses retornarão. A Ordem do Sol, formada por religiosos seguidores de Lathander que a grande maioria deseja encontrar formas de retomar contato com os deuses antigos sendo viajantes, estudiosos e exploradores; já outros seguem os antigos preceitos e aceitam a ideia de que os deuses se foram e já deixaram seus ensinamentos e buscam eliminar o mal e dar conforto aos que sofrem. Servos do Verão é uma ordem dos religiosos de Chauntea, que viajam ensinando a crença na deusa e melhorando agricultura e pecuária.</p>
+	<p>Sobre organizações religiosas, existem sim e a grande maioria prega que os deuses retornarão. A "Ordem do Sol", formada por religiosos seguidores de Lathander que a grande maioria deseja encontrar formas de retomar contato com os deuses antigos sendo viajantes, estudiosos e exploradores (a estes, denominam como "Glorioso"); já outros seguem os antigos preceitos e aceitam a ideia de que os deuses se foram e já deixaram seus ensinamentos e buscam eliminar o mal e dar conforto aos que sofrem (chamados entre si de "Nascente"). "Servos do Verão" é uma ordem dos religiosos de Chauntea, que viajam ensinando a crença na deusa e melhorando agricultura e pecuária. E finalmente, há os "Mãos de Glória", que pregam a fé de Imalter e que dizem que ele é o único deus que está no comando atualmente e que deseja a purificação de todos, mesmo que seja através do sofrimento. Estes de dividem em "Justiceira", que atuam como paladinos julgadores de mal e a ordem original, que agora é "de Imalter", que viajam curando. Estes últimos muitas vezes são apotecários.</p>
 
 	<p>Há também cultos secretos. Um deles, relativamente conhecido, é o dos Molldo, que seria um patrono dos "guerreiros". Todo seguidor de Molldo tem o direito de ter uma morte rápida ao ser derrotado em combate.</p>
 
-	<h1>Magia</h1>
+	<h1 id="magia">Magia</h1>
 	<%= image_tag("FIRE_01.JPG",  alt: "Imagem de chamas. Fonte: https://commons.wikimedia.org/wiki/Fire", class: "mid-img" ) %>
 	
 	<p>Quando a magia dos clérigos sumiu, as pessoas ficaram mais receosas de entrar em combate. Reinos, nobres e generais buscaaram saídas diplomáticas para discussões já que muitos soldados abandonaram seus postos e voltaram a vida que tinham anteriormente.</p>
@@ -54,7 +58,7 @@
 	<p>Com issso, os Arcanos se escondem e aprendem seus mistérios em segredo para sobreviver na "Era do Fogo".</p>
 
 
-	<h1>Moradia</h1>
+	<h1 id="moradia">Moradia</h1>
 	<%= image_tag("cabana-cedo-medieval-velha-poland-21337104.jpg",  alt: "Cabana Medieval feita em madeira da Polônia. Imagem gratuita obtida pelo site dreamstime.com", class: "mid-img" ) %>
 	<p>A morada é a mais simples possível para o camponês comum. As residências são de madeira com teto de palha. Os habitantes dormem a maioria das vezes juntos, próximos à fogueira simples, que emitem fumaça para fora da cabana por "suspiros" laterais. As casas mais simples tem apenas 3 cômodos: despensa, depósito de bebidas e salão. Casas maiores possuem uma área superior, onde a família dorme. Este local privado é acessado por uma escada vertical e ele não cobre todo pavimento térreo.</p>
 
@@ -64,7 +68,28 @@
 
 	<p>Obviamente, tal moradia e tais hábitos favorecem a doenças comuns: diarréia é comum, assim como febres e resfriados. Problemas dentários ocorrem, mas são menos comuns.</p>
 
-	<h1>Regras para Jogo</h1>
+	<h1 id="familia">Família</h1>
+	<p>As famílias costumam ter entre 5 e 6 filhos e a taxa de mortalidade é de 30% até os 10 anos. Quando se tornam adultos, 40% abandonam a cidade em busca de maiores oportunidades. Destes, apenas 20% voltam. Em números, a cada 100 nascimentos, 70 sobrevivem até os 10 anos. Ao chegar na idade adulta, 28 abandonam a cidade e apenas 5 ou 6 voltam para Rena.</p>
+
+	<p>Não existem sobrenomes, como a maioria dos locais do reino. As pessoas se nomeiam pelo nome do patriarca. Com isso, alega qualquer título e bens de seu pai ou família. Este patriarca seria o primeiro a chegar onde se vive e o nome da família do pai prevalece sobre o da família da mãe.</p>
+
+	<p>Quando alguém decide se mudar, se torna o primeiro de seu nome e abandona direito de receber qualquer bem de sua família anterior. Vale ressaltar que mesmo que alguém se mude temporariamente, pode manter o nome de família anterior e tudo que obter em dinheiro ou bens deverá ser dado à família. Para se referir ao nome do patriarca, usa-se o termo "Ap" (da linhagem de) antes de seu nome.</p>
+
+	<p>Há casos de membros notáveis serem lembrados no nome da família. Estes nomes podem ser usados para abrilhantar o valor de alguém. Cada nome deverá ser pronunciado "Ban" (mesma de). Em geral, se usa o nome da pessoa mais notável e citar vários nomes, em geral, evoca a ideia de querer valorizar uma família com nomes não tão notáveis. Citar vários nomes costuma ter efeito contrário ao citar apenas um nome.</p>
+
+	<p>Aqueles que decidem assumir seu próprio nome, seja pra evitar passar alguma vergonha própria para sua família, para viver à sua sorte ou para não ter de partilhar seus bens com irmãos, cita-se o próprio nome ou usa-se o termo "Nil" (Primeiro(a)) ou um termo que ressalte algo notável feito.</p>
+
+	<p>Por exemplo, Ariadna é filha de Berth ap Carl. Ela deverá se apresentar como Ariadna ap Carl. Se Ariadna tiver uma filha de nome Dinah, ela será Dinah ap Carl. Se Ariadna se tornar uma pessoa notável, Dinah se apresentará como Dinah ap Carl ban Ariadna. Se Dinah resolver abandonar o nome da família e derrotar um urso, se apresentará apenas como Dinah, Dinah Nil ou Dinah, Matadora de Ursos.</p>
+
+	<p>Obviamente, as famílias são citadas apenas em casos formais. Julgamentos, questões de dívidas ou ainda quando pais desejam que os filhos levem com seriedade algum sermão que estão levando. O nome da família muito quer dizer e é muito valioso.</p>
+
+	<p>Casamentos e relacionamentos são comuns, mas sempre levados com seriedade. Gravidez é tida como indesejável caso o casal não tenha se oficializado diante dos seus pais. Um casal ir até o bosque de Iggy Neh é de extremamente proibido (e por isso, muitas vezes evita usar o termo "Floresta dos Amantes". </p>
+
+	<p>Em alguns casos, é desejável passar nome de ambas famílias. Neste caso cita-se o nome de ambas famílias, como por exemplo, Solana, filha do rei Terenas ap Bran e da rainha Gem ap Nalla, receberá sobrenome ap Bran Nalla. Os filhos de Solana, no entanto, deverão escolher um dos nomes para levar adiante. Os filhos ímpares, independente do sexo, escolhem um sobrenome enquanto os filhos pares escolhem o sobrenome não escolhido pelo filho anterior.</p> 
+
+
+
+	<h1 id="regras">Regras para Jogo</h1>
 	<ul class="index">
 	  	<li>Mudança monetária: 100 PC equivale a 1 PP  e 100 PP equivale a 1 PO</li>
 	  	<li>O personagem deve ter relação com a cidade: Ou nasceu lá, ou veio à cidade a pelo menos 3 anos e é "conhecido" atualmente. Os nascidos na cidade receberão mais 20 PC</li>
