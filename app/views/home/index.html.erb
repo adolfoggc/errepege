@@ -1,11 +1,8 @@
 <%= render 'public/menu' %>
 <div class="site-body"> 
 	<h1>Atualizações</h1>
-	<p>Mais informações em <a href="#religiao">Religão</a>: Ordem da Mãos da Glória Justiceira e Ordem da Mãos da Glória de Imalter</p>
-	<p>Mais informações em <a href="#familia">Família</a>: Sobrenomes, formas de nomeação e outros detalhes.</p>
-	<p>Lista de <%= link_to 'Famílias', families_path %>.</p>
-	<p><%= link_to 'Lugares', scenarios_path %> estão atualizados. </p>
-	<p><strong>Em breve:</strong> Lista de "problemas" que cercam a cidade e lista de NPCs.</p>
+	<p><a href="#problemas">Problemase boatos</a> inseridos</p>
+	<p><a href="https://app.roll20.net/join/1178939/0sihhQ">Link para campanha</a> no <a href="https://roll20.net/">Roll20</a></p>
 
 
 	<h1 id="descricao">Descrição Básica</h1>
@@ -86,7 +83,14 @@
 
 	<p>Em alguns casos, é desejável passar nome de ambas famílias. Neste caso cita-se o nome de ambas famílias, como por exemplo, Solana, filha do rei Terenas ap Bran e da rainha Gem ap Nalla, receberá sobrenome ap Bran Nalla. Os filhos de Solana, no entanto, deverão escolher um dos nomes para levar adiante. Os filhos ímpares, independente do sexo, escolhem um sobrenome enquanto os filhos pares escolhem o sobrenome não escolhido pelo filho anterior.</p> 
 
-
+	<h1 id ="problemas">Problemas e Boatos nos Arredores</h1>
+	<ul class="index">
+		<li>Alguns caçadores juram ter vitso grupos de kobolds brigando entre si. Não por uma discussão, mas apenas por se encontrarem. Talvez haja uma guerra entre kobolds?</li> <%#siiiiiim!%>
+		<li>Já ouveram casos de bandidos virem até a cidade e levarem animais e outras mercadorias. Eles são violentos, mas não sequestram nem tomam pessoas à força.</li> <%#galera do lathander%>
+		<li>Há registros de lobos atacando alguns animais da cidade durante a noite. Alguns dizem que os lobos estão sendo forçados a sair de seu habitat e buscar alimento fácil na cidade. Outros acham que há um lobisomem comandando a matilha, pois nunca conseguiram pegar um dos lobos.</li> <%#são só lobos, man...%>
+		<li>Algumas coisas estão sumindo. Ervas Sussurradoras, cavalos, cabras, frutas... Alguns supõem que os bandidos que atacam de manhã voltam algumas noites e roubam sem ser notados. Outros acham que são outros bandidos, furtivos. Alguns dizem até que são algum tipo de Arcano. Nas noites que tem vigília não ocorrem roubos, mas nunca ninguém foi pego.</li> <%# religiosos de imalter roubam as ervas. quem rouba cavalos e animais pequenos são o mago doppleganger. As frutas são guaxinins que roubam... %>
+		<li>Há boatos que espiões de Lidurth (reino que tenta conquistar tudo com sua tecnologia e espionagem) estão de olho na cidade devido as ervas. Outros dizem que ele quer entrar na montanha e acordar um dragão que lá viva. Esse dragão poderia trazer magia novamente ao mundo ou poderia simplesmente destruir tudo.</li> <%# não tem espião. quero é paranóia%>
+	</ul>
 
 	<h1 id="regras">Regras para Jogo</h1>
 	<ul class="index">

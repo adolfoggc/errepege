@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :index_videos
   resources :scenarios
   #resources :npcs
   resources :skills

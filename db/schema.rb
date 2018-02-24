@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213121049) do
+ActiveRecord::Schema.define(version: 20180216201636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 20180213121049) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "index_videos", force: :cascade do |t|
+    t.bigint "npc_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["npc_id"], name: "index_index_videos_on_npc_id"
   end
 
   create_table "kinds_of_monsters", force: :cascade do |t|
@@ -139,6 +146,7 @@ ActiveRecord::Schema.define(version: 20180213121049) do
 
   add_foreign_key "dnd_classes_skills", "dnd_classes"
   add_foreign_key "dnd_classes_skills", "skills"
+  add_foreign_key "index_videos", "npcs"
   add_foreign_key "monsters", "environments"
   add_foreign_key "npcs", "races"
   add_foreign_key "npcs", "roles"
