@@ -1,0 +1,25 @@
+<br>
+Gramas: <input type="text" id="gramas">
+
+<br>
+
+Preço: <input type="text" id="valor"><br>
+
+<br>
+ <button onclick="calcula()">Calcular!</button> 
+
+
+
+<div>
+	O quilo do produto vale R$ <div id="resposta"> eee </div>
+</div>
+
+<script>
+    function calcula() {
+      var gramas = document.getElementById("gramas").value;
+      var valor = document.getElementById("valor").value;
+      var resposta = (1000*valor)/gramas;
+      
+      document.getElementById("resposta").innerHTML = resposta;
+  	}
+</script>

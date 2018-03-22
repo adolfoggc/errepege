@@ -31,6 +31,14 @@ end
 
 def mathghamhain
 	@family = Npc.where(family: 'Mathghamhain')
+end
+
+def colors
+
+end
+
+def calculadora
+
 end 
 
 end

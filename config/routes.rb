@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :index_videos
   resources :scenarios
   #resources :npcs
   resources :skills
@@ -14,4 +13,5 @@ Rails.application.routes.draw do
   get '/encounter' => 'generator#random_encounter', as: :random_encounter
   get '/npc_list' => 'generator#npc', as: :random_npcs
   get '/families' => 'home#families', as: :families
+  get '/calculadora' => 'home#calculadora', as: :calculadora
 end
