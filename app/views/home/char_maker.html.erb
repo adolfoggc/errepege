@@ -1,0 +1,74 @@
+<br>
+Força:  <%= select_tag :str, options_for_select((3..18).step(1), 8), :onchange => 'calcula()' %>
+<br>
+Destreza: <%= select_tag :dex, options_for_select((3..18).step(1), 8), :onchange => 'calcula()'  %>
+<br>
+Constituição: <%= select_tag :con, options_for_select((3..18).step(1), 8), :onchange => 'calcula()'  %>
+<br>
+Inteligência: <%= select_tag :intel, options_for_select((3..18).step(1), 8), :onchange => 'calcula()'  %>
+<br>
+Sabedoria: <%= select_tag :wis, options_for_select((3..18).step(1), 8), :onchange => 'calcula()'  %>
+<br>
+Carisma: <%= select_tag :cha, options_for_select((3..18).step(1), 8), :onchange => 'calcula()'  %>
+<br>
+
+
+Total de Pontos: <div id="pontos" onload="calcula()"></div>
+
+<script>
+document.getElementById("pontos").onload = calcula();
+
+    function calcula() {
+      
+
+      var str = document.getElementById("str").value;
+      var dex = document.getElementById("dex").value;
+      var con = document.getElementById("con").value;
+      var intel = document.getElementById("intel").value;
+      var wis = document.getElementById("wis").value;
+      var cha = document.getElementById("cha").value;
+
+      document.getElementById("pontos").innerHTML = custo(str) + custo(dex) + custo(con) + custo(intel) + custo(wis) + custo(cha);
+  	}
+
+
+  	function custo(num) {
+  		var valor = 0;
+  		if (num == 3){
+  			valor = -5;
+  		} else if (num == 4){
+  			valor = -4;
+  		} else if (num == 5){
+  			valor = -3;
+  		} else if (num == 6){
+  			valor = -2;
+  		} else if (num == 7){
+  			valor = -1;
+  		} else if (num == 8){
+  			valor = 0;
+  		} else if (num == 9){
+  			valor = 2;
+  		} else if (num == 10){
+  			valor = 2;
+  		} else if (num == 11){
+  			valor = 3;
+  		} else if (num == 12){
+  			valor = 4;
+  		} else if (num == 13){
+  			valor = 5;
+  		} else if (num == 14){
+  			valor = 6;
+  		} else if (num == 15){
+  			valor = 8;
+  		} else if (num == 16){
+  			valor = 10;
+  		} else if (num == 17){
+  			valor = 13;
+  		} else if (num == 18){
+  			valor = 16;
+  		} else {
+  			valor = 0;
+  		}
+  		return valor;
+  	}
+</script>

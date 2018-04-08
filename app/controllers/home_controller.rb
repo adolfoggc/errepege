@@ -39,6 +39,9 @@ end
 
 def calculadora
 
+end
+
+def char_maker
 end 
 
 end
