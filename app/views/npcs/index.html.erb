@@ -3,63 +3,97 @@
 
 <h1>Npcs</h1>
 <% if @npcs.count > 0  %>
+<table id="elements">
+  <caption><h3>Atalho para Tabelas da População</h3></caption>
+  <tbody>
+    <tr>
+      <td><a href="#total">Cidade</a></td>
+    </tr>
+    <tr>
+      <td><a href="#hann">Hann</a></td>
+    </tr>
+    <tr>
+      <td><a href="#flambard">Flambard</a></td>
+    </tr>
+    <tr>
+      <td><a href="#wolfgang">Wolfgang</a></td>
+    </tr>
+    <tr>
+      <td><a href="#mathghamhain">Mathghamhain</a></td>
+    </tr>
+    <tr>
+      <td><a href="#mainnet">Mainnet</a></td>
+    </tr>
+    <tr>
+      <td><a href="#gregory">Gregory</a></td>
+    </tr>
+  </tbody>
+</table>
 
-<p><b>Dados de NPCs</b></p>
-
-<table>
+<div id="align">
+<table id="elements">
 <caption><h3>Dados da População: Sexo</h3></caption>
+  <thead>
+    <tr>
+      <th>Dados</th>
+      <th>População</th>
+    </tr>
+  </thead>
   <tbody>
       <tr>
-        <td><b>Homens: </b></td>
-        <td><%= @npcs.where(gender: 'Masculino').count %></td>
-        <td><b>Mulheres: </b></td>
-        <td><%= @npcs.where(gender: 'Feminino').count %></td>
+        <td class="row-element">Homens</td>
+        <td class="row-element"><%= @npcs.where(gender: 'Masculino').count %></td>
+      </tr>
+      <tr>
+        <td class="row-element">Feminino</td>
+        <td class="row-element"><%= @npcs.where(gender: 'Feminino').count %></td>
+      </tr>
+      <tr>
+        <td class="row-element">Crianças</td>
+        <td class="row-element"><%= @npcs.where(age_range: 'Criança').count %></td>
+      </tr>
+      <tr>
+        <td class="row-element">Adolescentes</td>
+        <td class="row-element"><%= @npcs.where(age_range: 'Adolescente').count %></td>
+      </tr>
+      <tr>
+        <td class="row-element">Adultos</td>
+        <td class="row-element"><%= @npcs.where(age_range: 'Adulto').count %></td>
+      </tr>
+      <tr>
+        <td class="row-element">Idosos</td>
+        <td class="row-element"><%= @npcs.where(age_range: 'Idoso').count %></td>
+      </tr>
+      <tr>
+        <% @raças.order(:name).each do |raça| %>
+          <% if @npcs.where(race_id: raça.id).count != 0 %>
+            <tr>
+              <td class="row-element"><%= raça.name %></td>
+              <td class="row-element"><%= @npcs.where(race_id: raça.id).count %></td>  
+            </tr>
+          <% end %>
+        <% end %>
+      </tr>
+      <tr>
+        <td>Hann</td>
+        <td><%= @npcs.where(family: "Hann").count %></td>
       </tr>
   </tbody>
 </table>
 
-<table>
-<caption><h3>Dados da População: Faixa Etária</h3></caption>
-  <tbody>
-      <tr>
-        <td><b>Crianças: </b></td>
-        <td><%= @npcs.where(age_range: 'Criança').count %></td>
-        <td><b>Adolescentes: </b></td>
-        <td><%= @npcs.where(age_range: 'Adolescente').count %></td>
-        <td><b>Adultos: </b></td>
-        <td><%= @npcs.where(age_range: 'Adulto').count %></td>
-        <td><b>Idosos: </b></td>
-        <td><%= @npcs.where(age_range: 'Idoso').count %></td>
-      </tr>
-  </tbody>
-</table>
 
-<table>
-<caption><h3>Dados da População: Raças</h3></caption>
-  <tbody>
-    <% @raças.order(:name).each do |raça| %>
-      <% if @npcs.where(race_id: raça.id).count != 0 %>
-        <tr>
-          <td><b><%= link_to raça.name, raça %>:</b> 
-          <%= @npcs.where(race_id: raça.id).count %></td>  
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
-<p>Tabela de Toda População (por idade)</p>
-<table>
+<table id="elements">
+<caption id="total"><h3>Tabela de Toda População (por idade)</h3></caption>
   <thead>
     <tr>
       <th>Nome</th>
+      <th>Família</th>
       <th>Raça</th>
       <th>Idade</th>
       <th>Faixa Etária</th>
       <th>Sexo</th>
       <th>Ocupação</th>
-      <th>Família</th>
-      <th colspan="2"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -67,19 +101,221 @@
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.each do |npc| %>
       <tr>
-        <td><%= npc.name %></td>
-        <td><%= npc.race.name %></td>
-        <td><%= npc.age %></td>
-        <td><%= npc.age_range %></td>
-        <td><%= npc.gender %></td>
-        <td><%= link_to npc.role.name, npc.role %></td>
-        <td><%= npc.family %></td>
-        <td><%= link_to 'Mostrar', npc_show_path(npc) %></td>
-        <td><%# link_to 'Editar', edit_npc_path(npc) %></td>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<table id="elements">
+<caption id="hann"><h3>Família Hann</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Hann').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table id="elements">
+<caption id="flambard"><h3>Família Flambard</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Flambard').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table id="elements">
+<caption id="wolfgang"><h3>Família Wolfgang</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Wolfgang').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<table id="elements">
+<caption id="mathghamhain"><h3>Família Mathghamhain</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Mathghamhain').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table id="elements">
+<caption id="mainnet"><h3>Família Mainnet</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Mainnet').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table id="elements">
+<caption id="gregory"><h3>Família Gregory</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Família</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Gregory').each do |npc| %>
+      <tr>
+        <td class="row-element"><%= npc.name %></td>
+        <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</div> <!-- align -->
 
 <% else #if @npcs.count > 0  %> 
   <% 'Sem NPCS Cadastrados' %>
