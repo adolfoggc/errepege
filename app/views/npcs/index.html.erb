@@ -48,7 +48,7 @@
   </tbody>
 </table>
 
-
+<p>Tabela de Toda População (por idade)</p>
 <table>
   <thead>
     <tr>
@@ -58,13 +58,14 @@
       <th>Faixa Etária</th>
       <th>Sexo</th>
       <th>Ocupação</th>
+      <th>Família</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
-    <% @npcs.order(:id).each do |npc| %>
+    <% @npcs.each do |npc| %>
       <tr>
         <td><%= npc.name %></td>
         <td><%= npc.race.name %></td>
@@ -72,100 +73,20 @@
         <td><%= npc.age_range %></td>
         <td><%= npc.gender %></td>
         <td><%= link_to npc.role.name, npc.role %></td>
-        <td><%= link_to 'Mostrar', npc %></td>
-        <td><%= link_to 'Editar', edit_npc_path(npc) %></td>
+        <td><%= npc.family %></td>
+        <td><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <td><%# link_to 'Editar', edit_npc_path(npc) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<% else #if @npcs.count > 0  %> 
+  <% 'Sem NPCS Cadastrados' %>
+<% end %>
+
 <br>
-<%= 'npcs = ['%>
-<p></p> 
-<% count = 0 %>
-<% @npcs.order(:id).each do |npc| %>
-    <% count +=1 %>
-    <%= "{name: '#{npc.name}', age: #{npc.age}, gender: '#{npc.gender}', race_id: #{npc.race.id}, role_id: #{npc.role.id}, background: '#{npc.background}', age_range: '#{npc.age_range}' }" %>
-    <% if count < @npcs.count %>
-      <%=","%>
-    <% end %>
-  <p> </p> 
-<% end %>
-<%= ']'%>
-
-<% else %>
-  <%= 'Sem NPCS Cadastrados' %>
-<% end %>
 
 <p>
-t.string "name"
-    t.bigint "race_id"
-    t.text "background"
-    t.string "description"
-    t.integer "age"
-    t.string "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "role_id"
-    t.string "age_range"
-    t.text "secret
-
+<%# link_to 'Novo', new_npc_path %>
 </p>
-<p>
-<%= link_to 'Novo', new_npc_path %>
-</p>
-
-<%='E aí? Vim deixar o lixo por aqui e depois coloco no local certo. Valeu!'%>
-
-<%= "Geração 1" %>
-<% mulheres = 7 %>
-<% homens = 6 %>
-<p>
-<%= 'Nascimentos: ' %>
-</p>
-<% g1.each do |g| %>
-  <%= "#{g} " %>
-<% end %>
-<p></p>
-<% 'Sobreviventes até 10 anos: ' %>
-<% pos = 0 %>
-<% g1.each do |g| %>
-  <% vivos = 0 %>
-  <% num = 0 %>
-  <% while num < g do %>
-    <% d100 = r.rand(1..100) %>
-    <% if d100 > 30 %>
-      <% vivos +=1 %>
-    <% end %>
-    <% num+=1 %>
-  <% end %>
-  <% g1[pos] = vivos %>
-  <% pos+=1 %>
-<% end %>
-<p></p>
-<% pos = 1 %>
-<% g1.each do |g| %>
-  <%= "Família #{pos}: #{g} filhos " %>
-  <% meninas = 0 %>
-  <% meninos = 0 %>
-  <% num = 0 %>
-  <% while num < g do %>
-    <% sex = r.rand(0..1) %>
-    <% if sex == 0 %>
-      <% mulheres +=1 %>
-      <% meninas +=1 %>
-    <% else %>
-      <% homens +=1 %>
-      <% meninos +=1 %>
-    <% end %>
-    <% num+=1 %>
-  <% end %>
-  <% pos +=1 %>
-  <%= "Meninas = #{meninas} Meninos = #{meninos}" %>
-  <p></p>
-<% end %>
-
-<p> 
-</p>
-
-<%= "mulheres = #{mulheres} homens = #{homens}" %>

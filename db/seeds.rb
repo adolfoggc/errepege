@@ -290,7 +290,7 @@ puts '[OK]'
 
 	
 print 'Gerando Nomes Humanos Masculinos... '
-homens = ['Adam', 'Geoffrey', 'Gilbert', 'Henry', 'Hugh', 'John', 'Nicholas', 'Peter', 'Ralf', 'Richard', 'Robert', 'Roger', 'Simon', 'Thomas', 'Walter', 'William', 'Merek', 'Carac', 'Ulric', 'Tybalt', 'Borin', 'Sadon', 'Terrowin', 'Rowan', 'Forthwind', 'Althalos', 'Fendrel', 'Brom', 'Hadrian', 'Daw', 'Elric', 'Hann', 'Herry', 'Hob', 'Jankin', 'Mack', 'Aldus', 'Jasper', 'Alan', 'Conan', 'Donald', 'Gawain', 'Basil', 'Arthur', 'Mordred', 'Dervel', 'Percival', 'Agricola', 'Eliot', 'Hector', 'Manfred', 'Lucius', 'Lambert', 'Griffith', 'Guts', 'Gerald', 'Alphonse', 'Gareth', 'Aldrich', 'Alistar', 'Allister', 'Archer', 'Ascott', 'Cleff', 'Ashton', 'Barden', 'Barlow', 'Baxter', 'Bentley', 'Bowman', 'Cid', 'Brandom', 'Cederic', 'Dalton', 'Drake', 'Edgar', 'Sawyer', 'Allegro', 'Ambrich', 'Bermund', 'Demetrius', 'Faust', 'Finn', 'Jake', 'Cecil', 'Kain', 'Barret', 'Rex', 'Josef', 'Gordon', 'Locke', 'Ward', 'Dias', 'Leon', 'Noel', 'Cliff', 'Cyrus', 'Magus', 'Malcom', 'Owen', 'Tristan', 'Alec', 'Greg', 'Alexander', 'Lucian', 'Martin', 'Peregrin', 'Quentin', 'Connor', 'Vincent', 'Eric', 'Aldwin', 'Baldwin', 'Edward', 'Goldwin', 'Hebert', 'Wilfrid', 'Abelard', 'Absolon', 'Achard', 'Achart', 'Adalbero', 'Agu', 'Aignen', 'Agnien', 'Alaire', 'Alarge', 'Alazaïs', 'Albin', 'Albinus', 'Alcher', 'Aldebrand', 'Aldemund', 'Alderan', 'Aleaumin', 'Aliaume', 'Alyaume', 'Alerot', 'Alodet', 'Aloysius', 'Alured', 'Amadeus', 'Amalric', 'Amalvis', 'Amanieu', 'Amigart', 'Araimfres', 'Arbert', 'Arnulf', 'Arsieu', 'Arvide', 'Augebert', 'Avenel', 'Baderon', 'Baldric', 'Bangin', 'Bardin', 'Barnier', 'Baut', 'Biche', 'Billebaut', 'Bochard', 'Bouchard', 'Burnel', 'Buselin', 'Centule', 'Chartain', 'Chatbert', 'Claudien', 'Colbert', 'Coumyn', 'Cyon', 'Cyprian', 'Daimbert', 'Dalmas', 'Daluce', 'Damian', 'Darius', 'Delion', 'Digne', 'Doete', 'Dolfin', 'Duche', 'Dudic', 'Éléazar', 'Emambe', 'Emont', 'Engelard', 'Engenouf', 'Enion', 'Erengier', 'Ertaut', 'Esdelot', 'Espan', 'Estène', 'Estout', 'Fabien', 'Famète', 'Fameite', 'Fangeaux', 'Fiebras', 'Flambard', 'Floouen', 'Fluellen', 'Fortin', 'Fourcaut', 'Foursi', 'Fray', 'Fremin', 'Freskin', 'Ganelon', 'Garsille', 'Gascot', 'Gaubert', 'Gauchier', 'Gaude', 'Gauguein', 'Gembert', 'Gentian', 'Gentien', 'Gerland', 'Gildon', 'Giriaume', 'Gobin', 'Gobelin', 'Godebert', 'Godichal', 'Golias', 'Gonfroi', 'Gontier', 'Goumelet', 'Gourdet', 'Gracien', 'Gracyen', 'Granville', 'Grefin', 'Grenville', 'Grifon', 'Gringoire', 'Guermont', 'Guigue', 'Guineboud', 'Habreham', 'Haguin', 'Haiete', 'Halebran', 'Halinard', 'Haquin', 'Harchier', 'Hascouf', 'Hecelin', 'Henseus', 'Herbrand', 'Herchier', 'Herculles', 'Hernouet', 'Hesdin', 'Hétouyn', 'Heude', 'Hique', 'Hocequin', 'Honoré', 'Honot', 'Huard', 'Huart', 'Huebald', 'Huidelon ', 'Huitace', 'Humbert', 'Hunout', 'Huoul', 'Huroin', 'Ianto', 'Ilbert', 'Isore', 'Japhet', 'Jeharraz', 'Jehaue', 'Jessamy', 'Jevan', 'Jolis', 'Jollivet', 'Jonas', 'Jonathas', 'Jorin', 'Jude', 'Jumel', 'Juste', 'Kerrich', 'Lagot', 'Léal', 'Leavold', 'Leigh', 'Leofard', 'Letard', 'Lie', 'Lièce', 'Maillart', 'Maillet', 'Mainnet', 'Malise', 'Marcel', 'Marin', 'Maulore', 'Meriet', 'Merigot', 'Elminster', 'Mervin', 'Mervyn', 'Mittainne', 'Morel', 'Néapolion', 'Névelet', 'Nivelet', 'Nicaise', 'Noeë', 'Noël', 'Norbert', 'Obert', 'Odard', 'Omerus', 'Ondart', 'Orderic', 'Orland', 'Orrick', 'Othuel', 'Otuel', 'Papin', 'Parcin', 'Pariset', 'Pepin', 'Petruche', 'Philbert', 'Picot', 'Platiau', 'Popin', 'Popiniau', 'Porchier', 'Poufille', 'Pricion', 'Quabin', 'Quenall', 'Raguenel', 'Raguet', 'Rahere', 'Rahier', 'Rasequin', 'Ratier', 'Rauve', 'Redway', 'Renonys', 'Renost', 'Renouf', 'Resse', 'Ribald', 'Ringerus', 'Roderick', 'Rodney', 'Rodolph', 'Roncin', 'Roscelin', 'Rocelin', 'Rocelinus', 'Rosser', 'Rostand', 'Rotrou', 'Roucaud', 'Ruald', 'Ruaud', 'Rufier', 'Rufin', 'Rufus', 'Russell', 'Roussel', 'Sadun', 'Saillot', 'Sainte', 'Santin', 'Sehier Syhier', 'Senebaut', 'Sequin', 'Sernays', 'Sevrin', 'Sicard', 'Sicho', 'Sicre', 'Sigan', 'Sigismund', 'Sirion', 'Sivis', 'Sohalet', 'Soolet', 'Sohier', 'Souni', 'Sonnet', 'Taillefer', 'Taillemache', 'Talon', 'Tassart', 'Tassot', 'Tassin', 'Tevenot', 'Thouche', 'Tiessot', 'Torphin', 'Turbertus', 'Turquan', 'Tutain', 'Ulger', 'Vane', 'Vannes', 'Vézian', 'Victor', 'Waleran', 'Waleron', 'Wynkyn', 'Ydevert', 'Tsabu', 'Parn', 'Cedric', 'Vash', 'Áed', 'Áedán', 'Áedh', 'Arthfael', 'Bradán', 'Bréanainn', 'Brian', 'Bricius', 'Cadeyrn', 'Caiside', 'Caomh', 'Caomhán', 'Cathasach', 'Corraidhín', 'Cuidightheach', 'Cunobelinus', 'Cynbel', 'Cynwrig', 'Donnchad', 'Donndubhán', 'Drest', 'Drust', 'Drustan', 'Dubhshláine', 'Dubhthach', 'Elisedd', 'Eógan', 'Fáelán', 'Fedelmid', 'Fedlimid', 'Galchobhar', 'Gwrtheryn', 'Haerviu', 'Iodocus', 'Iudicael', 'Judicaël', 'Judoc', 'Lóegaire', 'Lugubelenus', 'Lugge', 'Máedoc', 'Maeleachlainn', 'Mathghamhain', 'Mochán', 'Morcant', 'Nechtan', 'Glenn', 'Bram', 'Rory', 'Aldous', 'Alistair', 'Bennett', 'Conrad', 'Constantine', 'Dietrich', 'Everard', 'Godwin', 'Jeffery', 'Joachim', 'Ladislas', 'Luther', 'Milo', 'Odo', 'Randall', 'Robin', 'Theobald', 'Wade', 'Warner', 'Wolfgang', 'Jorah', 'Théodred', 'Théoden', 'Gandalf', 'Aragon', 'Eragon', 'Isildur', 'Húrin', 'Húor', 'Ailwin', 'Alard', 'Aldred', 'Amaury', 'Terenas', 'Lothar', 'Anselm', 'Arnald', 'Asa', 'Aubrey', 'Bartholomew', 'Bennet', 'Bertram', 'Blacwin', 'Colin', 'David', 'Edwin', 'Elias', 'Helyas', 'Engeram', 'Ernald', 'Eustace', 'Fabian', 'Fordwin', 'Forwin', 'Fulk', 'Gamel', 'Gerard', 'Gervase', 'Giles', 'Gladwin', 'Guy', 'Hamo', 'Hamond', 'Harding', 'Herlewin', 'Hervey', 'James', 'Jocelin', 'Jordan', 'Lawrence', 'Leofwin', 'Luke', 'Masci', 'Matthew', 'Maurice', 'Michael', 'Nigel', 'Hodor', 'Olivar', 'Osbert', 'Norman', 'Philip', 'Ralph', 'Ranulf', 'Saer', 'Samer', 'Savaric', 'Silvester', 'Stephan', 'Terric', 'Terry', 'Thierry', 'Thurstan', 'Umfrey', 'Warin', 'Wimarc', 'Ymbert', 'Adalbert', 'Bernard', 'Bero', 'Burchard', 'Brego', 'Carloman', 'Drogo', 'Engilbert', 'Gerold', 'Grimald', 'Hartmut', 'Hildebald', 'Meginhard', 'Otker', 'Tassilo', 'Waltgaud', 'Werinbert'
+homens = ['Adam', 'Geoffrey', 'Gilbert', 'Henry', 'Hugh', 'John', 'Nicholas', 'Peter', 'Ralf', 'Richard', 'Robert', 'Roger', 'Simon', 'Thomas', 'Walter', 'William', 'Merek', 'Carac', 'Ulric', 'Tybalt', 'Borin', 'Sadon', 'Terrowin', 'Rowan', 'Forthwind', 'Althalos', 'Fendrel', 'Brom', 'Hadrian', 'Daw', 'Elric', 'Hann', 'Herry', 'Hob', 'Jankin', 'Mack', 'Aldus', 'Jasper', 'Alan', 'Conan', 'Donald', 'Gawain', 'Basil', 'Arthur', 'Mordred', 'Dervel', 'Percival', 'Agricola', 'Eliot', 'Hector', 'Manfred', 'Lucius', 'Lambert', 'Griffith', 'Guts', 'Gerald', 'Alphonse', 'Gareth', 'Aldrich', 'Alistar', 'Allister', 'Archer', 'Ascott', 'Cleff', 'Ashton', 'Barden', 'Barlow', 'Baxter', 'Bentley', 'Bowman', 'Cid', 'Brandom', 'Cederic', 'Dalton', 'Drake', 'Edgar', 'Sawyer', 'Allegro', 'Ambrich', 'Bermund', 'Demetrius', 'Faust', 'Finn', 'Jake', 'Cecil', 'Kain', 'Barret', 'Rex', 'Josef', 'Gordon', 'Locke', 'Ward', 'Dias', 'Leon', 'Noel', 'Cliff', 'Cyrus', 'Magus', 'Malcom', 'Owen', 'Tristan', 'Alec', 'Greg', 'Alexander', 'Lucian', 'Martin', 'Peregrin', 'Quentin', 'Connor', 'Vincent', 'Eric', 'Aldwin', 'Baldwin', 'Edward', 'Goldwin', 'Hebert', 'Wilfrid', 'Abelard', 'Absolon', 'Achard', 'Achart', 'Adalbero', 'Agu', 'Aignen', 'Agnien', 'Alaire', 'Alarge', 'Alazaïs', 'Albin', 'Albinus', 'Alcher', 'Aldebrand', 'Aldemund', 'Alderan', 'Aleaumin', 'Aliaume', 'Alyaume', 'Alerot', 'Alodet', 'Aloysius', 'Alured', 'Amadeus', 'Amalric', 'Amalvis', 'Amanieu', 'Amigart', 'Araimfres', 'Arbert', 'Arnulf', 'Arsieu', 'Arvide', 'Augebert', 'Avenel', 'Baderon', 'Baldric', 'Bangin', 'Bardin', 'Barnier', 'Baut', 'Biche', 'Billebaut', 'Bochard', 'Bouchard', 'Burnel', 'Buselin', 'Centule', 'Chartain', 'Chatbert', 'Claudien', 'Colbert', 'Coumyn', 'Cyon', 'Cyprian', 'Daimbert', 'Dalmas', 'Daluce', 'Damian', 'Darius', 'Delion', 'Digne', 'Doete', 'Dolfin', 'Duche', 'Dudic', 'Éléazar', 'Emambe', 'Emont', 'Engelard', 'Engenouf', 'Enion', 'Erengier', 'Ertaut', 'Esdelot', 'Espan', 'Estène', 'Estout', 'Fabien', 'Famète', 'Fameite', 'Fangeaux', 'Fiebras', 'Flambard', 'Floouen', 'Fluellen', 'Fortin', 'Fourcaut', 'Foursi', 'Fray', 'Fremin', 'Freskin', 'Ganelon', 'Garsille', 'Gascot', 'Gaubert', 'Gauchier', 'Gaude', 'Gauguein', 'Gembert', 'Gentian', 'Gentien', 'Gerland', 'Gildon', 'Giriaume', 'Gobin', 'Gobelin', 'Godebert', 'Godichal', 'Golias', 'Gonfroi', 'Gontier', 'Goumelet', 'Gourdet', 'Gracien', 'Gracyen', 'Granville', 'Grefin', 'Grenville', 'Grifon', 'Gringoire', 'Guermont', 'Guigue', 'Guineboud', 'Habreham', 'Haguin', 'Haiete', 'Halebran', 'Halinard', 'Haquin', 'Harchier', 'Hascouf', 'Hecelin', 'Henseus', 'Herbrand', 'Herchier', 'Herculles', 'Hernouet', 'Hesdin', 'Hétouyn', 'Heude', 'Hique', 'Hocequin', 'Honoré', 'Honot', 'Huard', 'Huart', 'Huebald', 'Huidelon ', 'Huitace', 'Humbert', 'Hunout', 'Huoul', 'Huroin', 'Ianto', 'Ilbert', 'Isore', 'Japhet', 'Jeharraz', 'Jehaue', 'Jessamy', 'Jevan', 'Jolis', 'Jollivet', 'Jonas', 'Jonathas', 'Jorin', 'Jude', 'Jumel', 'Juste', 'Kerrich', 'Lagot', 'Léal', 'Leavold', 'Leigh', 'Leofard', 'Letard', 'Lie', 'Lièce', 'Maillart', 'Maillet', 'Mainnet', 'Malise', 'Marcel', 'Marin', 'Maulore', 'Meriet', 'Merigot', 'Elminster', 'Mervin', 'Mervyn', 'Mittainne', 'Morel', 'Néapolion', 'Névelet', 'Nivelet', 'Nicaise', 'Noeë', 'Noël', 'Norbert', 'Obert', 'Odard', 'Omerus', 'Ondart', 'Orderic', 'Orland', 'Orrick', 'Othuel', 'Otuel', 'Papin', 'Parcin', 'Pariset', 'Pepin', 'Petruche', 'Philbert', 'Picot', 'Platiau', 'Popin', 'Popiniau', 'Porchier', 'Poufille', 'Pricion', 'Quabin', 'Quenall', 'Raguenel', 'Raguet', 'Rahere', 'Rahier', 'Rasequin', 'Ratier', 'Rauve', 'Redway', 'Renonys', 'Renost', 'Renouf', 'Resse', 'Ribald', 'Ringerus', 'Roderick', 'Rodney', 'Rodolph', 'Roncin', 'Roscelin', 'Rocelin', 'Rocelinus', 'Rosser', 'Rostand', 'Rotrou', 'Roucaud', 'Ruald', 'Ruaud', 'Rufier', 'Rufin', 'Rufus', 'Russell', 'Roussel', 'Sadun', 'Saillot', 'Sainte', 'Santin', 'Sehier Syhier', 'Senebaut', 'Sequin', 'Sernays', 'Sevrin', 'Sicard', 'Sicho', 'Sicre', 'Sigan', 'Sigismund', 'Sirion', 'Sivis', 'Sohalet', 'Soolet', 'Sohier', 'Souni', 'Sonnet', 'Taillefer', 'Taillemache', 'Talon', 'Tassart', 'Tassot', 'Tassin', 'Tevenot', 'Thouche', 'Tiessot', 'Torphin', 'Turbertus', 'Turquan', 'Tutain', 'Ulger', 'Vane', 'Vannes', 'Vézian', 'Victor', 'Waleran', 'Waleron', 'Wynkyn', 'Ydevert', 'Tsabu', 'Parn', 'Cedric', 'Vash', 'Áed', 'Áedán', 'Áedh', 'Arthfael', 'Bradán', 'Bréanainn', 'Brian', 'Bricius', 'Cadeyrn', 'Caiside', 'Caomh', 'Caomhán', 'Cathasach', 'Corraidhín', 'Cunobelinus', 'Cynbel', 'Cynwrig', 'Donnchad', 'Donndubhán', 'Drest', 'Drust', 'Drustan', 'Dubhshláine', 'Dubhthach', 'Elisedd', 'Eógan', 'Fáelán', 'Fedelmid', 'Fedlimid', 'Galchobhar', 'Gwrtheryn', 'Haerviu', 'Iodocus', 'Iudicael', 'Judicaël', 'Judoc', 'Lóegaire', 'Lugubelenus', 'Lugge', 'Máedoc', 'Maeleachlainn', 'Mathghamhain', 'Mochán', 'Morcant', 'Nechtan', 'Glenn', 'Bram', 'Rory', 'Aldous', 'Alistair', 'Bennett', 'Conrad', 'Constantine', 'Dietrich', 'Everard', 'Godwin', 'Jeffery', 'Joachim', 'Ladislas', 'Luther', 'Milo', 'Odo', 'Randall', 'Robin', 'Theobald', 'Wade', 'Warner', 'Wolfgang', 'Jorah', 'Théodred', 'Théoden', 'Gandalf', 'Aragon', 'Eragon', 'Isildur', 'Húrin', 'Húor', 'Ailwin', 'Alard', 'Aldred', 'Amaury', 'Terenas', 'Lothar', 'Anselm', 'Arnald', 'Asa', 'Aubrey', 'Bartholomew', 'Bennet', 'Bertram', 'Blacwin', 'Colin', 'David', 'Edwin', 'Elias', 'Helyas', 'Engeram', 'Ernald', 'Eustace', 'Fabian', 'Fordwin', 'Forwin', 'Fulk', 'Gamel', 'Gerard', 'Gervase', 'Giles', 'Gladwin', 'Guy', 'Hamo', 'Hamond', 'Harding', 'Herlewin', 'Hervey', 'James', 'Jocelin', 'Jordan', 'Lawrence', 'Leofwin', 'Luke', 'Masci', 'Matthew', 'Maurice', 'Michael', 'Nigel', 'Hodor', 'Olivar', 'Osbert', 'Norman', 'Philip', 'Ralph', 'Ranulf', 'Saer', 'Samer', 'Savaric', 'Silvester', 'Stephan', 'Terric', 'Terry', 'Thierry', 'Thurstan', 'Umfrey', 'Warin', 'Wimarc', 'Ymbert', 'Adalbert', 'Bernard', 'Bero', 'Burchard', 'Brego', 'Carloman', 'Drogo', 'Engilbert', 'Gerold', 'Grimald', 'Hartmut', 'Hildebald', 'Meginhard', 'Otker', 'Tassilo', 'Waltgaud', 'Werinbert'
 
 
  
@@ -371,14 +371,7 @@ print 'Verificando nomes femininos... '
 puts '[OK]'
 
 
-	gender = ['Masculino', 'Feminino']
-
-	ages = ['Criança', 'Adolescente', 'Adulto', 'Idoso']
-
-	racas = ['Humano Ocidental', 'Humano Sulista', 'Humano Mesocontinental', 'Elfo da Lua',
-	'Elfo do Sol', 'Elfo Selvagem', 'Anão Escudo', 'Meio-Orc', 'Meio-Elfo da Lua',
-	'Meio-Elfo do Sol'
-	]
+	
 
 
 print 'Gerando Localizações... '
@@ -978,97 +971,67 @@ puts '[OK]'
 
 
 print 'Inserindo Npcs... '
-g1 = [
+	counter = 0
+	gender = ['Masculino', 'Feminino']
 
-{name: 'Hann', age: 50, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Marido de Bella', age_range: 'Idoso', family: 'Hann' } ,
+	ages = ['Criança', 'Adolescente', 'Adulto', 'Idoso']
 
-{name: 'Bella', age: 49, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Esposa de Hann', age_range: 'Idoso', family: 'Hann' } ,
 
-{name: 'Flambard', age: 51, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Marido de Zilka', age_range: 'Idoso', family: 'Flambard' } ,
+	racas = ['Humano Ocidental', 'Humano Sulista', 'Humano Mesocontinental', 'Elfo da Lua',
+	'Elfo do Sol', 'Elfo Selvagem', 'Anão Escudo', 'Meio-Orc', 'Meio-Elfo da Lua',
+	'Meio-Elfo do Sol'
+	]
 
-{name: 'Zilka', age: 53, gender: 'Feminino', race_id: 2, role_id: 29, background: '', age_range: 'Idoso', family: 'Flambard' } ,
+	families = ['Gregory', 'Mainnet', 'Mathghamhain', 'Wolfgang', 'Flambard', 'Hann']
+	
+	#gerando NPCs
+	familia = 0
+	while familia < 6 #gerando famílias
+		faixa_etaria = 0
+		while faixa_etaria < 4
+			counter = 0
+			if faixa_etaria == 0 #crianças
+ 				idades = [*1..9]
+				pessoas = [*10..18].sample
 
-{name: 'Wolfgang', age: 57, gender: 'Masculino', race_id: 2, role_id: 29, background: '', age_range: 'Idoso', family: 'Wolfgang' } ,
+			elsif faixa_etaria == 1 #adolescentes
+				idades = [*10..14]
+				pessoas = [*5..6].sample
 
-{name: 'Ayne', age: 57, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Esposa de Wolfgand', age_range: 'Idoso', family: 'Wolfgang' } ,
+			elsif faixa_etaria == 2 # Adultos
+				idades = [*15..52]
+				pessoas = [*10..15].sample
 
-{name: 'Mathghamhain', age: 26, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Marido de Vasilia. Era um bom homem, bastante prestativo e que caçava emoção. Morreu aos 26 anos se aventurando pela Floresta Proibida.', age_range: 'Adulto', family: 'Mathghamhain' } ,
+			else #idosos
+				idades = [*53..70]
+				pessoas = [*1..2].sample
+			end
 
-{name: 'Vasilia', age: 58, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Esposa de Mathghamhain', age_range: 'Idoso', family: 'Mathghamhain' } ,
+			while counter < pessoas
+				sex = gender.sample
+				npc = Npc.new
+				if sex == gender[0] #masculino
+					npc.name = MaleHumanName.all.sample.name
+				else #feminino
+					npc.name = FemaleHumanName.all.sample.name
+				end
+				npc.gender = sex
+				npc.family = families[familia]
+				npc.race = Race.find(2)
+				npc.role = Role.last
+				npc.age_range = ages[faixa_etaria]
+				npc.age = idades.sample
+				npc.save
+				counter+=1
 
-{name: 'Mainnet', age: 60, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Marido de Coulombe.', age_range: 'Idoso', family: 'Mainnet' } ,
+			end
+			#ao final, incrementa faixa_etaria
+			faixa_etaria += 1	
+		end
 
-{name: 'Coulombe', age: 61, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Esposa de Mainnet', age_range: 'Idoso', family: 'Mainnet' } ,
-
-{name: 'Gregory', age: 49, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Marido de Melusine', age_range: 'Idoso', family: 'Greg' } ,
-
-{name: 'Melusine', age: 48, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Esposa de Greg. Morreu aos 31.', age_range: 'Idoso', family: 'Greg' } ,
-
-{name: 'Arwen', age: 16, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Irmã Mainnet e Rena', age_range: 'Adulto', family: 'Mainnet' }
-
-]
-
-g2 = [
-
-{name: 'Kenneth', age: 174, gender: 'Masculino', race_id: 5, role_id: 29, background: 'Amigo da família Hann', age_range: 'Adulto', family: 'Nil' } ,
-
-{name: 'Resse', age: 20, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Hann. Filho de Hann e Bella e irmão de Emília', age_range: 'Adulto', family: 'Hann' } ,
-
-{name: 'Emilia', age: 17, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Hann. Filha de Hann e Bella. Irmã de Resse', age_range: 'Adulto' } ,
-
-{name: 'Awnia', age: 25, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Flambard. Filha mais velha de Flambard e Zilka', age_range: 'Adulto', family: 'Flambard' } ,
-
-{name: 'Duana', age: 23, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Flambard. Filha do meio de Flambard e Zilka', age_range: 'Adulto', family: 'Flambard' } ,
-
-{name: 'Imedia', age: 17, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Flambard. Filha mais nova de Flambard e Zilka', age_range: 'Adulto', family: 'Flambard' } ,
-
-{name: 'Lenala', age: 25, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Wolfgang. Filha mais velha de Wolfgang e Ayne', age_range: 'Adulto' } ,
-
-{name: 'Colette', age: 20, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Wolfgang. Filha do meio de Wolfgang e Ayne', age_range: 'Adulto' } ,
-
-{name: 'Porchier', age: 17, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Wolfgang. Filho mais velho de Wolfgang e Ayne', age_range: 'Adulto' } ,
-
-{name: 'Bermund', age: 30, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mathghamhain. Filho mais velho dentre todos da família de Mathghamhain e Vasilia', age_range: 'Adulto' } ,
-
-{name: 'Sara', age: 29, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Mathghamhain. Filha mais velha de Mathghamhain e Vasilia.', age_range: 'Adulto' } ,
-
-{name: 'Pacchild', age: 28, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Mathghamhain. Filha de Mathghamhain e Vasilia', age_range: 'Adulto' } ,
-
-{name: 'Russell', age: 27, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mathghamhain. Filho de Mathghamhain e Vasilia', age_range: 'Adulto' } ,
-
-{name: 'Dalton', age: 30, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mainnet. Primeiro filho de Mainnet e Coulombe', age_range: 'Adulto' } ,
-
-{name: 'Albin', age: 27, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mainnet. Segundo filho de Mainnet e Coulombe ', age_range: 'Adulto' } ,
-
-{name: 'Asa', age: 26, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mainnet. Terceiro filho de Mainnet e Coulombe ', age_range: 'Adulto' } ,
-
-{name: 'Caomhán', age: 22, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mainnet. Quarto filho de Mainnet e Coulombe ', age_range: 'Adulto' } ,
-
-{name: 'Alodet', age: 20, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Mainnet. Quinto filho de Mainnet e Coulombe ', age_range: 'Adulto' } ,
-
-{name: 'Fendrel', age: 30, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Greg. Primeiro filho de Greg e Melusine', age_range: 'Adulto' } ,
-
-{name: 'Máedoc', age: 29, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Greg. Segundo filho de Greg e Melusine. Gêmeo de Erma', age_range: 'Adulto' } ,
-
-{name: 'Erma', age: 29, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Greg. Primeira filha de Greg e Melusine. Gêmea de Máedoc', age_range: 'Adulto' } ,
-
-{name: 'Agu', age: 25, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Greg. Terceiro filho de Greg e Melusine.', age_range: 'Adulto' } ,
-
-{name: 'Samer', age: 24, gender: 'Masculino', race_id: 2, role_id: 29, background: 'Família Greg. Quarto filho de Greg e Melusine.', age_range: 'Adulto' } ,
-
-{name: 'Indigo', age: 20, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Greg. Filha mais nova de Greg e Melusine. Irmã gêmea de Idona', age_range: 'Adulto' } ,
-
-{name: 'Idona', age: 20, gender: 'Feminino', race_id: 2, role_id: 29, background: 'Família Greg. Filha mais nova de Greg e Melusine. Irmã gêmea de Indigo', age_range: 'Adulto' }
-
-]  
-
-	g1.each do |n|
-		Npc.create!(n)
+		familia+=1 
 	end
-
-	g2.each do |n|
-		Npc.create!(n)
-	end  
+	
 puts '[OK]'
 
 puts '------------------------'

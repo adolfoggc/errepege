@@ -4,7 +4,7 @@ class NpcsController < ApplicationController
   # GET /npcs
   # GET /npcs.json
   def index
-    @npcs = Npc.all
+    @npcs = Npc.order(:age).reverse_order
     @raças = Race.all
   end
 
