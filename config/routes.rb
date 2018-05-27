@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   resources :scenarios
   #resources :npcs
   resources :skills
