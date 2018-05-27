@@ -36,10 +36,8 @@ puts '[OK]'
 
 print 'Gerando Alinhamentos... '
 	tipos = [
-		'Leal e Boa', 'Leal e Neutra', 'Leal e Má', 'Neutro e Boa', 'Neutro Pura',
-		'Neutro e Má', 'Caótica e Boa', 'Caótica e Neutra', 'Caótica e Má',
-
-		'Boa', 'Neutra', 'Má', 'Leal', 'Caótico' 
+		'Leal e Bom', 'Leal e Neutro', 'Leal e Mau', 'Neutro e Bom', 'Neutro Puro',
+		'Neutro e Mau', 'Caótico e Bom', 'Caótico e Neutro', 'Caótico e Mau' 
 	]
 	tipos.each do |t| 
 		Alignment.create!( kind: t)

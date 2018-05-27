@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180526221546) do
+ActiveRecord::Schema.define(version: 20180527173727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,37 @@ ActiveRecord::Schema.define(version: 20180526221546) do
     t.index ["role_id"], name: "index_npcs_on_role_id"
   end
 
+  create_table "player_skills", force: :cascade do |t|
+    t.bigint "skill_id"
+    t.integer "graduation"
+    t.integer "special"
+    t.integer "learning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_player_skills_on_skill_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.bigint "race_id"
+    t.integer "age"
+    t.string "gender"
+    t.bigint "dnd_class_id"
+    t.integer "str", default: 8
+    t.integer "dex", default: 8
+    t.integer "con", default: 8
+    t.integer "intel", default: 8
+    t.integer "wis", default: 8
+    t.integer "cha", default: 8
+    t.integer "hit_points"
+    t.bigint "alignment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alignment_id"], name: "index_players_on_alignment_id"
+    t.index ["dnd_class_id"], name: "index_players_on_dnd_class_id"
+    t.index ["race_id"], name: "index_players_on_race_id"
+  end
+
   create_table "races", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -159,4 +190,8 @@ ActiveRecord::Schema.define(version: 20180526221546) do
   add_foreign_key "monsters", "environments"
   add_foreign_key "npcs", "races"
   add_foreign_key "npcs", "roles"
+  add_foreign_key "player_skills", "skills"
+  add_foreign_key "players", "alignments"
+  add_foreign_key "players", "dnd_classes"
+  add_foreign_key "players", "races"
 end

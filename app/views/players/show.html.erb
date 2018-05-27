@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @player.race %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @player.age %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @player.gender %>
+</p>
+
+<p>
+  <strong>Dnd class:</strong>
+  <%= @player.dnd_class %>
+</p>
+
+<p>
+  <strong>Str:</strong>
+  <%= @player.str %>
+</p>
+
+<p>
+  <strong>Dex:</strong>
+  <%= @player.dex %>
+</p>
+
+<p>
+  <strong>Con:</strong>
+  <%= @player.con %>
+</p>
+
+<p>
+  <strong>Intel:</strong>
+  <%= @player.intel %>
+</p>
+
+<p>
+  <strong>Wis:</strong>
+  <%= @player.wis %>
+</p>
+
+<p>
+  <strong>Cha:</strong>
+  <%= @player.cha %>
+</p>
+
+<p>
+  <strong>Hit points:</strong>
+  <%= @player.hit_points %>
+</p>
+
+<p>
+  <strong>Alignment:</strong>
+  <%= @player.alignment %>
+</p>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>

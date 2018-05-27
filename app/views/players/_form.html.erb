@@ -1,0 +1,79 @@
+<%= form_with(model: player, local: true) do |form| %>
+  <% if player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :player_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :race_id %>
+    <%= form.collection_select(:race_id, Race.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :alignment_id %>
+    <%= form.collection_select :alignment_id, Alignment.all, :id, :kind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dnd_class_id %>
+    <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age, id: :player_age %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.select(:gender, options_for_select([['Feminino', 1], ['Masculino', 2]])) %>
+  </div>
+
+  
+
+  <div class="field">
+    <%= form.label :str %>
+    <%= form.number_field :str, id: :player_str, min: 3, max: 18 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dex %>
+    <%= form.number_field :dex, id: :player_dex, min: 3, max: 18 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :con %>
+    <%= form.number_field :con, id: :player_con, min: 3, max: 18 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :intel %>
+    <%= form.number_field :intel, id: :player_intel, min: 3, max: 18 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wis %>
+    <%= form.number_field :wis, id: :player_wis, min: 3, max: 18 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cha %>
+    <%= form.number_field :cha, id: :player_cha, min: 3, max: 18 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
