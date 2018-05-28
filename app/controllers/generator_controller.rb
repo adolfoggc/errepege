@@ -20,6 +20,13 @@ def npc
 	
 end
 
+def room_generator
+#EM TESTE
+	param = 
+	@room = Array.new
+
+end
+
 private
 	def room_details
 		@description = ['A sala possui ', 'O local tem '].sample

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/npc_list' => 'generator#npc', as: :random_npcs
   get '/families' => 'home#families', as: :families
   get '/calculadora' => 'home#calculadora', as: :calculadora
-  get '/ficha', to: 'home#char_maker', as: :char_maker
+  get '/ficha', to: 'players#index', as: :char_maker
   get '/npcs', to: 'npcs#index', as: :npc_list
   get '/npcs/:id', to: 'npcs#show', as: :npc_show
 
