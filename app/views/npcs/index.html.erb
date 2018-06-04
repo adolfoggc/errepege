@@ -27,6 +27,9 @@
     <tr>
       <td><a href="#gregory">Gregory</a></td>
     </tr>
+    <tr>
+      <td><a href="#gregory">Forasteiros</a></td>
+    </tr>
   </tbody>
 </table>
 
@@ -100,7 +103,7 @@
       </tr>
       <tr>
         <td>Forasteiros</td>
-        <td><%= @npcs.where(family: "Forasteiro").count %></td>
+        <td><%= @npcs.where(family: "Forasteiros").count %></td>
       </tr>
   </tbody>
 </table>
@@ -354,6 +357,41 @@
       <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
+        <td class="row-element"><%= npc.race.name %></td>
+        <td class="row-element"><%= npc.age %></td>
+        <td class="row-element"><%= npc.age_range %></td>
+        <td class="row-element"><%= npc.gender %></td>
+        <td class="row-element"><%= link_to npc.role.name, npc.role %></td>
+        <td class="row-element"><%= link_to 'Mostrar', npc_show_path(npc) %></td>
+        <!--<td><%# link_to 'Editar', edit_npc_path(npc) %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table id="elements">
+<caption id="forasteiros"><h3>Forasteiros</h3></caption>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Faixa Etária</th>
+      <th>Sexo</th>
+      <th>Ocupação</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%# @npcs.order(:name).each do |npc| %>
+    <% @npcs.where(family: 'Forasteiro').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
+      <tr>
+      <% end %>
+        <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.race.name %></td>
         <td class="row-element"><%= npc.age %></td>
         <td class="row-element"><%= npc.age_range %></td>
