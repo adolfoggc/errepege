@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527173727) do
+ActiveRecord::Schema.define(version: 20180604174421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180527173727) do
     t.string "age_range"
     t.text "secret"
     t.string "family"
+    t.boolean "appeared", default: false
     t.index ["race_id"], name: "index_npcs_on_race_id"
     t.index ["role_id"], name: "index_npcs_on_role_id"
   end

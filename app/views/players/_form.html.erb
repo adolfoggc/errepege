@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :race_id %>
-    <%= form.collection_select(:race_id, Race.all, :id, :name) %>
+    <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race'}) %>
   </div>
 
   <div class="field">
@@ -31,17 +31,25 @@
     <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name) %>
   </div>
 
+  <script type="text/javascript">
+    function idade_racas(){
+      if(document.getElementById(race).value == 'coo'){
+        
+      } else {
+        
+      }
+    }    
+  </script>
+  
   <div class="field">
     <%= form.label :age %>
-    <%= form.number_field :age, id: :player_age %>
+    <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7 %>
   </div>
 
   <div class="field">
     <%= form.label :gender %>
     <%= form.select(:gender, options_for_select([['Feminino', 1], ['Masculino', 2]])) %>
   </div>
-
-  
 
   <div class="field">
     <%= form.label :str %>

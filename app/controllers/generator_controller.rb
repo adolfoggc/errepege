@@ -9,7 +9,23 @@ def encounter
 end
 
 def room
-	room_details
+	@room = Array.new
+	cont = 0
+	
+	linha  = 0
+	tamanho = 10
+
+	while (cont<tamanho)
+		@line =  Array.new
+		while (linha<tamanho)
+			@line<<0
+			linha+=1
+		end
+		@room << @line
+		cont+=1
+	end
+	generate_room(@room)
+
 end
 
 def random_encounter
@@ -28,6 +44,31 @@ def room_generator
 end
 
 private
+	def generate_room(room)
+		dado = [*1 .. 4]
+		x = 0
+		y = 0
+		cont = 0
+		while cont < 6
+			room[y][x] = 1
+			jogada = dado.sample
+			if jogada == 1 && y > 0 && room[y-1][x] == 0
+				y-=1
+				cont+=1
+			elsif jogada == 2 && x < 4 && room[y][x+1] == 0
+				x+=1
+				cont+=1
+			elsif jogada == 3 && y <4 && room[y+1][x] == 0
+				y+=1
+				cont+=1
+			elsif jogada == 4 && x > 0 && room[y][x-1] == 0
+				x-=1
+				cont+=1
+			end 	 
+		end
+	end
+
+
 	def room_details
 		@description = ['A sala possui ', 'O local tem '].sample
 		@detail = ['uma bigorna', 'cinzas espalhadas pelo chão', 

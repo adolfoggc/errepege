@@ -120,7 +120,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -153,7 +157,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Hann').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -186,7 +194,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Flambard').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -219,7 +231,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Wolfgang').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -253,7 +269,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Mathghamhain').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -286,7 +306,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Mainnet').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
@@ -319,7 +343,11 @@
   <tbody>
     <%# @npcs.order(:name).each do |npc| %>
     <% @npcs.where(family: 'Gregory').each do |npc| %>
+      <% if npc.appeared == true %>
+        <tr style="background-color: #91ffa7">
+      <% else %>
       <tr>
+      <% end %>
         <td class="row-element"><%= npc.name %></td>
         <td class="row-element"><%= npc.family %></td>
         <td class="row-element"><%= npc.race.name %></td>
