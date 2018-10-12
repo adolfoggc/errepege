@@ -1,8 +1,11 @@
 <%= render 'public/menu' %>
+<div class="site-name">
+	#eRrePeGe
+</div>
 <div class="site-body"> 
 	<h1>Atualizações</h1>
 	<p><a href="#problemas">Problemase boatos</a> inseridos</p>
-	<p><a href="https://app.roll20.net/join/1178939/0sihhQ">Link para campanha</a> no <a href="https://roll20.net/">Roll20</a></p>
+	<p><a href="https://app.roll20.net/join/1178939/0sihhQ"  target="_blank">Link para campanha</a> no <a href="https://roll20.net/" target="_blank">Roll20</a></p>
 
 
 	<h1 id="descricao">Descrição Básica</h1>
@@ -106,29 +109,29 @@
 	  	<li>Não tenho uma campanha definida, mas tenho um calendário a seguir com acontecimentos que podem desenrolar em aventuras além de aventuras que podem ser obtidas com NPCs. Obviamente, as ações dos jogadores pode impedir ou acelerar acontecimentos.</li>
 	  	<li>Todos personagens são de nível 1. Boa sorte =]</li>
 	</ul> 
-
-<% g1 = Array.new %>
-<% pessoas = 15 %>
-<% familias1 = 0 %>
-<% r = Random.new %>
-<% while familias1 < 6 do %>
-	<% d100 = r.rand(1..100) %>
-	<% if d100 <= 5 %>
-		<% g1<<1 %>
-	<% elsif d100 <= 15 %>
-		<% g1<<2 %>
-	<% elsif d100 <= 30 %>
-		<% g1<<3 %>
-	<% elsif d100 <= 70 %>
-		<% g1<<4 %>
-	<% elsif d100 <= 85 %>
-		<% g1<<5 %>
-	<% elsif d100 <= 95 %>
-		<% g1<<6 %>
-	<% elsif d100 <= 100 %>
-		<% g1<<7 %>
+	<% if true == false %>
+		<% g1 = Array.new %>
+		<% pessoas = 15 %>
+		<% familias1 = 0 %>
+		<% r = Random.new %>
+		<% while familias1 < 6 do %>
+			<% d100 = r.rand(1..100) %>
+			<% if d100 <= 5 %>
+				<% g1<<1 %>
+			<% elsif d100 <= 15 %>
+				<% g1<<2 %>
+			<% elsif d100 <= 30 %>
+				<% g1<<3 %>
+			<% elsif d100 <= 70 %>
+				<% g1<<4 %>
+			<% elsif d100 <= 85 %>
+				<% g1<<5 %>
+			<% elsif d100 <= 95 %>
+				<% g1<<6 %>
+			<% elsif d100 <= 100 %>
+				<% g1<<7 %>
+			<% end %>
+			<% familias1 +=1 %>
+		<% end %>
 	<% end %>
-	<% familias1 +=1 %>
-<% end %>
-
 </div>

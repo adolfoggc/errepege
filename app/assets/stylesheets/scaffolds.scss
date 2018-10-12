@@ -3,11 +3,15 @@
 
 
 body {
-  background-color: #fff;
+  background-color: #2b3b4b;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 1.5em;
   margin: 0;
+  background-image: url("errepege.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% auto;
 }
 
 p, ol, ul, td {
@@ -97,11 +101,15 @@ label {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    top: 0;
     overflow: hidden;
     background-color: #2b3b4b;
     margin:  0 0 20px 0;
     color: #FFFFFF;
     display:block;
+    position: fixed;
+    width: 100%;
+
 }
 
 .list-item {
@@ -169,6 +177,7 @@ h1 {
 .site-body {
   padding: 0 2em 0 2em;
   font-family: 'Fondamento', cursive;
+  background-color: #fff;
 }
 
 .row-element {
@@ -246,9 +255,19 @@ p {
 }
 
 @media screen and (min-width: 100px) {
+    .site-name{
+      color: #fff;
+      font-family: 'Fondamento', cursive;
+      margin-top: 3.5em;
+      margin-bottop: 3.5em;
+      text-align: center;
+      font-size: 2em;
+    }
+
     .site-body {
-        padding: 0 2em 0 2em;
-        font-family: 'Fondamento', cursive;
-        margin: 10%;
-      }
+      padding: 2em 2em 2em 2em;
+      font-family: 'Fondamento', cursive;
+      margin: 10%;
+      
+    }
 }

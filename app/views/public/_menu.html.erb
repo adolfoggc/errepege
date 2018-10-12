@@ -1,11 +1,12 @@
 <% #menu %>
+<% if true == false %>
 <div class="header-div">
 	<%= image_tag("errepege.jpg",  alt: "imagem de título", class: "header_img" ) %>
 	
 	<div class="text-title">#eRrePeGe</div>
 		
 </div>
-
+<% end %>
 
 
 	<ul class="menu-list">
@@ -14,7 +15,16 @@
 	  	<li class="list-item"><%= link_to "Perícias", skills_path, class: "list-element" %></li>
 	  	<li class="list-item"><%= link_to "Famílias", families_path, class: "list-element" %></li>
 	  	<li class="list-item"><%= link_to "NPCs", npc_list_path, class: "list-element" %></li>
-	  	<li class="list-item"><%= link_to "Ficha", char_maker_path, class: "list-element" %></li>
+	  	<% if true == false %>
+	  		<li class="list-item"><%= link_to "Ficha", char_maker_path, class: "list-element" %></li>
+	  	<% end %>
+	  	<% if user_signed_in? %>
+	  		<li class="list-item"><%= link_to "Deslogar", destroy_user_session_path, method: :delete, class: "list-element" %></li>
+	  	<% elsif user_signed_in? %>
+	  		<li class="list-item"><%= link_to "DM - Deslogar", destroy_master_session_path, method: :delete, class: "list-element" %></li>
+	  	<% else %>
+	  		<li class="list-item"><%= link_to "Logar", new_user_session_path, class: "list-element" %></li>
+	  	<% end %> 
 	</ul> 
 
 	
