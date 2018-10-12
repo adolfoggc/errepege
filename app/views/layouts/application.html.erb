@@ -9,7 +9,11 @@
   </head>
 
   <body>
-  	<%= render '/public/menu' %>
+  	<% if user_signed_in? || master_signed_in? %>
+      <%= render '/public/logged_menu' %>
+    <% else %>
+      <%= render '/public/menu' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

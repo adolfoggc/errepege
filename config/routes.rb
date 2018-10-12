@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :players
   resources :scenarios
-  #resources :npcs
+  resources :npcs
   resources :skills
   resources :dnd_classes
   resources :races
@@ -28,7 +28,16 @@ Rails.application.routes.draw do
   authenticated :user do
     scope "/" do
        #get 'logar', to: 'devise/sessions#new'
-       root 'home#index'
+      get '/room' => 'generator#room', as: :rooms 
+      get '/encounter' => 'generator#random_encounter', as: :random_encounter
+      get '/npc_list' => 'generator#npc', as: :random_npcs
+      get '/families' => 'home#families', as: :families
+      get '/calculadora' => 'home#calculadora', as: :calculadora
+      get '/ficha', to: 'players#index', as: :char_maker
+      get '/npcs', to: 'npcs#index', as: :npc_list
+      get '/npcs/:id', to: 'npcs#show', as: :npc_show
+
+      root 'home#index'
     end
   end
 
