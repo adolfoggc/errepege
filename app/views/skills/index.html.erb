@@ -1,68 +1,72 @@
-<%= render 'public/menu' %>
 
+<% if true == false %>
 <p id="notice"><%= notice %></p>
+<% end %>
 
-<h1>Perícias</h1>
-<div id="align">
-<table id="elements">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-      <th>Habilidade Relacionada</th>
-      <th>Requer Treinamento?</th>
-      <th>Penalidade de Destreza?</th>
-      <th>Penalidade por Peso?</th>
-      <th>Mostrar Detalhes</th>
-    </tr>
-  </thead>
+<div class="site-body"> 
 
-  <tbody>
-    <% @skills.each do |skill| %>
+  <h1>Perícias</h1>
+  <div id="align">
+  <table id="elements">
+    <thead>
       <tr>
-        <td class="row-element"><%= skill.name %></td>
-        <td class="row-element"><%= skill.description %></td>
-        <td class="row-element">
-            <% if skill.related_ability == 0  %>
-              <%= 'Força' %>
-            <% elsif skill.related_ability == 1  %>
-              <%= 'Destreza' %>
-            <% elsif skill.related_ability == 2  %>
-              <%= 'Constituição' %>
-            <% elsif skill.related_ability == 3  %>
-              <%= 'Inteligência' %>
-            <% elsif skill.related_ability == 4  %>
-              <%= 'Sabedoria' %>
-            <% else %>
-              <%= 'Carisma' %>
-            <% end %>
-        </td>
-        <td class="row-element">
-          <% if skill.trained? %>
-            <%= 'Sim'%>
-          <% else %>
-            <%= 'Não'%>
-          <% end %>
-        </td>
-        <td class="row-element">
-          <% if skill.dex_penalty? %>
-            <%= 'Sim'%>
-          <% else %>
-            <%= 'Não'%>
-          <% end %>
-        </td>
-        <td class="row-element">
-          <% if skill.weight_penalty? %>
-            <%= 'Sim'%>
-          <% else %>
-            <%= 'Não'%>
-          <% end %>
-        </td>
-        <td class="row-element"><%= link_to 'Mostrar', skill %></td>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Habilidade Relacionada</th>
+        <th>Requer Treinamento?</th>
+        <th>Penalidade de Destreza?</th>
+        <th>Penalidade por Peso?</th>
+        <th>Mostrar Detalhes</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @skills.each do |skill| %>
+        <tr>
+          <td class="row-element"><%= skill.name %></td>
+          <td class="row-element"><%= skill.description %></td>
+          <td class="row-element">
+              <% if skill.related_ability == 0  %>
+                <%= 'Força' %>
+              <% elsif skill.related_ability == 1  %>
+                <%= 'Destreza' %>
+              <% elsif skill.related_ability == 2  %>
+                <%= 'Constituição' %>
+              <% elsif skill.related_ability == 3  %>
+                <%= 'Inteligência' %>
+              <% elsif skill.related_ability == 4  %>
+                <%= 'Sabedoria' %>
+              <% else %>
+                <%= 'Carisma' %>
+              <% end %>
+          </td>
+          <td class="row-element">
+            <% if skill.trained? %>
+              <%= 'Sim'%>
+            <% else %>
+              <%= 'Não'%>
+            <% end %>
+          </td>
+          <td class="row-element">
+            <% if skill.dex_penalty? %>
+              <%= 'Sim'%>
+            <% else %>
+              <%= 'Não'%>
+            <% end %>
+          </td>
+          <td class="row-element">
+            <% if skill.weight_penalty? %>
+              <%= 'Sim'%>
+            <% else %>
+              <%= 'Não'%>
+            <% end %>
+          </td>
+          <td class="row-element"><%= link_to 'Mostrar', skill %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  </div>
 </div>

@@ -254,6 +254,14 @@ p {
   background-image: url("errepege.jpg");
 }
 
+.inline-item{
+  display: inline-block;
+}
+
+.no_top {
+  margin-top: 0px;
+}
+
 @media screen and (min-width: 100px) {
     .site-name{
       color: #fff;
@@ -269,5 +277,16 @@ p {
       font-family: 'Fondamento', cursive;
       margin: 10%;
       
+    }
+
+    .login-body {
+      padding: 2em 2em 2em 2em;
+      font-family: 'Fondamento', cursive;
+      margin: auto;
+      margin-top:5%;
+      background-color: #fff;
+      text-align: center;
+      width: 25%;
+
     }
 }

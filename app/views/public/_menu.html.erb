@@ -19,12 +19,15 @@
 	  		<li class="list-item"><%= link_to "Ficha", char_maker_path, class: "list-element" %></li>
 	  	<% end %>
 	  	<% if user_signed_in? %>
-	  		<li class="list-item"><%= link_to "Deslogar", destroy_user_session_path, method: :delete, class: "list-element" %></li>
+	  		<li class="list-item"  style="float:right"><%= link_to "Deslogar", destroy_user_session_path, method: :delete, class: "list-element" %></li>
 	  	<% elsif user_signed_in? %>
-	  		<li class="list-item"><%= link_to "DM - Deslogar", destroy_master_session_path, method: :delete, class: "list-element" %></li>
+	  		<li class="list-item"  style="float:right"><%= link_to "DM - Deslogar", destroy_master_session_path, method: :delete, class: "list-element" %></li>
 	  	<% else %>
-	  		<li class="list-item"><%= link_to "Logar", new_user_session_path, class: "list-element" %></li>
+	  		<li class="list-item"  style="float:right"><%= link_to "Logar", new_user_session_path, class: "list-element" %></li>
 	  	<% end %> 
-	</ul> 
+	</ul>
+	<div class="site-name">
+		#eRrePeGe
+	</div>
 
 	
