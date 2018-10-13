@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :players
-  resources :scenarios
+  resources :scenarios, only: [:index, :show]
   resources :npcs
   resources :skills
   resources :dnd_classes
@@ -28,14 +28,10 @@ Rails.application.routes.draw do
   authenticated :user do
     scope "/" do
        #get 'logar', to: 'devise/sessions#new'
-      get '/room' => 'generator#room', as: :rooms 
-      get '/encounter' => 'generator#random_encounter', as: :random_encounter
-      get '/npc_list' => 'generator#npc', as: :random_npcs
-      get '/families' => 'home#families', as: :families
-      get '/calculadora' => 'home#calculadora', as: :calculadora
-      get '/ficha', to: 'players#index', as: :char_maker
-      get '/npcs', to: 'npcs#index', as: :npc_list
-      get '/npcs/:id', to: 'npcs#show', as: :npc_show
+      get '/families' => 'home#families', as: :user_families
+      get '/ficha', to: 'players#index', as: :user_char_maker
+      get '/npcs', to: 'npcs#index', as: :user_npc_list
+      get '/npcs/:id', to: 'npcs#show', as: :user_npc_show
 
       root 'home#index'
     end
@@ -43,15 +39,22 @@ Rails.application.routes.draw do
 
   authenticated :master do
     scope "/dm" do
+      get '/room' => 'generator#room', as: :rooms 
+      get '/encounter' => 'generator#random_encounter', as: :random_encounter
+
+      get '/npc_list' => 'generator#npc', as: :dm_random_npcs
+      get '/families' => 'home#families', as: :dm_families
+      get '/ficha', to: 'players#index', as: :dm_char_maker
+      get '/npcs', to: 'npcs#index', as: :dm_npc_list
+      get '/npcs/:id', to: 'npcs#show', as: :dm_npc_show
+
       root 'home#index'  
     end
   end
 
   unauthenticated :user do
     scope "/" do
-      get '/room' => 'generator#room', as: :rooms 
-      get '/encounter' => 'generator#random_encounter', as: :random_encounter
-      get '/npc_list' => 'generator#npc', as: :random_npcs
+
       get '/families' => 'home#families', as: :families
       get '/calculadora' => 'home#calculadora', as: :calculadora
       get '/ficha', to: 'players#index', as: :char_maker

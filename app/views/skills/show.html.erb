@@ -1,70 +1,70 @@
-<%= render 'public/menu' %>
-<p id="notice"><%= notice %></p>
 
-<div class="title-royal-name">
-  <%= @skill.name %>
-</div>
+<div class="site-body"> 
+  <div class="title-royal-name">
+    <%= @skill.name %>
+  </div>
 
-<p>
-  <strong>Descrição:</strong>
-  <%= @skill.description %>
-</p>
+  <p>
+    <strong>Descrição:</strong>
+    <%= @skill.description %>
+  </p>
 
-<p>
-  <strong>Habilidade Relacionada:</strong>
-  <% if @skill.related_ability == 0  %>
-    <%= 'Força' %>
-  <% elsif @skill.related_ability == 1  %>
-    <%= 'Destreza' %>
-  <% elsif @skill.related_ability == 2  %>
-    <%= 'Constituição' %>
-  <% elsif @skill.related_ability == 3  %>
-    <%= 'Inteligência' %>
-  <% elsif @skill.related_ability == 4  %>
-    <%= 'Sabedoria' %>
-  <% else %>
-    <%= 'Carisma' %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Requer Treinamento:</strong>
-  <% if @skill.trained? %>
-    <%='Sim'%>
-  <% else %>
-    <%='Não'%>
-  <% end %>
-</p>
-
-<p>
-  <strong>Penalidade de Destreza:</strong>
-  <% if @skill.dex_penalty? %>
-    <%='Sim'%>
-  <% else %>
-    <%='Não'%>
-  <% end %>
-</p>
-
-<p>
-  <strong>Penalidade por Peso:</strong>
-  <% if @skill.weight_penalty? %>
-    <%='Sim'%>
-  <% else %>
-    <%='Não'%>
-  <% end %>
-</p>
-
-<p>
-  <strong>Classes Relacionadas:</strong>
-  <% class_skill = @skill_class.where(skill_id: @skill.id) %>
-  <% limit = 1 %>
-  <% class_skill.each do |c| %>
-    <%= c.dnd_class.name %>
-    <% if limit< class_skill.count %>
-      <%= ', '%>
-      <% limit += 1 %>
+  <p>
+    <strong>Habilidade Relacionada:</strong>
+    <% if @skill.related_ability == 0  %>
+      <%= 'Força' %>
+    <% elsif @skill.related_ability == 1  %>
+      <%= 'Destreza' %>
+    <% elsif @skill.related_ability == 2  %>
+      <%= 'Constituição' %>
+    <% elsif @skill.related_ability == 3  %>
+      <%= 'Inteligência' %>
+    <% elsif @skill.related_ability == 4  %>
+      <%= 'Sabedoria' %>
+    <% else %>
+      <%= 'Carisma' %>
     <% end %>
-  <% end %>
-<p>
+  </p>
 
-<%= link_to 'Back', skills_path %>
+  <p>
+    <strong>Requer Treinamento:</strong>
+    <% if @skill.trained? %>
+      <%='Sim'%>
+    <% else %>
+      <%='Não'%>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Penalidade de Destreza:</strong>
+    <% if @skill.dex_penalty? %>
+      <%='Sim'%>
+    <% else %>
+      <%='Não'%>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Penalidade por Peso:</strong>
+    <% if @skill.weight_penalty? %>
+      <%='Sim'%>
+    <% else %>
+      <%='Não'%>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Classes Relacionadas:</strong>
+    <% class_skill = @skill_class.where(skill_id: @skill.id) %>
+    <% limit = 1 %>
+    <% class_skill.each do |c| %>
+      <%= c.dnd_class.name %>
+      <% if limit< class_skill.count %>
+        <%= ', '%>
+        <% limit += 1 %>
+      <% end %>
+    <% end %>
+  </p>
+
+  <%= link_to 'Back', skills_path %>
+</div>
