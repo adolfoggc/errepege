@@ -11,66 +11,92 @@
     </div>
   <% end %>
 
-  <div class="field" id="inline-item">
-    <%= form.label :name, t('name') %>
-    <%= form.text_field :name, id: :player_name %>
-  </div>
+  <div class="sheet-block">
+    <div class="field" id="inline-item">
+      <%= form.label :name, t('name') %>
+      <%= form.text_field :name, id: :player_name %>
+    </div>
 
-  <div class="field" id="inline-item">
-    <%= form.label :race_id, t('race') %>
-    <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "idade_racas()", id: 'race-id'}) %>
+    <div class="field" id="inline-item">
+      <%= form.label :race_id, t('race') %>
+      <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "idade_racas()", id: 'race-id'}) %>
+      
+    </div>
+
+    <div class="field" id="inline-item">
+      <%= form.label :alignment_id, t('alignment') %>
+      <%= form.collection_select :alignment_id, Alignment.all, :id, :kind %>
+    </div>
+
+    <div class="field" id="inline-item">
+      <%= form.label :dnd_class_id, t('class') %>
+      <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "idade_racas()", id: 'class-id'}) %>
+    </div>
     
+    <div class="field" id="inline-item">
+      <%= form.label :age, t('age') %>
+      <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7, id: "idade" %>
+    </div>
+
+    <div class="field" id="inline-item">
+      <%= form.label :gender, t('gender') %>
+      <%= form.select(:gender, options_for_select([['Feminino', 1], ['Masculino', 2]])) %>
+    </div>
   </div>
 
-  <div class="field" id="inline-item">
-    <%= form.label :alignment_id, t('alignment') %>
-    <%= form.collection_select :alignment_id, Alignment.all, :id, :kind %>
-  </div>
-
-  <div class="field" id="inline-item">
-    <%= form.label :dnd_class_id, t('class') %>
-    <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "idade_racas()", id: 'class-id'}) %>
-  </div>
+  <hr>
   
-  <div class="field" id="inline-item">
-    <%= form.label :age, t('age') %>
-    <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7, id: "idade" %>
-  </div>
+  <style>
 
-  <div class="field" id="inline-item">
-    <%= form.label :gender, t('gender') %>
-    <%= form.select(:gender, options_for_select([['Feminino', 1], ['Masculino', 2]])) %>
-  </div>
 
-  <div class="field">
-    <%= form.label :str, t('str') %>
-    <%= form.number_field :str, id: :player_str, min: 3, max: 18 %>
-  </div>
+</style>
+ 
 
-  <div class="field">
-    <%= form.label :dex, t('dex') %>
-    <%= form.number_field :dex, id: :player_dex, min: 3, max: 18 %>
-  </div>
+<table class="habilities">
+  <tr>
+    <th colspan="2">Habilidade</th>
+    <th>Bônus Raça</th> 
+    <th>Mod. Total</th>
+  </tr>
+  <tr>
+    <td class="table-line" id="str-line"><%= form.label :name, t('name') %></td>
+    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", id: "str-value", onchange: "change_str()" %></td>
+    <td class="table-line" id="race-str">0</td>
+    <td class="table-line" id="str">-1</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="dex-line"><%= form.label :dex, t('dex') %></td>
+    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "dex-value", onchange: "change_dex()" %></td>
+    <td class="table-line" id="race-dex">0</td>
+    <td class="table-line" id="dex">-1</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="con-line"><%= form.label :con, t('con') %></td>
+    <td class="table-line" ><%= form.number_field :con, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "con-value", onchange: "change_con()" %></td>
+    <td class="table-line" id="race-con">0</td>
+    <td class="table-line" id="con">-1</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="intel-line"><%= form.label :intel, t('intel') %></td>
+    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", id: "intel-value", onchange: "change_intel()" %></td>
+    <td class="table-line" id="race-intel">0</td>
+    <td class="table-line" id="intel">-1</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="wis-line"><%= form.label :wis, t('wis') %></td>
+    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", id: "wis-value", onchange: "change_wis()" %></td>
+    <td class="table-line" id="race-wis">0</td>
+    <td class="table-line" id="wis">-1</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="cha-line" ><%= form.label :cha, t('cha') %></td>
+    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", id: "cha-value", onchange: "change_cha()" %></td>
+    <td class="table-line" id="race-cha">0</td>
+    <td class="table-line" id="cha">-1</td>
+  </tr>
+</table>
+  
 
-  <div class="field">
-    <%= form.label :con, t('con') %>
-    <%= form.number_field :con, id: :player_con, min: 3, max: 18 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :intel, t('intel') %>
-    <%= form.number_field :intel, id: :player_intel, min: 3, max: 18 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :wis, t('wis') %>
-    <%= form.number_field :wis, id: :player_wis, min: 3, max: 18 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cha, t('cha') %>
-    <%= form.number_field :cha, id: :player_cha, min: 3, max: 18 %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>
@@ -85,6 +111,19 @@
       var min = 0;
       var max = 0;
       if (r<=3){ //humanos
+        document.getElementById("race-str").innerHTML = 0;
+        document.getElementById("race-str").style.color="black";
+        document.getElementById("race-dex").innerHTML = 0;
+        document.getElementById("race-dex").style.color="black";
+        document.getElementById("race-con").innerHTML = 0;
+        document.getElementById("race-con").style.color="black";
+        document.getElementById("race-intel").innerHTML = 0;
+        document.getElementById("race-intel").style.color="black";
+        document.getElementById("race-wis").innerHTML = 0;
+        document.getElementById("race-wis").style.color="black";
+        document.getElementById("race-cha").innerHTML = 0;
+        document.getElementById("race-cha").style.color="black";
+
         min = 15;
         max = 90;
         if (c == 0 || c == 4 || c == 6 ){ //bárbaro - min
@@ -97,6 +136,20 @@
       } else if (r >=4 && r<=8){ //elfos
         min = 110;
         max = 750;
+
+        document.getElementById("race-str").innerHTML= 0;
+        document.getElementById("race-str").style.color="black";
+        document.getElementById("race-dex").innerHTML = 2;
+        document.getElementById("race-dex").style.color="green";
+        document.getElementById("race-con").innerHTML = -2;
+        document.getElementById("race-con").style.color="red";
+        document.getElementById("race-intel").innerHTML = 0;
+        document.getElementById("race-intel").style.color="black";
+        document.getElementById("race-wis").innerHTML = 0;
+        document.getElementById("race-wis").style.color="black";
+        document.getElementById("race-cha").innerHTML = 0;
+        document.getElementById("race-cha").style.color="black";
+
         if (c == 0 || c == 4 || c == 6 ){ //bárbaro - min
           min+=4; 
         } else if ( c == 1 || c == 5 || c == 9 || c == 10) {
@@ -107,6 +160,20 @@
       } else if (r >=9 && r<=11){ //anões
         min = 40;
         max = 450;
+
+        document.getElementById("race-str").innerHTML= 0;
+        document.getElementById("race-str").style.color="black";
+        document.getElementById("race-dex").innerHTML = 0;
+        document.getElementById("race-dex").style.color="black";
+        document.getElementById("race-con").innerHTML = 2;
+        document.getElementById("race-con").style.color="green";
+        document.getElementById("race-intel").innerHTML = 0;
+        document.getElementById("race-intel").style.color="black";
+        document.getElementById("race-wis").innerHTML = 0;
+        document.getElementById("race-wis").style.color="black";
+        document.getElementById("race-cha").innerHTML = -2;
+        document.getElementById("race-cha").style.color="red";
+
         if (c == 0 || c == 4 || c == 6 ){ //bárbaro - min
           min+=3; 
         } else if ( c == 1 || c == 5 || c == 9 || c == 10) {
@@ -117,6 +184,20 @@
       } else if (r == 12){ //meio-orcs
         min = 14;
         max = 450;
+
+        document.getElementById("race-str").innerHTML= "2";
+        document.getElementById("race-str").style.color="green";
+        document.getElementById("race-dex").innerHTML = 0;
+        document.getElementById("race-dex").style.color="black";
+        document.getElementById("race-con").innerHTML = 0;
+        document.getElementById("race-con").style.color="black";
+        document.getElementById("race-intel").innerHTML = -2;
+        document.getElementById("race-intel").style.color="red";
+        document.getElementById("race-wis").innerHTML = 0;
+        document.getElementById("race-wis").style.color="black";
+        document.getElementById("race-cha").innerHTML = -2;
+        document.getElementById("race-cha").style.color="red";
+
         if (c == 0 || c == 4 || c == 6 ){ //bárbaro - min
           min+=1; 
         } else if ( c == 1 || c == 5 || c == 9 || c == 10) {
@@ -127,6 +208,20 @@
       } else if (r >=13 && r<=18){ //meio-elfos
         min = 20;
         max = 185;
+
+        document.getElementById("race-str").innerHTML= 0;
+        document.getElementById("race-str").style.color="black";
+        document.getElementById("race-dex").innerHTML = 0;
+        document.getElementById("race-dex").style.color="black";
+        document.getElementById("race-con").innerHTML = 0;
+        document.getElementById("race-con").style.color="black";
+        document.getElementById("race-intel").innerHTML = 0;
+        document.getElementById("race-intel").style.color="black";
+        document.getElementById("race-wis").innerHTML = 0;
+        document.getElementById("race-wis").style.color="black";
+        document.getElementById("race-cha").innerHTML = 0;
+        document.getElementById("race-cha").style.color="black";
+
         if (c == 0 || c == 4 || c == 6 ){ //bárbaro - min
           min+=1; 
         } else if ( c == 1 || c == 5 || c == 9 || c == 10) {
@@ -139,7 +234,135 @@
       document.getElementById("idade").attributes[1].value = min;
       document.getElementById("idade").attributes[2].value = max; 
       document.getElementById("idade").value = min;
-      //document.getElementById("coo").innerHTML = coo;
+      change_str();
+      change_dex();
+      change_con();
+      change_intel();
+      change_wis();
+      change_cha();
+    }
 
-    }    
+    function change_str(){
+      var valor = parseInt(document.getElementById("str-value").value);
+      var race_bonus = parseInt(document.getElementById("race-str").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("str").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("str").style.color = "red";
+      } else {
+        document.getElementById("str").style.color = "black";
+      }
+      document.getElementById("str").innerHTML = valor;
+
+    }
+
+    function change_dex(){
+      var valor = parseInt(document.getElementById("dex-value").value);
+      var race_bonus = parseInt(document.getElementById("race-dex").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("dex").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("dex").style.color = "red";
+      } else {
+        document.getElementById("dex").style.color = "black";
+      }
+      document.getElementById("dex").innerHTML = valor;
+    }
+
+    function change_con(){
+      var valor = parseInt(document.getElementById("con-value").value);
+      var race_bonus = parseInt(document.getElementById("race-con").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("con").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("con").style.color = "red";
+      } else {
+        document.getElementById("con").style.color = "black";
+      }
+      document.getElementById("con").innerHTML = valor;
+    }
+
+    function change_intel(){
+      var valor = parseInt(document.getElementById("intel-value").value);
+      var race_bonus = parseInt(document.getElementById("race-intel").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("intel").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("intel").style.color = "red";
+      } else {
+        document.getElementById("intel").style.color = "black";
+      }
+      document.getElementById("intel").innerHTML = valor;
+    }
+
+    function change_wis(){
+      var valor = parseInt(document.getElementById("wis-value").value);
+      var race_bonus = parseInt(document.getElementById("race-wis").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("wis").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("wis").style.color = "red";
+      } else {
+        document.getElementById("wis").style.color = "black";
+      }
+      document.getElementById("wis").innerHTML = valor;
+    }
+
+    function change_cha(){
+      var valor = parseInt(document.getElementById("cha-value").value);
+      var race_bonus = parseInt(document.getElementById("race-cha").innerHTML);
+      valor += race_bonus;
+
+      if (valor%2 == 1) {
+        valor = valor -1;
+      }
+      valor = valor/2;
+      valor -=5;
+      if (valor > 0) {
+        document.getElementById("cha").style.color = "green";
+      } else if (valor < 0){
+        document.getElementById("cha").style.color = "red";
+      } else {
+        document.getElementById("cha").style.color = "black";
+      }
+      document.getElementById("cha").innerHTML = valor;
+    }
+
+    idade_racas();
+
 </script>
