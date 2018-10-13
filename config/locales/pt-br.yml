@@ -1,0 +1,14 @@
+"pt-BR":
+  name: "Nome"
+  race: "Raça"
+  gender: "Sexo"
+  class: "Classe"
+  alignment: "Alinhamento"
+  age: "Idade"
+  new_player: 'Novo Personagem'
+  str: 'Força'
+  dex: 'Destreza'
+  con: 'Constituição'
+  intel: 'Inteligência'
+  wis: 'Sabedoria'
+  cha: 'Carisma'
