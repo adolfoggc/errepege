@@ -1,5 +1,5 @@
 <ul class="menu-list">
-	<li class="dropdown">
+	<li class="dropdown" id="drop">
 	    <a href="javascript:void(0)" class="dropbtn" id="list-element">Site</a>
 	    <div class="dropdown-content">
 			<%= link_to "Início", root_path, class: "list-element" %>
@@ -19,7 +19,7 @@
 
 	<% if user_signed_in? %>
 		<li class="list-item"  style="float:right"><%= link_to "Deslogar", destroy_user_session_path, method: :delete, class: "list-element" %></li>
-	<% elsif user_signed_in? %>
+	<% elsif master_signed_in? %>
 	  	<li class="list-item"  style="float:right"><%= link_to "DM - Deslogar", destroy_master_session_path, method: :delete, class: "list-element" %></li>
 	<% else %>
 	  	<li class="list-item"  style="float:right"><%= link_to "Logar", new_user_session_path, class: "list-element" %></li>
