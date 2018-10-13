@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181012001645) do
+ActiveRecord::Schema.define(version: 20181013002946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,9 +143,11 @@ ActiveRecord::Schema.define(version: 20181012001645) do
     t.bigint "alignment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["alignment_id"], name: "index_players_on_alignment_id"
     t.index ["dnd_class_id"], name: "index_players_on_dnd_class_id"
     t.index ["race_id"], name: "index_players_on_race_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
   end
 
   create_table "races", force: :cascade do |t|
@@ -212,4 +214,5 @@ ActiveRecord::Schema.define(version: 20181012001645) do
   add_foreign_key "players", "alignments"
   add_foreign_key "players", "dnd_classes"
   add_foreign_key "players", "races"
+  add_foreign_key "players", "users"
 end

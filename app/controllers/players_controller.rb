@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     @player.hit_points = @player.dnd_class.hit_die
+    @player.user_id = current_user.id
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
@@ -59,6 +60,10 @@ class PlayersController < ApplicationController
       format.html { redirect_to players_url, notice: 'Player was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def user_players
+    @players = Player.where(user_id: current_user.id)
   end
 
   private

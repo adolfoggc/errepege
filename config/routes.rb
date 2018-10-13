@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     scope "/" do
        #get 'logar', to: 'devise/sessions#new'
       get '/families' => 'home#families', as: :user_families
-      get '/ficha', to: 'players#index', as: :user_char_maker
+      get '/fichas', to: 'players#user_players', as: :user_chars
       get '/npcs', to: 'npcs#index', as: :user_npc_list
       get '/npcs/:id', to: 'npcs#show', as: :user_npc_show
 
