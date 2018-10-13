@@ -95,6 +95,19 @@
     <td class="table-line" id="cha">-1</td>
   </tr>
 </table>
+<table>
+  <tr>
+    <th colspan="2">Habilidade</th>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('hp') %></td>
+    <td class="table-line" id="pvs">12</td>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('ac') %></td>
+    <td class="table-line" id="ac">0</td>
+  </tr>
+</table>
   
 
 
@@ -240,6 +253,7 @@
       change_intel();
       change_wis();
       change_cha();
+      check_pvs();
     }
 
     function change_str(){
@@ -281,6 +295,7 @@
         document.getElementById("dex").style.color = "black";
       }
       document.getElementById("dex").innerHTML = valor;
+      document.getElementById("ac").innerHTML = 10+valor;
     }
 
     function change_con(){
@@ -361,6 +376,56 @@
         document.getElementById("cha").style.color = "black";
       }
       document.getElementById("cha").innerHTML = valor;
+    }
+
+    function check_pvs(){
+      var pvs = parseInt(document.getElementById("con").innerHTML);
+      var c = document.getElementById("class-id").selectedIndex;
+      switch (c) {
+        case 0: //barb
+          pvs+=12;
+          break;
+        case 1: //bard
+          pvs+=6;
+          break;
+        
+        case 2: //clerigo
+          pvs+=8;
+          break;
+        
+        case 3: //druida
+          pvs+=8;
+          break;
+
+        case 4: 
+          pvs+=4;
+          break;
+
+        case 5: 
+          pvs+=10;
+          break;
+
+        case 6: //ladin
+          pvs+=6;
+          break;
+
+        case 7: //mago 
+          pvs+=4;
+          break;
+
+        case 8: 
+          pvs+=8;
+          break;
+        
+        case 9: 
+          pvs+=10;
+          break;
+
+        case 10: //ranger 
+          pvs+=8;
+          break;
+      }
+      document.getElementById("pvs").innerHTML = pvs;
     }
 
     idade_racas();

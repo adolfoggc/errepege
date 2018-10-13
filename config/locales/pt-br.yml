@@ -12,3 +12,5 @@
   intel: 'Inteligência'
   wis: 'Sabedoria'
   cha: 'Carisma'
+  ac: 'CA'
+  hp: 'PVs'
