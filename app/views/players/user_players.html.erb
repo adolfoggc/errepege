@@ -18,11 +18,11 @@
     <tbody>
       <% @players.each do |player| %>
         <tr>
-          <td><%= player.name %></td>
-          <td><%= player.race.name %></td>
-          <td><%= player.age %></td>
-          <td><%= player.gender %></td>
-          <td><%= player.dnd_class.name %>
+          <td class="index-line"><%= player.name %></td>
+          <td class="index-line"><%= player.race.name %></td>
+          <td class="index-line"><%= player.age %></td>
+          <td class="index-line"><%= player.gender %></td>
+          <td class="index-line"><%= player.dnd_class.name %>
             <% if player.dnd_class.name == 'Bárbaro' %>
               <%= image_tag("S_Buff14.png") %>
             <% elsif player.dnd_class.name == 'Bardo' %>
@@ -47,10 +47,10 @@
               <%= image_tag("W_Bow02.png") %>
             <% end %>
           </td>
-          <td><%= player.alignment.kind %></td>
-         <!-- <td><%# link_to 'Show', player %></td> -->
-          <td><%= link_to t('Edit'), edit_player_path(player) %></td>
-          <td><%= link_to t('Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="index-line"><%= player.alignment.kind %></td>
+         <!-- <td class="index-line"><%# link_to 'Show', player %></td> -->
+          <td class="index-line"><%= link_to t('Edit'), edit_player_path(player) %></td>
+          <td class="index-line"><%= link_to t('Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
