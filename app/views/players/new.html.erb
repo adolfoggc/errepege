@@ -3,5 +3,9 @@
 
 	<%= render 'form', player: @player %>
 
-	<%= link_to 'Voltar', char_maker_path %>
+	<% if user_signed_in? %>
+		<%= link_to 'Voltar', user_chars_path %>
+	<% elsif master_signed_in? %>
+		<%= link_to 'Voltar', char_maker_path %>
+	<% end %>
 </div>

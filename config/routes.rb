@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :players
+  #resources :players
   resources :scenarios, only: [:index, :show]
   resources :npcs
   resources :skills
@@ -28,8 +28,11 @@ Rails.application.routes.draw do
   authenticated :user do
     scope "/" do
        #get 'logar', to: 'devise/sessions#new'
+      resources :players, except: [:new, :user_players]
       get '/families' => 'home#families', as: :user_families
       get '/fichas', to: 'players#user_players', as: :user_chars
+      get '/fichas/nova', to: 'players#new', as: :user_new_player
+
       get '/npcs', to: 'npcs#index', as: :user_npc_list
       get '/npcs/:id', to: 'npcs#show', as: :user_npc_show
 
@@ -39,6 +42,7 @@ Rails.application.routes.draw do
 
   authenticated :master do
     scope "/dm" do
+      resources :players
       get '/room' => 'generator#room', as: :rooms 
       get '/encounter' => 'generator#random_encounter', as: :random_encounter
 
@@ -57,7 +61,7 @@ Rails.application.routes.draw do
 
       get '/families' => 'home#families', as: :families
       get '/calculadora' => 'home#calculadora', as: :calculadora
-      get '/ficha', to: 'players#index', as: :char_maker
+      #get '/ficha', to: 'players#index', as: :char_maker
       get '/npcs', to: 'npcs#index', as: :npc_list
       get '/npcs/:id', to: 'npcs#show', as: :npc_show
 

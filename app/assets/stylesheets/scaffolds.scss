@@ -436,13 +436,41 @@ div #str, #dex, #con, #intel, #wis, #cha {
 }
 
 table .habilities {
-  /*width: 59%; */
+  width: 100%;
   border: 1px solid black;
 }
 
 #bold-line {
   font-weight: bold;
 }
+
+
+.top-table {
+  background-color: #dddddd;
+  //border-top: 1px solid black;
+}
+
+td:nth-child(3) {
+    background-color: #dddddd;
+}
+td:nth-child(5) {
+    background-color: #dddddd;
+}
+
+
+/*
+#left-border {
+  border-left: 1px solid black;
+}
+
+#right-border {
+  border-right: 1px solid black;
+}
+
+#middle-border {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+} */
 
 
 

@@ -25,7 +25,7 @@
 
     <div class="field" id="inline-item">
       <%= form.label :alignment_id, t('alignment') %>
-      <%= form.collection_select :alignment_id, Alignment.all, :id, :kind %>
+      <%= form.collection_select :alignment_id, Alignment.all, :id, :kind, {}, { id: 'alignment-id'} %>
     </div>
 
     <div class="field" id="inline-item">
@@ -54,17 +54,22 @@
 
 <table class="habilities" style="display: inline-block;">
   <tr>
-    <th colspan="2">Habilidade</th>
-    <th>Bônus Raça</th> 
-    <th>Mod. Total</th>
-    <th>Custo</th>
+    <th colspan="2" class="top-table" id="left-border">Habilidade</th>
+    <th class="top-table" id="middle-border">Bônus Raça</th> 
+    <th class="top-table" id="middle-border">Mod. Total</th>
+    <th class="top-table" id="right-border">Custo</th>
+    <th colspan="4"></th>
   </tr>
   <tr>
-    <td class="table-line" id="str-line"><%= form.label :name, t('name') %></td>
+    <td class="table-line" id="str-line"><%= form.label :str, t('str') %></td>
     <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", id: "str-value", onchange: "update()" %></td>
     <td class="table-line" id="race-str">0</td>
     <td class="table-line" id="str">-1</td>
     <td class="table-line" id="str-cost">0</td>
+    <td class="table-line" id="bold-line"><%= t('hp') %></td>
+    <td class="table-line" id="pvs">12</td>
+    <td class="table-line" id="bold-line">Deslocamento</td>
+    <td class="table-line" id="speed">9</td>
   </tr>
   <tr>
     <td class="table-line" id="dex-line"><%= form.label :dex, t('dex') %></td>
@@ -72,6 +77,10 @@
     <td class="table-line" id="race-dex">0</td>
     <td class="table-line" id="dex">-1</td>
     <td class="table-line" id="dex-cost">0</td>
+    <td class="table-line" id="bold-line"><%= t('ac') %></td>
+    <td class="table-line" id="ac">0</td>
+    <td class="table-line" id="bold-line"><%= t('bab')%></td>
+    <td class="table-line" id="bab">1</td>
   </tr>
   <tr>
     <td class="table-line" id="con-line"><%= form.label :con, t('con') %></td>
@@ -79,6 +88,9 @@
     <td class="table-line" id="race-con">0</td>
     <td class="table-line" id="con">-1</td>
     <td class="table-line" id="con-cost">0</td>
+    <td class="table-line" id="bold-line" colspan="2">Testes de Resistência</td>
+    <td class="table-line" id="bold-line"><%= t("skill")%></td>
+    <td class="table-line" id="skill-pts">9</td>
   </tr>
   <tr>
     <td class="table-line" id="intel-line"><%= form.label :intel, t('intel') %></td>
@@ -86,6 +98,9 @@
     <td class="table-line" id="race-intel">0</td>
     <td class="table-line" id="intel">-1</td>
     <td class="table-line" id="intel-cost">0</td>
+    <td class="table-line"><%= t('fort') %></td>
+    <td class="table-line" id="fort">2</td>
+    <td></td>
   </tr>
   <tr>
     <td class="table-line" id="wis-line"><%= form.label :wis, t('wis') %></td>
@@ -93,6 +108,9 @@
     <td class="table-line" id="race-wis">0</td>
     <td class="table-line" id="wis">-1</td>
     <td class="table-line" id="wis-cost">0</td>
+    <td class="table-line"><%= t('ref') %></td>
+    <td class="table-line" id="ref">0</td>
+    <td class="table-line" id="bold-line" colspan="2"><%= "Pontos" %></td>
   </tr>
   <tr>
     <td class="table-line" id="cha-line" ><%= form.label :cha, t('cha') %></td>
@@ -100,81 +118,14 @@
     <td class="table-line" id="race-cha">0</td>
     <td class="table-line" id="cha">-1</td>
     <td class="table-line" id="cha-cost">0</td>
-  </tr>
-</table>
-
-
-<table  style="display: inline-block; width: 25%;">
-   <tr>
-    <td class="table-line" id="bold-line">Deslocamento</td>
-    <td class="table-line" id="speed">9</td> 
-  </tr>
-  <tr>
-    <td class="table-line" id="bold-line"><%= t('hp') %></td>
-    <td class="table-line" id="pvs">12</td>
-  </tr>
-  <tr>
-    <td class="table-line" id="bold-line"><%= t('ac') %></td>
-    <td class="table-line" id="ac">0</td>
-  </tr>
-  <tr>
-    <th colspan="2">Testes de Resistência</th>
-  </tr>
-  <tr>
-    <td class="table-line"><%= t('fort') %></td>
-    <td class="table-line" id="fort">2</td>
-  </tr>
-  <tr>
-    <td class="table-line"><%= t('ref') %></td>
-    <td class="table-line" id="ref">0</td>
-  </tr>
-  <tr>
     <td class="table-line"><%= t('will') %></td>
     <td class="table-line" id="will">0</td>
-  </tr>
-  <tr>
-    <td class="table-line" id="bold-line"><%= t('bab')%></td>
-    <td class="table-line" id="bab">1</td>
+    <td class="table-line" id="points" colspan="2">0</td>
   </tr>
 </table>
 
-<table  style="display: inline-block; width: 25%;">
-   <tr>
-    <td class="table-line" id="bold-line"><%= t("skill")%></td>
-  </tr>
-  <tr>
-    <td class="table-line" id="skill-pts">9</td>
-  </tr>
-  
-  <tr>
-    <td class="table-line" id="bold-line"><%= "Pontos Gastos" %></td>
-  </tr>
-  <tr>
-    <td class="table-line" id="cost">12</td>
-  </tr>
-  <tr>
-    <th>Testes de Resistência</th>
-  </tr>
-  <tr>
-    <td class="table-line"><%= t('fort') %></td>
-    <td class="table-line" id="fort">2</td>
-  </tr>
-  <tr>
-    <td class="table-line"><%= t('ref') %></td>
-    <td class="table-line" id="ref">0</td>
-  </tr>
-  <tr>
-    <td class="table-line"><%= t('will') %></td>
-    <td class="table-line" id="will">0</td>
-  </tr>
-  
-</table>
-<div id="cost">
-  0
-</div>
-<div id="points">
-  32
-</div>
+
+
 
   <div class="actions" id="submit">
     <%= form.submit %>
@@ -186,6 +137,7 @@
     function update(){
       idade_racas();
       check_points();
+      //no_loyal();
     }
 
     function idade_racas(){
@@ -329,7 +281,7 @@
     function change_str(){
       var valor = parseInt(document.getElementById("str-value").value);
       var race_bonus = parseInt(document.getElementById("race-str").innerHTML);
-      //document.getElementById("str-cost").innerHTML = cost(valor);
+      document.getElementById("str-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -345,12 +297,14 @@
         document.getElementById("str").style.color = "black";
       }
       document.getElementById("str").innerHTML = valor;
+      //valor = cost(parseInt(valor));
       //document.getElementById("str-cost").innerHTML = valor;
     }
 
     function change_dex(){
       var valor = parseInt(document.getElementById("dex-value").value);
       var race_bonus = parseInt(document.getElementById("race-dex").innerHTML);
+      document.getElementById("dex-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -372,6 +326,7 @@
     function change_con(){
       var valor = parseInt(document.getElementById("con-value").value);
       var race_bonus = parseInt(document.getElementById("race-con").innerHTML);
+      document.getElementById("con-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -392,6 +347,7 @@
     function change_intel(){
       var valor = parseInt(document.getElementById("intel-value").value);
       var race_bonus = parseInt(document.getElementById("race-intel").innerHTML);
+      document.getElementById("intel-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -412,6 +368,7 @@
     function change_wis(){
       var valor = parseInt(document.getElementById("wis-value").value);
       var race_bonus = parseInt(document.getElementById("race-wis").innerHTML);
+      document.getElementById("wis-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -432,6 +389,7 @@
     function change_cha(){
       var valor = parseInt(document.getElementById("cha-value").value);
       var race_bonus = parseInt(document.getElementById("race-cha").innerHTML);
+      document.getElementById("cha-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -470,8 +428,9 @@
           bab = 1;
           speed += 3;
           skill_pts = 4*(intel+4);
-
+          no_loyal();
           break;
+        
         case 1: //bard
           pvs+=6;
           fort += 0;
@@ -479,6 +438,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+6);
+          no_loyal();
           break;
         
         case 2: //clerigo
@@ -488,6 +448,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+2);
+          all_aligments();
           break;
         
         case 3: //druida
@@ -497,6 +458,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+4);
+          just_neutral();
           break;
 
         case 4: //feiticeiro
@@ -506,6 +468,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+2);
+          all_aligments();
           break;
 
         case 5: //guerreiro
@@ -515,6 +478,7 @@
           will +=0;
           bab = 1;
           skill_pts = 4*(intel+2);
+          all_aligments();
           break;
 
         case 6: //ladin
@@ -524,6 +488,7 @@
           will +=0;
           bab = 0;
           skill_pts = 4*(intel+8);
+          all_aligments();
           break;
 
         case 7: //mago 
@@ -533,6 +498,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+2);
+          all_aligments();
           break;
 
         case 8: //monge
@@ -542,6 +508,7 @@
           will +=2;
           bab = 0;
           skill_pts = 4*(intel+4);
+          just_loyal();
           break;
         
         case 9: //paladin
@@ -551,6 +518,7 @@
           will +=0;
           bab = 1;
           skill_pts = 4*(intel+2);
+          hero();
           break;
 
         case 10: //ranger 
@@ -560,6 +528,7 @@
           will +=0;
           bab = 1;
           skill_pts = 4*(intel+6);
+          all_aligments();
           break;
       }
 
@@ -592,14 +561,19 @@
       totalCost += parseInt(cost(wis));
       totalCost += parseInt(cost(cha));
 
-      document.getElementById("cost").innerHTML = totalCost;
       document.getElementById("points").innerHTML = 32-totalCost;
+      if (totalCost >32) {
+        document.getElementById("points").style.color = "red";
+      } else {
+        document.getElementById("points").style.color = "inherit";
+      }
 
+      /*
       if (totalCost == 32){
         document.getElementById("submit").style.display = block;
       } else {
         document.getElementById("submit").style.display = none;
-      }
+      } */
     }
 
     function cost(v){
@@ -658,6 +632,140 @@
       
     }
 
-    idade_racas();
+
+
+    function clear_all_aligments(){
+      var select = document.getElementById("alignment-id");
+      var tam = select.length 
+      for (var i=0; i<tam; i++){
+        select.remove(0);
+      }
+    }
+
+    function no_loyal(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cb = document.createElement("option");
+      cb.text = "Caótico e Bom";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      var cm = document.createElement("option");
+      cm.text = "Caótico e Mau"; 
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cb); 
+      select.add(cn); 
+      select.add(cm); 
+    }
+
+    function no_chaotic(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var lm = document.createElement("option");
+      lm.text = "Leal e Mau";
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      select.add(lb);
+      select.add(ln);
+      select.add(lm); 
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+    }
+
+    function just_loyal(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var lm = document.createElement("option");
+      lm.text = "Leal e Mau";
+      select.add(lb);
+      select.add(ln);
+      select.add(lm); 
+    }
+
+    function just_neutral(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      select.add(ln);
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cn); 
+    }
+
+    function hero(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      select.add(lb); 
+    }
+
+
+
+
+    function all_aligments(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var lm = document.createElement("option");
+      lm.text = "Leal e Mau";
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cb = document.createElement("option");
+      cb.text = "Caótico e Bom";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      var cm = document.createElement("option");
+      cm.text = "Caótico e Mau";
+      select.add(lb);
+      select.add(ln);
+      select.add(lm); 
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cb); 
+      select.add(cn); 
+      select.add(cm);   
+    }
+
+    //atualizando
+    update();
 
 </script>
