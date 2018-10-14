@@ -14,3 +14,8 @@
   cha: 'Carisma'
   ac: 'CA'
   hp: 'PVs'
+  ref: 'Reflexos'
+  will: 'Vontade'
+  fort: 'Fortitude'
+  bab: 'B. B. de Ataque'
+  skill: 'Perícias'

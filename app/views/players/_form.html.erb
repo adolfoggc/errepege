@@ -14,12 +14,12 @@
   <div class="sheet-block">
     <div class="field" id="inline-item">
       <%= form.label :name, t('name') %>
-      <%= form.text_field :name, id: :player_name %>
+      <%= form.text_field :name, id: :player_name, required: true %>
     </div>
 
     <div class="field" id="inline-item">
       <%= form.label :race_id, t('race') %>
-      <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "idade_racas()", id: 'race-id'}) %>
+      <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "update()", id: 'race-id'}) %>
       
     </div>
 
@@ -30,7 +30,7 @@
 
     <div class="field" id="inline-item">
       <%= form.label :dnd_class_id, t('class') %>
-      <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "idade_racas()", id: 'class-id'}) %>
+      <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "update()", id: 'class-id'}) %>
     </div>
     
     <div class="field" id="inline-item">
@@ -52,72 +52,142 @@
 </style>
  
 
-<table class="habilities">
+<table class="habilities" style="display: inline-block;">
   <tr>
     <th colspan="2">Habilidade</th>
     <th>Bônus Raça</th> 
     <th>Mod. Total</th>
+    <th>Custo</th>
   </tr>
   <tr>
     <td class="table-line" id="str-line"><%= form.label :name, t('name') %></td>
-    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", id: "str-value", onchange: "change_str()" %></td>
+    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", id: "str-value", onchange: "update()" %></td>
     <td class="table-line" id="race-str">0</td>
     <td class="table-line" id="str">-1</td>
+    <td class="table-line" id="str-cost">0</td>
   </tr>
   <tr>
     <td class="table-line" id="dex-line"><%= form.label :dex, t('dex') %></td>
-    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "dex-value", onchange: "change_dex()" %></td>
+    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "dex-value", onchange: "update()" %></td>
     <td class="table-line" id="race-dex">0</td>
     <td class="table-line" id="dex">-1</td>
+    <td class="table-line" id="dex-cost">0</td>
   </tr>
   <tr>
     <td class="table-line" id="con-line"><%= form.label :con, t('con') %></td>
-    <td class="table-line" ><%= form.number_field :con, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "con-value", onchange: "change_con()" %></td>
+    <td class="table-line" ><%= form.number_field :con, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "con-value", onchange: "update()" %></td>
     <td class="table-line" id="race-con">0</td>
     <td class="table-line" id="con">-1</td>
+    <td class="table-line" id="con-cost">0</td>
   </tr>
   <tr>
     <td class="table-line" id="intel-line"><%= form.label :intel, t('intel') %></td>
-    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", id: "intel-value", onchange: "change_intel()" %></td>
+    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", id: "intel-value", onchange: "update()" %></td>
     <td class="table-line" id="race-intel">0</td>
     <td class="table-line" id="intel">-1</td>
+    <td class="table-line" id="intel-cost">0</td>
   </tr>
   <tr>
     <td class="table-line" id="wis-line"><%= form.label :wis, t('wis') %></td>
-    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", id: "wis-value", onchange: "change_wis()" %></td>
+    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", id: "wis-value", onchange: "update()" %></td>
     <td class="table-line" id="race-wis">0</td>
     <td class="table-line" id="wis">-1</td>
+    <td class="table-line" id="wis-cost">0</td>
   </tr>
   <tr>
     <td class="table-line" id="cha-line" ><%= form.label :cha, t('cha') %></td>
-    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", id: "cha-value", onchange: "change_cha()" %></td>
+    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", id: "cha-value", onchange: "update()" %></td>
     <td class="table-line" id="race-cha">0</td>
     <td class="table-line" id="cha">-1</td>
+    <td class="table-line" id="cha-cost">0</td>
   </tr>
 </table>
-<table>
-  <tr>
-    <th colspan="2">Habilidade</th>
+
+
+<table  style="display: inline-block; width: 25%;">
+   <tr>
+    <td class="table-line" id="bold-line">Deslocamento</td>
+    <td class="table-line" id="speed">9</td> 
   </tr>
   <tr>
-    <td class="table-line"><%= t('hp') %></td>
+    <td class="table-line" id="bold-line"><%= t('hp') %></td>
     <td class="table-line" id="pvs">12</td>
   </tr>
   <tr>
-    <td class="table-line"><%= t('ac') %></td>
+    <td class="table-line" id="bold-line"><%= t('ac') %></td>
     <td class="table-line" id="ac">0</td>
   </tr>
+  <tr>
+    <th colspan="2">Testes de Resistência</th>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('fort') %></td>
+    <td class="table-line" id="fort">2</td>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('ref') %></td>
+    <td class="table-line" id="ref">0</td>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('will') %></td>
+    <td class="table-line" id="will">0</td>
+  </tr>
+  <tr>
+    <td class="table-line" id="bold-line"><%= t('bab')%></td>
+    <td class="table-line" id="bab">1</td>
+  </tr>
 </table>
+
+<table  style="display: inline-block; width: 25%;">
+   <tr>
+    <td class="table-line" id="bold-line"><%= t("skill")%></td>
+  </tr>
+  <tr>
+    <td class="table-line" id="skill-pts">9</td>
+  </tr>
   
+  <tr>
+    <td class="table-line" id="bold-line"><%= "Pontos Gastos" %></td>
+  </tr>
+  <tr>
+    <td class="table-line" id="cost">12</td>
+  </tr>
+  <tr>
+    <th>Testes de Resistência</th>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('fort') %></td>
+    <td class="table-line" id="fort">2</td>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('ref') %></td>
+    <td class="table-line" id="ref">0</td>
+  </tr>
+  <tr>
+    <td class="table-line"><%= t('will') %></td>
+    <td class="table-line" id="will">0</td>
+  </tr>
+  
+</table>
+<div id="cost">
+  0
+</div>
+<div id="points">
+  32
+</div>
 
-
-  <div class="actions">
+  <div class="actions" id="submit">
     <%= form.submit %>
   </div>
 <% end %>
 
 <%# // IDADES POR RAÇAS E CLASSES %>
-<script>    
+<script>
+    function update(){
+      idade_racas();
+      check_points();
+    }
+
     function idade_racas(){
       var r = document.getElementById("race-id").selectedIndex; 
       var c = document.getElementById("class-id").selectedIndex;
@@ -253,12 +323,13 @@
       change_intel();
       change_wis();
       change_cha();
-      check_pvs();
+      check_mods();
     }
 
     function change_str(){
       var valor = parseInt(document.getElementById("str-value").value);
       var race_bonus = parseInt(document.getElementById("race-str").innerHTML);
+      //document.getElementById("str-cost").innerHTML = cost(valor);
       valor += race_bonus;
 
       if (valor%2 == 1) {
@@ -274,7 +345,7 @@
         document.getElementById("str").style.color = "black";
       }
       document.getElementById("str").innerHTML = valor;
-
+      //document.getElementById("str-cost").innerHTML = valor;
     }
 
     function change_dex(){
@@ -378,54 +449,213 @@
       document.getElementById("cha").innerHTML = valor;
     }
 
-    function check_pvs(){
+    function check_mods(){
       var pvs = parseInt(document.getElementById("con").innerHTML);
       var c = document.getElementById("class-id").selectedIndex;
+      var fort = parseInt(document.getElementById("con").innerHTML);
+      var ref = parseInt(document.getElementById("dex").innerHTML);
+      var will = parseInt(document.getElementById("wis").innerHTML);
+      var intel = parseInt(document.getElementById("intel").innerHTML);
+      var r = document.getElementById("race-id").selectedIndex;
+      var bab = 0;
+      var speed = 9;
+      var skill_pts = 0;
+      var money = "";
       switch (c) {
         case 0: //barb
           pvs+=12;
+          fort += 2;
+          ref +=0;
+          will +=0;
+          bab = 1;
+          speed += 3;
+          skill_pts = 4*(intel+4);
+
           break;
         case 1: //bard
           pvs+=6;
+          fort += 0;
+          ref +=2;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+6);
           break;
         
         case 2: //clerigo
           pvs+=8;
+          fort += 2;
+          ref +=0;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+2);
           break;
         
         case 3: //druida
           pvs+=8;
+          fort += 2;
+          ref +=0;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+4);
           break;
 
-        case 4: 
+        case 4: //feiticeiro
           pvs+=4;
+          fort += 0;
+          ref +=0;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+2);
           break;
 
-        case 5: 
+        case 5: //guerreiro
           pvs+=10;
+          fort += 2;
+          ref +=0;
+          will +=0;
+          bab = 1;
+          skill_pts = 4*(intel+2);
           break;
 
         case 6: //ladin
           pvs+=6;
+          fort += 0;
+          ref +=2;
+          will +=0;
+          bab = 0;
+          skill_pts = 4*(intel+8);
           break;
 
         case 7: //mago 
           pvs+=4;
+          fort += 0;
+          ref +=0;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+2);
           break;
 
-        case 8: 
+        case 8: //monge
           pvs+=8;
+          fort += 2;
+          ref +=2;
+          will +=2;
+          bab = 0;
+          skill_pts = 4*(intel+4);
           break;
         
-        case 9: 
+        case 9: //paladin
           pvs+=10;
+          fort += 2;
+          ref +=0;
+          will +=0;
+          bab = 1;
+          skill_pts = 4*(intel+2);
           break;
 
         case 10: //ranger 
           pvs+=8;
+          fort += 2;
+          ref +=2;
+          will +=0;
+          bab = 1;
+          skill_pts = 4*(intel+6);
           break;
       }
+
+      if (r <= 3) {
+        skill_pts += 4;
+      }
+
       document.getElementById("pvs").innerHTML = pvs;
+      document.getElementById("ref").innerHTML = ref;
+      document.getElementById("fort").innerHTML = fort;
+      document.getElementById("will").innerHTML = will;
+      document.getElementById("bab").innerHTML = bab;
+      document.getElementById("speed").innerHTML = speed;
+      document.getElementById("skill-pts").innerHTML = skill_pts+" pts";
+    }
+
+    function check_points(){
+      var totalCost = 0;
+      var str = parseInt(document.getElementById("str-value").value);
+      var dex = parseInt(document.getElementById("dex-value").value);
+      var con = parseInt(document.getElementById("con-value").value);
+      var intel = parseInt(document.getElementById("intel-value").value);
+      var wis = parseInt(document.getElementById("wis-value").value);
+      var cha = parseInt(document.getElementById("cha-value").value);
+      
+      totalCost = totalCost+ parseInt(cost(str));
+      totalCost += parseInt(cost(dex));
+      totalCost += parseInt(cost(con));
+      totalCost += parseInt(cost(intel));
+      totalCost += parseInt(cost(wis));
+      totalCost += parseInt(cost(cha));
+
+      document.getElementById("cost").innerHTML = totalCost;
+      document.getElementById("points").innerHTML = 32-totalCost;
+
+      if (totalCost == 32){
+        document.getElementById("submit").style.display = block;
+      } else {
+        document.getElementById("submit").style.display = none;
+      }
+    }
+
+    function cost(v){
+      var cost = 0;
+      switch (v){
+        case 3:
+          cost = -5; 
+          break;
+        case 4:
+          cost = -4; 
+          break;
+        case 5:
+          cost = -3; 
+          break;
+        case 6:
+          cost = -2; 
+          break;
+        case 7:
+          cost = -1; 
+          break;
+        case 8:
+          cost = 0; 
+          break;
+        case 9:
+          cost = 1; 
+          break;
+        case 10:
+          cost = 2; 
+          break;
+        case 11:
+          cost = 3; 
+          break;
+        case 12:
+          cost = 4; 
+          break;
+        case 13:
+          cost = 5; 
+          break;
+        case 14:
+          cost = 6; 
+          break;
+        case 15:
+          cost = 8; 
+          break;
+        case 16:
+          cost = 10; 
+          break;
+        case 17:
+          cost = 13; 
+          break;
+        case 18:
+          cost = 16; 
+          break;
+      }
+      return cost;
+      
     }
 
     idade_racas();
