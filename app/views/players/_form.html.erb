@@ -13,33 +13,33 @@
 
   <div class="sheet-block">
     <div class="field" id="inline-item">
-      <%= form.label :name, t('name') %>
+      <%= form.label :name, t('sheet.name') %>
       <%= form.text_field :name, id: :player_name, required: true %>
     </div>
 
     <div class="field" id="inline-item">
-      <%= form.label :race_id, t('race') %>
+      <%= form.label :race_id, t('sheet.race') %>
       <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "update()", id: 'race-id'}) %>
       
     </div>
 
     <div class="field" id="inline-item">
-      <%= form.label :alignment_id, t('alignment') %>
+      <%= form.label :alignment_id, t('sheet.alignment') %>
       <%= form.collection_select :alignment_id, Alignment.all, :id, :kind, {}, { id: 'alignment-id'} %>
     </div>
 
     <div class="field" id="inline-item">
-      <%= form.label :dnd_class_id, t('class') %>
+      <%= form.label :dnd_class_id, t('sheet.class') %>
       <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "update()", id: 'class-id'}) %>
     </div>
     
     <div class="field" id="inline-item">
-      <%= form.label :age, t('age') %>
-      <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7, id: "idade" %>
+      <%= form.label :age, t('sheet.age') %>
+      <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7 %>
     </div>
 
     <div class="field" id="inline-item">
-      <%= form.label :gender, t('gender') %>
+      <%= form.label :gender, t('sheet.gender') %>
       <%= form.select(:gender, options_for_select([['Feminino', 1], ['Masculino', 2]])) %>
     </div>
   </div>
@@ -61,30 +61,30 @@
     <th colspan="4"></th>
   </tr>
   <tr>
-    <td class="table-line" id="str-line"><%= form.label :str, t('str') %></td>
-    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", id: "str-value", onchange: "update()" %></td>
+    <td class="table-line" id="str-line"><%= form.label :str, t('sheet.str') %></td>
+    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-str">0</td>
     <td class="table-line" id="str">-1</td>
     <td class="table-line" id="str-cost">0</td>
-    <td class="table-line" id="bold-line"><%= t('hp') %></td>
+    <td class="table-line" id="bold-line"><%= t('sheet.hp') %></td>
     <td class="table-line" id="pvs">12</td>
     <td class="table-line" id="bold-line">Deslocamento</td>
     <td class="table-line" id="speed">9</td>
   </tr>
   <tr>
-    <td class="table-line" id="dex-line"><%= form.label :dex, t('dex') %></td>
-    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "dex-value", onchange: "update()" %></td>
+    <td class="table-line" id="dex-line"><%= form.label :dex, t('sheet.dex') %></td>
+    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-dex">0</td>
     <td class="table-line" id="dex">-1</td>
     <td class="table-line" id="dex-cost">0</td>
-    <td class="table-line" id="bold-line"><%= t('ac') %></td>
+    <td class="table-line" id="bold-line"><%= t('sheet.ac') %></td>
     <td class="table-line" id="ac">0</td>
-    <td class="table-line" id="bold-line"><%= t('bab')%></td>
+    <td class="table-line" id="bold-line"><%= t('sheet.bab')%></td>
     <td class="table-line" id="bab">1</td>
   </tr>
   <tr>
-    <td class="table-line" id="con-line"><%= form.label :con, t('con') %></td>
-    <td class="table-line" ><%= form.number_field :con, id: :player_dex, min: 3, max: 18, class: "hability-area", id: "con-value", onchange: "update()" %></td>
+    <td class="table-line" id="con-line"><%= form.label :con, t('sheet.con') %></td>
+    <td class="table-line" ><%= form.number_field :con, id: :player_con, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-con">0</td>
     <td class="table-line" id="con">-1</td>
     <td class="table-line" id="con-cost">0</td>
@@ -93,32 +93,32 @@
     <td class="table-line" id="skill-pts">9</td>
   </tr>
   <tr>
-    <td class="table-line" id="intel-line"><%= form.label :intel, t('intel') %></td>
-    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", id: "intel-value", onchange: "update()" %></td>
+    <td class="table-line" id="intel-line"><%= form.label :intel, t('sheet.intel') %></td>
+    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-intel">0</td>
     <td class="table-line" id="intel">-1</td>
     <td class="table-line" id="intel-cost">0</td>
-    <td class="table-line"><%= t('fort') %></td>
+    <td class="table-line"><%= t('sheet.fort') %></td>
     <td class="table-line" id="fort">2</td>
     <td></td>
   </tr>
   <tr>
-    <td class="table-line" id="wis-line"><%= form.label :wis, t('wis') %></td>
-    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", id: "wis-value", onchange: "update()" %></td>
+    <td class="table-line" id="wis-line"><%= form.label :wis, t('sheet.wis') %></td>
+    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-wis">0</td>
     <td class="table-line" id="wis">-1</td>
     <td class="table-line" id="wis-cost">0</td>
-    <td class="table-line"><%= t('ref') %></td>
+    <td class="table-line"><%= t('sheet.ref') %></td>
     <td class="table-line" id="ref">0</td>
     <td class="table-line" id="bold-line" colspan="2"><%= "Pontos" %></td>
   </tr>
   <tr>
-    <td class="table-line" id="cha-line" ><%= form.label :cha, t('cha') %></td>
-    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", id: "cha-value", onchange: "update()" %></td>
+    <td class="table-line" id="cha-line" ><%= form.label :cha, t('sheet.cha') %></td>
+    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
     <td class="table-line" id="race-cha">0</td>
     <td class="table-line" id="cha">-1</td>
     <td class="table-line" id="cha-cost">0</td>
-    <td class="table-line"><%= t('will') %></td>
+    <td class="table-line"><%= t('sheet.will') %></td>
     <td class="table-line" id="will">0</td>
     <td class="table-line" id="points" colspan="2">0</td>
   </tr>
@@ -266,9 +266,9 @@
         }
       } 
       
-      document.getElementById("idade").attributes[1].value = min;
-      document.getElementById("idade").attributes[2].value = max; 
-      document.getElementById("idade").value = min;
+      document.getElementById("player_age").attributes[1].value = min;
+      document.getElementById("player_age").attributes[2].value = max; 
+      document.getElementById("player_age").value = min;
       change_str();
       change_dex();
       change_con();
@@ -279,7 +279,7 @@
     }
 
     function change_str(){
-      var valor = parseInt(document.getElementById("str-value").value);
+      var valor = parseInt(document.getElementById("player_str").value);
       var race_bonus = parseInt(document.getElementById("race-str").innerHTML);
       document.getElementById("str-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -302,7 +302,7 @@
     }
 
     function change_dex(){
-      var valor = parseInt(document.getElementById("dex-value").value);
+      var valor = parseInt(document.getElementById("player_dex").value);
       var race_bonus = parseInt(document.getElementById("race-dex").innerHTML);
       document.getElementById("dex-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -324,7 +324,7 @@
     }
 
     function change_con(){
-      var valor = parseInt(document.getElementById("con-value").value);
+      var valor = parseInt(document.getElementById("player_con").value);
       var race_bonus = parseInt(document.getElementById("race-con").innerHTML);
       document.getElementById("con-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -345,7 +345,7 @@
     }
 
     function change_intel(){
-      var valor = parseInt(document.getElementById("intel-value").value);
+      var valor = parseInt(document.getElementById("player_intel").value);
       var race_bonus = parseInt(document.getElementById("race-intel").innerHTML);
       document.getElementById("intel-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -366,7 +366,7 @@
     }
 
     function change_wis(){
-      var valor = parseInt(document.getElementById("wis-value").value);
+      var valor = parseInt(document.getElementById("player_wis").value);
       var race_bonus = parseInt(document.getElementById("race-wis").innerHTML);
       document.getElementById("wis-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -387,7 +387,7 @@
     }
 
     function change_cha(){
-      var valor = parseInt(document.getElementById("cha-value").value);
+      var valor = parseInt(document.getElementById("player_cha").value);
       var race_bonus = parseInt(document.getElementById("race-cha").innerHTML);
       document.getElementById("cha-cost").innerHTML = cost(valor);
       valor += race_bonus;
@@ -547,12 +547,12 @@
 
     function check_points(){
       var totalCost = 0;
-      var str = parseInt(document.getElementById("str-value").value);
-      var dex = parseInt(document.getElementById("dex-value").value);
-      var con = parseInt(document.getElementById("con-value").value);
-      var intel = parseInt(document.getElementById("intel-value").value);
-      var wis = parseInt(document.getElementById("wis-value").value);
-      var cha = parseInt(document.getElementById("cha-value").value);
+      var str = parseInt(document.getElementById("player_str").value);
+      var dex = parseInt(document.getElementById("player_dex").value);
+      var con = parseInt(document.getElementById("player_con").value);
+      var intel = parseInt(document.getElementById("player_intel").value);
+      var wis = parseInt(document.getElementById("player_wis").value);
+      var cha = parseInt(document.getElementById("player_cha").value);
       
       totalCost = totalCost+ parseInt(cost(str));
       totalCost += parseInt(cost(dex));

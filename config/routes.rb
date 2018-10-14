@@ -42,10 +42,9 @@ Rails.application.routes.draw do
 
   authenticated :master do
     scope "/dm" do
-      resources :players
+      resources :players, except: [:new, :user_players]
       get '/room' => 'generator#room', as: :rooms 
       get '/encounter' => 'generator#random_encounter', as: :random_encounter
-
       get '/npc_list' => 'generator#npc', as: :dm_random_npcs
       get '/families' => 'home#families', as: :dm_families
       get '/ficha', to: 'players#index', as: :dm_char_maker
