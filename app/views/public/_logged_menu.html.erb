@@ -27,11 +27,11 @@
 </ul>
 
 <% if user_signed_in? %>
-	<div class="site-name" style="position: -webkit-sticky; position: sticky; top: 0;">
+	<div class="sticky-site-name">
 		#eRrePeGe
 	</div>
 <% elsif master_signed_in? %>
-  	<div class="site-name" style="position: -webkit-sticky; position: sticky; top: 0;">
+  	<div class="sticky-site-name">
 		#eRrePeGe
 	</div>
 <% else %>
@@ -39,8 +39,3 @@
 		#eRrePeGe
 	</div>
 <% end %>
-
-
-position: -webkit-sticky;
-    position: sticky;
-    top: 0;

@@ -366,7 +366,17 @@ p {
   //display: block;
 }
 
-
+.sticky-site-name{ 
+  color: #fff;
+  font-family: 'Fondamento', cursive;
+  margin-top: 3.5em;
+  margin-bottop: 3.5em;
+  text-align: center;
+  font-size: 2em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 
 
 
