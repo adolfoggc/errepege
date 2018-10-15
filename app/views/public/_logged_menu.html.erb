@@ -25,6 +25,22 @@
 	  	<li class="list-item"  style="float:right"><%= link_to "Logar", new_user_session_path, class: "list-element" %></li>
 	<% end %> 
 </ul>
-<div class="site-name">
-	#eRrePeGe
-</div>
+
+<% if user_signed_in? %>
+	<div class="site-name" style="position: -webkit-sticky; position: sticky; top: 0;">
+		#eRrePeGe
+	</div>
+<% elsif master_signed_in? %>
+  	<div class="site-name" style="position: -webkit-sticky; position: sticky; top: 0;">
+		#eRrePeGe
+	</div>
+<% else %>
+  	<div class="site-name">
+		#eRrePeGe
+	</div>
+<% end %>
+
+
+position: -webkit-sticky;
+    position: sticky;
+    top: 0;

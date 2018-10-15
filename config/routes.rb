@@ -2,11 +2,8 @@ Rails.application.routes.draw do
 
   #resources :players
   resources :scenarios, only: [:index, :show]
-  resources :npcs
-  resources :skills
-  resources :dnd_classes
-  resources :races
-  resources :roles
+  resources :skills, only: [:index, :show]
+  
 
 
   devise_for :users, path: '', controllers: { 
@@ -43,6 +40,11 @@ Rails.application.routes.draw do
   authenticated :master do
     scope "/dm" do
       resources :players, except: [:new, :user_players]
+      resources :npcs
+  resources :skills
+  resources :dnd_classes
+  resources :races
+  resources :roles
       get '/room' => 'generator#room', as: :rooms 
       get '/encounter' => 'generator#random_encounter', as: :random_encounter
       get '/npc_list' => 'generator#npc', as: :dm_random_npcs
