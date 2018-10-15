@@ -5,8 +5,8 @@
 			<%= link_to "Início", root_path, class: "list-element" %>
 			<%= link_to "Lugares", scenarios_path, class: "list-element" %>
 			<%= link_to "Perícias", skills_path, class: "list-element" %>
-			<%= link_to "Famílias", families_path, class: "list-element" %>
-			<%= link_to "NPCs", npc_list_path, class: "list-element" %>
+			<%= link_to "Famílias", user_families_path, class: "list-element" %>
+			<%= link_to "NPCs", user_npc_list_path, class: "list-element" %>
 		</div>
 	</li>
 	<li class="dropdown">
@@ -27,11 +27,11 @@
 </ul>
 
 <% if user_signed_in? %>
-	<div class="sticky-site-name">
+	<div class="site-name">
 		#eRrePeGe
 	</div>
 <% elsif master_signed_in? %>
-  	<div class="sticky-site-name">
+  	<div class="site-name">
 		#eRrePeGe
 	</div>
 <% else %>

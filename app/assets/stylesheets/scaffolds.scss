@@ -188,7 +188,7 @@ li a, .dropbtn {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-
+    z-index: 10;
 }
 
 li a:hover, .dropdown:hover .dropbtn {
@@ -376,6 +376,7 @@ p {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  z-index: 0;
 }
 
 
