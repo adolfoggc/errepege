@@ -1,3 +1,121 @@
 // Place all the styles related to the Players controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* css para formulário de personagem*/
+
+
+
+.hability-area {
+  width:35px;
+}
+
+div .name {
+  width: 40%;
+  border: none;
+  display: inline-block;
+}
+
+div .value {
+  width: 19%;
+  border: none;
+  display: inline-block;
+}
+
+div .race-mod {
+  width: 19%;
+  border: none;
+  display: inline-block;
+  color: red;
+  text-align: center;
+}
+
+div .mod {
+  width: 19%;
+  border: none;
+  display: inline-block;
+  color: red;
+  text-align: center;
+}
+
+div #hab {
+  width: 61%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div #race-mod {
+  display: inline-block;
+  width: 18%;
+  text-align: center;
+  vertical-align: middle; 
+}
+
+div .race-mod {
+  color: black;
+}
+
+div .table-line {
+  text-align: center;
+  font-family: 'Fondamento', cursive;
+  font-size: 1em;
+ 
+}
+
+div #str-line, #dex-line, #con-line, #intel-line, #wis-line, #cha-line  {
+  text-align: left;
+}
+
+div #str, #dex, #con, #intel, #wis, #cha {
+  color: red;
+}
+
+table .habilities {
+  width: 100%;
+  border: 1px solid black;
+}
+
+#bold-line {
+  font-weight: bold;
+}
+
+
+.top-table {
+  background-color: #dddddd;
+  //border-top: 1px solid black;
+}
+
+td:nth-child(3) {
+    background-color: #dddddd;
+}
+td:nth-child(5) {
+    background-color: #dddddd;
+}
+
+.index-line {
+  background-color: #fff !important;
+  font-family: 'Fondamento', cursive;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1.5em;
+  height:1.5em;
+}
+
+.full-table {
+	width: 100%;
+}
+
+.index-cell {
+  
+}
+
+tr.index-line td {
+	background-color: #fff !important;
+  font-family: 'Fondamento', cursive;
+  font-size: 0.8em;
+  text-align: center;
+  line-height: 0.8em;
+  height: 0.8em;
+  vertical-align:middle;
+}

@@ -2,29 +2,154 @@
 <div class="site-body"> 
   <h1>Seus Personagens</h1>
 <% if @players.count != 0 %>
-  <table>
+  <table class="full-table">
     <thead>
       <tr>
-        <th><%= t('sheet.name')%></th>
-        <th><%= t('sheet.race')%></th>
-        <th><%= t('sheet.age')%></th>
-        <th><%= t('sheet.gender')%></th>
-        <th><%= t('sheet.class')%></th>
-        <th><%= t('sheet.alignment') %></th>
+        <th><%= t(:'sheet.name')%></th>
+        <th><%= t(:'sheet.race')%></th>
+        <th><%= t(:'sheet.age')%></th>
+        <th><%= t(:'sheet.gender')%></th>
+        <th colspan="2"><%= t(:'sheet.class')%></th>
+        <th><%= t(:'sheet.alignment') %></th>
         <th colspan="2"></th>
       </tr>
     </thead>
 
     <tbody>
       <% @players.each do |player| %>
-        <tr>
-          <td class="index-line"><%= player.name %></td>
-          <td class="index-line"><%= player.race.name %></td>
-          <td class="index-line"><%= player.age %></td>
-          <td class="index-line"><%= player.gender %></td>
-          <td class="index-line"><%= player.dnd_class.name %>
+        <% if player.gender == 'Feminino' %>
+        
+          <% if player.race_id == 1  %>
+            <% race = t(:u_f_human_oc) %> 
+          <% elsif player.race_id == 2  %>
+            <% race = t(:u_f_human_or)%>
+          <% elsif player.race_id == 3  %>
+            <% race = t(:u_f_human_s)%>
+          <% elsif player.race_id == 4  %>
+            <% race = t(:u_f_human_m) %>
+          <% elsif player.race_id == 5  %>
+            <% race = t(:u_f_elf_m) %>
+          <% elsif player.race_id == 6  %>
+            <% race = t(:u_f_elf_s) %>
+          <% elsif player.race_id == 7  %>
+            <% race = t(:u_f_elf_w) %>
+          <% elsif player.race_id == 8  %>
+            <% race = t(:u_f_elf_d) %>
+          <% elsif player.race_id == 9  %>
+            <% race = t(:u_f_elf_f) %>
+          <% elsif player.race_id == 10  %>
+            <% race = t(:u_f_dwarf_s) %>
+          <% elsif player.race_id == 11  %>
+            <% race = t(:u_f_dwarf_go) %>
+          <% elsif player.race_id == 12  %>
+            <% race = t(:u_f_dwarf_gr) %>
+          <% elsif player.race_id == 13  %>
+            <% race = t(:u_half_orc) %> 
+          <% elsif player.race_id == 14  %>
+            <% race = t(:u_f_h_elf_m) %>
+          <% elsif player.race_id == 15  %>
+            <% race = t(:u_f_h_elf_s) %>
+          <% elsif player.race_id == 16  %>
+            <% race = t(:u_f_h_elf_w) %>
+          <% elsif player.race_id == 17  %>
+            <% race = t(:u_f_h_elf_d) %>
+          <% elsif player.race_id == 18  %>
+            <% race = t(:u_f_h_elf_f) %>
+          <% end %>
+          <% if player.dnd_class_id == 1 %>
+            <% dnd_class = t(:u_f_barbarian) %>
+          <% elsif player.dnd_class_id == 2 %>
+            <% dnd_class = t(:u_f_bard) %>
+          <% elsif player.dnd_class_id == 3 %>
+            <% dnd_class = t(:u_f_cleric) %>
+          <% elsif player.dnd_class_id == 4 %>
+            <% dnd_class = t(:u_druid) %>
+          <% elsif player.dnd_class_id == 5 %>
+            <% dnd_class = t(:u_f_sorcerer) %>
+          <% elsif player.dnd_class_id == 6 %>
+            <% dnd_class = t(:u_f_fighter) %>
+          <% elsif player.dnd_class_id == 7 %>
+            <% dnd_class = t(:u_f_rouge) %>
+          <% elsif player.dnd_class_id == 8 %>
+            <% dnd_class = t(:u_f_wizard) %>
+          <% elsif player.dnd_class_id == 9 %>
+            <% dnd_class = t(:u_f_monk) %>
+          <% elsif player.dnd_class_id == 10 %>
+            <% dnd_class = t(:u_f_paladin) %>
+          <% elsif player.dnd_class_id == 11 %>
+            <% dnd_class = t(:u_ranger) %>
+          <% end %>
+        <% else %>
+          <% if player.race_id == 1  %>
+            <% race = t(:u_m_human_oc) %> 
+          <% elsif player.race_id == 2  %>
+            <% race = t(:u_m_human_or)%>
+          <% elsif player.race_id == 3  %>
+            <% race = t(:u_m_human_s)%>
+          <% elsif player.race_id == 4  %>
+            <% race = t(:u_m_human_m) %>
+          <% elsif player.race_id == 5  %>
+            <% race = t(:u_m_elf_m) %>
+          <% elsif player.race_id == 6  %>
+            <% race = t(:u_m_elf_s) %>
+          <% elsif player.race_id == 7  %>
+            <% race = t(:u_m_elf_w) %>
+          <% elsif player.race_id == 8  %>
+            <% race = t(:u_m_elf_d) %>
+          <% elsif player.race_id == 9  %>
+            <% race = t(:u_m_elf_f) %>
+          <% elsif player.race_id == 10  %>
+            <% race = t(:u_m_dwarf_s) %>
+          <% elsif player.race_id == 11  %>
+            <% race = t(:u_m_dwarf_go) %>
+          <% elsif player.race_id == 12  %>
+            <% race = t(:u_m_dwarf_gr) %>
+          <% elsif player.race_id == 13  %>
+            <% race = t(:u_half_orc) %> 
+          <% elsif player.race_id == 14  %>
+            <% race = t(:u_m_h_elf_m) %>
+          <% elsif player.race_id == 15  %>
+            <% race = t(:u_m_h_elf_s) %>
+          <% elsif player.race_id == 16  %>
+            <% race = t(:u_m_h_elf_w) %>
+          <% elsif player.race_id == 17  %>
+            <% race = t(:u_m_h_elf_d) %>
+          <% elsif player.race_id == 18  %>
+            <% race = t(:u_m_h_elf_f) %>
+          <% end %>
+          <% if player.dnd_class_id == 1 %>
+            <% dnd_class = t(:u_m_barbarian) %>
+          <% elsif player.dnd_class_id == 2 %>
+            <% dnd_class = t(:u_m_bard) %>
+          <% elsif player.dnd_class_id == 3 %>
+            <% dnd_class = t(:u_m_cleric) %>
+          <% elsif player.dnd_class_id == 4 %>
+            <% dnd_class = t(:u_druid) %>
+          <% elsif player.dnd_class_id == 5 %>
+            <% dnd_class = t(:u_m_sorcerer) %>
+          <% elsif player.dnd_class_id == 6 %>
+            <% dnd_class = t(:u_m_fighter) %>
+          <% elsif player.dnd_class_id == 7 %>
+            <% dnd_class = t(:u_m_rouge) %>
+          <% elsif player.dnd_class_id == 8 %>
+            <% dnd_class = t(:u_m_wizard) %>
+          <% elsif player.dnd_class_id == 9 %>
+            <% dnd_class = t(:u_m_monk) %>
+          <% elsif player.dnd_class_id == 10 %>
+            <% dnd_class = t(:u_m_paladin) %>
+          <% elsif player.dnd_class_id == 11 %>
+            <% dnd_class = t(:u_ranger) %>
+        <% end %>
+      <% end %>
+        <tr class="index-line">
+          <td class="index-cell"><%= player.name %></td>
+          <td class="index-cell"><%= race %></td>
+          <td class="index-cell"><%= player.age %></td>
+          <td class="index-cell"><%= player.gender %></td>
+          <td class="index-cell"><%= dnd_class %></td>
+          <td class="index-cell">
             <% if player.dnd_class.name == 'Bárbaro' %>
-              <%= image_tag("S_Buff14.png") %>
+              <%= image_tag("S_Buff14.png", class: "line_img") %>
             <% elsif player.dnd_class.name == 'Bardo' %>
               <%= image_tag("I_Key04.png") %>
             <% elsif player.dnd_class.name == 'Clérigo' %>
@@ -47,15 +172,147 @@
               <%= image_tag("W_Bow02.png") %>
             <% end %>
           </td>
-          <td class="index-line"><%= player.alignment.kind %></td>
-         <!-- <td class="index-line"><%# link_to 'Show', player %></td> -->
-          <td class="index-line"><%= link_to t('Edit'), edit_player_path(player) %></td>
-          <td class="index-line"><%= link_to t('Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="index-cell"><%= player.alignment.kind %></td>
+         <!-- <td class="index-cell"><%# link_to 'Show', player %></td> -->
+          <td class="index-cell"><%= link_to t(:'Edit'), edit_player_path(player) %></td>
+          <td class="index-cell"><%= link_to t(:'Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
+
       <% end %>
     </tbody>
   </table>
-
+<% if true == false %>
+  <% @players.each do |player| %>
+    <div class="char-line" style="width: 100%; border: 3px solid blue; border-radius: 5px;">
+      <% if player.gender == 'Feminino' %>
+        <% artigo = 'a' %>
+        <% if player.race_id == 1  %>
+          <% race = t(:f_human_oc) %> 
+        <% elsif player.race_id == 2  %>
+          <% race = t(:f_human_or)%>
+        <% elsif player.race_id == 3  %>
+          <% race = t(:f_human_s)%>
+        <% elsif player.race_id == 4  %>
+          <% race = t(:f_human_m) %>
+        <% elsif player.race_id == 5  %>
+          <% race = t(:f_elf_m) %>
+        <% elsif player.race_id == 6  %>
+          <% race = t(:f_elf_s) %>
+        <% elsif player.race_id == 7  %>
+          <% race = t(:f_elf_w) %>
+        <% elsif player.race_id == 8  %>
+          <% race = t(:f_elf_d) %>
+        <% elsif player.race_id == 9  %>
+          <% race = t(:f_elf_f) %>
+        <% elsif player.race_id == 10  %>
+          <% race = t(:f_dwarf_s) %>
+        <% elsif player.race_id == 11  %>
+          <% race = t(:f_dwarf_go) %>
+        <% elsif player.race_id == 12  %>
+          <% race = t(:f_dwarf_gr) %>
+        <% elsif player.race_id == 13  %>
+          <% race = t(:half_orc) %> 
+        <% elsif player.race_id == 14  %>
+          <% race = t(:f_h_elf_m) %>
+        <% elsif player.race_id == 15  %>
+          <% race = t(:f_h_elf_s) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:f_h_elf_w) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:f_h_elf_d) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:f_h_elf_f) %>
+        <% end %>
+        <% if player.dnd_class_id == 1 %>
+          <% dnd_class = t(:f_barbarian) %>
+        <% elsif player.dnd_class_id == 2 %>
+          <% dnd_class = t(:f_bard) %>
+        <% elsif player.dnd_class_id == 3 %>
+          <% dnd_class = t(:f_cleric) %>
+        <% elsif player.dnd_class_id == 4 %>
+          <% dnd_class = t(:druid) %>
+        <% elsif player.dnd_class_id == 5 %>
+          <% dnd_class = t(:f_sorcerer) %>
+        <% elsif player.dnd_class_id == 6 %>
+          <% dnd_class = t(:f_fighter) %>
+        <% elsif player.dnd_class_id == 7 %>
+          <% dnd_class = t(:f_rouge) %>
+        <% elsif player.dnd_class_id == 8 %>
+          <% dnd_class = t(:f_wizard) %>
+        <% elsif player.dnd_class_id == 9 %>
+          <% dnd_class = t(:f_monk) %>
+        <% elsif player.dnd_class_id == 10 %>
+          <% dnd_class = t(:f_paladin) %>
+        <% elsif player.dnd_class_id == 11 %>
+          <% dnd_class = t(:ranger) %>
+        <% end %>
+      <% else %>
+        <% artigo = 'o'%>
+        <% if player.race_id == 1  %>
+          <% race = t(:m_human_oc) %> 
+        <% elsif player.race_id == 2  %>
+          <% race = t(:m_human_or)%>
+        <% elsif player.race_id == 3  %>
+          <% race = t(:m_human_s)%>
+        <% elsif player.race_id == 4  %>
+          <% race = t(:m_human_m) %>
+        <% elsif player.race_id == 5  %>
+          <% race = t(:m_elf_m) %>
+        <% elsif player.race_id == 6  %>
+          <% race = t(:m_elf_s) %>
+        <% elsif player.race_id == 7  %>
+          <% race = t(:m_elf_w) %>
+        <% elsif player.race_id == 8  %>
+          <% race = t(:m_elf_d) %>
+        <% elsif player.race_id == 9  %>
+          <% race = t(:m_elf_f) %>
+        <% elsif player.race_id == 10  %>
+          <% race = t(:m_dwarf_s) %>
+        <% elsif player.race_id == 11  %>
+          <% race = t(:m_dwarf_go) %>
+        <% elsif player.race_id == 12  %>
+          <% race = t(:m_dwarf_gr) %>
+        <% elsif player.race_id == 13  %>
+          <% race = t(:half_orc) %> 
+        <% elsif player.race_id == 14  %>
+          <% race = t(:m_h_elf_m) %>
+        <% elsif player.race_id == 15  %>
+          <% race = t(:m_h_elf_s) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:m_h_elf_w) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:m_h_elf_d) %>
+        <% elsif player.race_id == 2  %>
+          <% race = t(:m_h_elf_f) %>
+        <% end %>
+        <% if player.dnd_class_id == 1 %>
+          <% dnd_class = t(:m_barbarian) %>
+        <% elsif player.dnd_class_id == 2 %>
+          <% dnd_class = t(:m_bard) %>
+        <% elsif player.dnd_class_id == 3 %>
+          <% dnd_class = t(:m_cleric) %>
+        <% elsif player.dnd_class_id == 4 %>
+          <% dnd_class = t(:druid) %>
+        <% elsif player.dnd_class_id == 5 %>
+          <% dnd_class = t(:m_sorcerer) %>
+        <% elsif player.dnd_class_id == 6 %>
+          <% dnd_class = t(:m_fighter) %>
+        <% elsif player.dnd_class_id == 7 %>
+          <% dnd_class = t(:m_rouge) %>
+        <% elsif player.dnd_class_id == 8 %>
+          <% dnd_class = t(:m_wizard) %>
+        <% elsif player.dnd_class_id == 9 %>
+          <% dnd_class = t(:m_monk) %>
+        <% elsif player.dnd_class_id == 10 %>
+          <% dnd_class = t(:m_paladin) %>
+        <% elsif player.dnd_class_id == 11 %>
+          <% dnd_class = t(:ranger) %>
+        <% end %>
+      <% end %>
+      <%= "#{player.name}, #{artigo} #{race} #{dnd_class} de #{player.age} anos"%> 
+    </div>
+  <% end %>
+<% end %>
 <% else %>
   Nenhum personagem registrado
   <br>
