@@ -19,7 +19,7 @@
 
     <div class="field" id="inline-item">
       <%= form.label :race_id, t('sheet.race') %>
-      <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "update()", id: 'race-id'}) %>
+      <%= form.collection_select(:race_id, Race.all, :id, :name, {}, {class: 'race', onchange: "race_update()", id: 'race-id'}) %>
       
     </div>
 
@@ -30,12 +30,12 @@
 
     <div class="field" id="inline-item">
       <%= form.label :dnd_class_id, t('sheet.class') %>
-      <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "update()", id: 'class-id'}) %>
+      <%= form.collection_select(:dnd_class_id, DndClass.all, :id, :name, {},{class: 'class', onchange: "class_update()", id: 'class-id'}) %>
     </div>
     
     <div class="field" id="inline-item">
       <%= form.label :age, t('sheet.age') %>
-      <%= form.number_field :age, id: :player_age, min: 5, max:10, default: 7 %>
+      <%= form.number_field :age, id: :player_age, min: 5, max:999, default: 7 %>
     </div>
 
     <div class="field" id="inline-item">
@@ -62,7 +62,7 @@
   </tr>
   <tr>
     <td class="table-line" id="str-line"><%= form.label :str, t('sheet.str') %></td>
-    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", onchange: "change_hability('str')" %></td>
     <td class="table-line" id="race-str">0</td>
     <td class="table-line" id="str">-1</td>
     <td class="table-line" id="str-cost">0</td>
@@ -73,7 +73,7 @@
   </tr>
   <tr>
     <td class="table-line" id="dex-line"><%= form.label :dex, t('sheet.dex') %></td>
-    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :dex, id: :player_dex, min: 3, max: 18, class: "hability-area", onchange: "change_dex()" %></td>
     <td class="table-line" id="race-dex">0</td>
     <td class="table-line" id="dex">-1</td>
     <td class="table-line" id="dex-cost">0</td>
@@ -84,7 +84,7 @@
   </tr>
   <tr>
     <td class="table-line" id="con-line"><%= form.label :con, t('sheet.con') %></td>
-    <td class="table-line" ><%= form.number_field :con, id: :player_con, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :con, id: :player_con, min: 3, max: 18, class: "hability-area", onchange: "change_con()" %></td>
     <td class="table-line" id="race-con">0</td>
     <td class="table-line" id="con">-1</td>
     <td class="table-line" id="con-cost">0</td>
@@ -94,7 +94,7 @@
   </tr>
   <tr>
     <td class="table-line" id="intel-line"><%= form.label :intel, t('sheet.intel') %></td>
-    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :intel, id: :player_intel, min: 3, max: 18, class: "hability-area", onchange: "change_intel()" %></td>
     <td class="table-line" id="race-intel">0</td>
     <td class="table-line" id="intel">-1</td>
     <td class="table-line" id="intel-cost">0</td>
@@ -104,7 +104,7 @@
   </tr>
   <tr>
     <td class="table-line" id="wis-line"><%= form.label :wis, t('sheet.wis') %></td>
-    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :wis, id: :player_wis, min: 3, max: 18, class: "hability-area", onchange: "change_wis()" %></td>
     <td class="table-line" id="race-wis">0</td>
     <td class="table-line" id="wis">-1</td>
     <td class="table-line" id="wis-cost">0</td>
@@ -114,7 +114,7 @@
   </tr>
   <tr>
     <td class="table-line" id="cha-line" ><%= form.label :cha, t('sheet.cha') %></td>
-    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", onchange: "update()" %></td>
+    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", onchange: "change_hability('cha')" %></td>
     <td class="table-line" id="race-cha">0</td>
     <td class="table-line" id="cha">-1</td>
     <td class="table-line" id="cha-cost">0</td>
@@ -124,6 +124,9 @@
   </tr>
 </table>
 
+<div id="coo">
+  =***
+</div>
 
 
 
@@ -134,11 +137,413 @@
 
 <%# // IDADES POR RAÇAS E CLASSES %>
 <script>
-    function update(){
-      idade_racas();
-      check_points();
-      //no_loyal();
+
+    update();
+
+    function class_update(){
+      age_change();
+      barbarian_run();
+      check_all_mods(); //<------ essa função tá certa???
+      set_hp();
+      resistence_mods();
+      update_skill_points();
     }
+
+    function race_update(){
+      age_change();
+      race_hability_change();
+      check_all_mods(); //<------ essa função tá certa???
+      set_hp();
+      resistence_mods();
+      update_skill_points();
+    }
+
+    function update(){
+      change_hability("str");
+      change_dex();
+      change_con();
+      change_intel();
+      change_wis();
+      change_hability("cha");
+    }
+
+    function change_hability(tag) {
+      check_mod(tag);
+      calculate_point(tag);
+      count_all_points();
+    }
+
+    function get_cost_points(tag){
+      var value = 0;
+      var hab = get_int_value("player_"+tag);
+      hab += get_int_html("race-"+tag);
+      value = cost(hab);
+      return parseInt(value);
+    }
+
+    function count_all_points(){
+      var total = get_cost_points("str");
+      total += get_cost_points("dex");
+      total += get_cost_points("con");
+      total += get_cost_points("intel");
+      total += get_cost_points("wis");
+      total += get_cost_points("cha");
+      set_inner_html("points", total);
+    }
+
+    function barbarian_run(){
+      if (get_int_value("class-id") == 1){
+        set_inner_html("speed",12);
+      } else {
+        set_inner_html("speed",9);
+      }
+    }
+
+    function set_hp(){
+      var value = get_int_html("con");
+      value += get_life_die(get_int_value("class-id"));
+      set_inner_html("pvs", value);
+    }
+
+    function change_con(){
+      check_mod("con");
+      calculate_point("con");
+      set_hp();
+      count_all_points();
+      var class_id = get_int_value("class-id");
+      fortitude_mod(class_id); 
+    }
+
+    function change_dex(){
+      check_mod("dex");
+      calculate_point("dex");
+      count_all_points();
+      var class_id = get_int_value("class-id");
+      reflexes_mod(class_id);
+      update_AC();
+    }
+
+    function change_intel(){
+      check_mod("intel");
+      calculate_point("intel");
+      count_all_points();
+      var class_id = get_int_value("class-id");
+      update_skill_points();
+    }
+
+    function change_wis() {
+      check_mod("wis");
+      calculate_point("wis");
+      count_all_points();
+      var class_id = get_int_value("class-id");
+      will_mod(class_id); 
+    }
+
+    function update_AC(){
+      var mod = get_int_html("dex");
+      set_inner_html("ac",10+mod);
+    }
+
+    function resistence_mods(){
+      var class_id = get_int_value("class-id")
+      fortitude_mod(class_id); 
+      reflexes_mod(class_id);
+      will_mod(class_id);
+    }
+
+    function update_skill_points(){
+      var mod = get_int_html("intel");
+      var dnd_class = get_int_value("class-id");
+      var race = get_int_value("race-id");
+      var valor = 0; 
+      if (race <=3) {
+        valor  = 1;
+      } 
+      if (dnd_class == 1){
+        valor = (4+valor)*4;
+      }
+      set_inner_html("skill-pts", valor);
+
+    }
+
+    function fortitude_mod(class_id){
+      var valor=0;
+      if (class_id == 1 || class_id == 3 || class_id == 4 || class_id == 6 || class_id == 9 || class_id == 10 || class_id == 11 ){
+        valor = 2;
+      }
+      valor += get_int_html("con");
+      set_inner_html("fort",valor);
+    }
+
+    function reflexes_mod(class_id){
+      var valor = 0;
+      if (class_id == 2 || class_id == 7 || class_id == 9 || class_id == 11 ){
+        valor = 2;
+      }
+      valor += get_int_html("dex");
+      set_inner_html("ref", valor);
+    }
+
+    
+
+    function will_mod(class_id){
+      var valor = 0;
+      if (class_id == 2 || class_id == 3 || class_id == 4 || class_id == 5 || class_id == 8 || class_id == 9 ){
+        valor = 2;
+      }
+      valor += get_int_html("wis");
+      set_inner_html("will",valor);
+    }
+
+
+    function get_life_die(dnd_class){
+      var die = 0;
+      if (dnd_class == 1){
+        die = 12;
+      } else if (dnd_class == 5 || dnd_class == 8){ //wiz & socrc
+        die = 4;
+      } else if (dnd_class == 2 || dnd_class == 7) { //bard & rouge
+        die = 6
+      } else if (dnd_class == 6 || dnd_class == 10) { //bard & rouge
+        die = 10;
+      } else {
+        die = 8;
+      }
+      return die;
+    }
+
+
+    function check_mod(tag){
+      var player = "player_"+tag;
+      var race = "race-"+tag;
+      var mod = get_int_value(player);
+      mod += get_int_html(race);
+      mod = hability_mod(mod);
+      verify_colors(mod, tag);
+    }
+//novas funções
+
+    //ok!
+    function age_change (){
+      var r = document.getElementById("race-id").selectedIndex; 
+      var c = document.getElementById("class-id").selectedIndex; 
+      age_mods(r, c);
+    }
+
+    function race_hability_change(){
+      var race = parseInt(document.getElementById("race-id").selectedIndex);
+      var st = 0, dx = 0, cn = 0, intel = 0, ws = 0, ch = 0;
+      if (race<=3) { //humanos
+        //nothing here, just some kisses =***
+      } else if (race >=4 && race <=8)  { //elfos
+        dx = 2;
+        cn = -2;
+      } else if (race >=9 && race <=11){ //anões
+        cn = 2;
+        ch = -2;
+      } else if (race == 12){ //meio-orcs
+        st = 2;
+        intel = -2;
+        ch = -2;
+      } else if (race >=13 && race <=18){ //meio-elfos
+        // wanna more kisses? not this time, smart ass! _|_
+      }
+      verify_colors(st,"race-str");
+      verify_colors(dx,"race-dex");
+      verify_colors(cn,"race-con");
+      verify_colors(intel,"race-intel");
+      verify_colors(ws,"race-wis");
+      verify_colors(ch,"race-cha");
+    }
+
+    //ok
+    function verify_colors(valor, place){
+      document.getElementById(place).innerHTML = parseInt(valor);
+      if (valor > 0) {
+        document.getElementById(place).style.color="green";  
+      } else if (valor == 0) {
+        document.getElementById(place).style.color="inherit";  
+      } else {
+        document.getElementById(place).style.color="red";
+      }
+    }
+
+    //ok
+    function hability_mod(h){
+      var num = parseInt(h); 
+      if (num%2 == 1){
+        num -= 1;
+      }
+      num /= 2;
+      num -=5;
+      return num;
+    }
+
+    function get_int_html(target){
+      return parseInt(document.getElementById(target).innerHTML);
+    }
+
+    function get_int_value(target){
+      return parseInt(document.getElementById(target).value);
+    }
+
+    function set_inner_html(target, value) {
+      document.getElementById(target).innerHTML = value;
+    }
+
+    function check_all_mods(){
+      check_mod("str");
+      check_mod("dex");
+      check_mod("con");
+      check_mod("intel");
+      check_mod("wis");
+      check_mod("cha");
+    }
+
+    //ok
+    function age_mods(race_id, class_id){
+      var race = parseInt(race_id);
+      var min = 0, max = 0;
+      var dnd_class = parseInt(class_id);
+      if (race<=3) { //humanos
+        min = 15;
+        max = 90;
+
+        if (dnd_class == 0 || dnd_class == 4 || dnd_class == 6 ){ //bárbaro, ladino, feitic - min
+          min+=1; 
+        } else if ( dnd_class == 1 || dnd_class == 5 || dnd_class == 9 || dnd_class == 10) {//bardo, guerr, paladin, rang
+          min+=1;
+        } else { //clerig, druid, monk, wizz
+          min+=2;
+        }
+        
+      } else if (race >=4 && race <=8)  { //elfos
+        min = 110;
+        max = 750;
+
+        if (dnd_class == 0 || dnd_class == 4 || dnd_class == 6 ){ //bárbaro, ladino, feitic - min
+          min+=4; 
+        } else if ( dnd_class == 1 || dnd_class == 5 || dnd_class == 9 || dnd_class == 10) {//bardo, guerr, paladin, rang
+          min+=6;
+        } else { //clerig, druid, monk, wizz
+          min+=10;
+        }
+
+      } else if (race >=9 && race <=11){ //anões
+        min = 40;
+        max = 450;
+
+        if (dnd_class == 0 || dnd_class == 4 || dnd_class == 6 ){ //bárbaro, ladino, feitic - min
+          min+=3; 
+        } else if ( dnd_class == 1 || dnd_class == 5 || dnd_class == 9 || dnd_class == 10) {//bardo, guerr, paladin, rang
+          min+=5;
+        } else { //clerig, druid, monk, wizz
+          min+=7;
+        }
+
+      } else if (race == 12){ //meio-orcs
+        min = 14;
+        max = 450;
+
+        if (dnd_class == 0 || dnd_class == 4 || dnd_class == 6 ){ //bárbaro, ladino, feitic - min
+          min+=1; 
+        } else if ( dnd_class == 1 || dnd_class == 5 || dnd_class == 9 || dnd_class == 10) {//bardo, guerr, paladin, rang
+          min+=1;
+        } else { //clerig, druid, monk, wizz
+          min+=2;
+        }
+
+      } else if (race >=13 && race<=18){ //meio-elfos
+        min = 20;
+        max = 185;
+
+        if (dnd_class == 0 || dnd_class == 4 || dnd_class == 6 ){ //bárbaro, ladino, feitic - min
+          min+=1; 
+        } else if ( dnd_class == 1 || dnd_class == 5 || dnd_class == 9 || dnd_class == 10) {//bardo, guerr, paladin, rang
+          min+=2;
+        } else { //clerig, druid, monk, wizz
+          min+=3;
+        }
+      }
+
+      document.getElementById("player_age").attributes[1].value = min;
+      document.getElementById("player_age").attributes[2].value = max; 
+      document.getElementById("player_age").value = min;
+
+    }
+
+
+    //calcula valor de pontos gastos
+    function cost(v){
+      var cost = 0;
+      if (v<=14){
+        cost = v - 8;
+      } else if (v==15) {
+        cost = 8; 
+      } else if (v==16) {
+        cost = 10;
+      } else if (v==17) {
+        cost = 13; 
+      } else if (v==18) {
+        cost = 16;
+      }
+      return cost;
+    }
+
+
+    //ok
+    function calculate_point(tag){
+      var value = 0;
+      var hab = get_int_value("player_"+tag);
+      hab += get_int_html("race-"+tag);
+      value = cost(hab);
+      //set_inner_html(tag+"-cost", value);
+
+      verify_colors(value, tag+"-cost");
+    }
+
+
+
+
+    //fim novas funções
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
 
     function idade_racas(){
       var r = document.getElementById("race-id").selectedIndex; 
@@ -297,8 +702,6 @@
         document.getElementById("str").style.color = "black";
       }
       document.getElementById("str").innerHTML = valor;
-      //valor = cost(parseInt(valor));
-      //document.getElementById("str-cost").innerHTML = valor;
     }
 
     function change_dex(){
@@ -573,8 +976,8 @@
         document.getElementById("submit").style.display = block;
       } else {
         document.getElementById("submit").style.display = none;
-      } */
-    }
+      } */ /*
+    } 
 
     function cost(v){
       var cost = 0;
@@ -629,7 +1032,6 @@
           break;
       }
       return cost;
-      
     }
 
 
@@ -767,5 +1169,7 @@
 
     //atualizando
     update();
+
+*/
 
 </script>
