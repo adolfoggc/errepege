@@ -89,7 +89,7 @@
     <td class="table-line" id="con">-1</td>
     <td class="table-line" id="con-cost">0</td>
     <td class="table-line" id="bold-line" colspan="2">Testes de Resistência</td>
-    <td class="table-line" id="bold-line"><%= t("skill")%></td>
+    <td class="table-line" id="bold-line"><%= t("sheet.skill")%></td>
     <td class="table-line" id="skill-pts">9</td>
   </tr>
   <tr>
@@ -124,14 +124,13 @@
   </tr>
 </table>
 
-<div id="coo">
-  =***
-</div>
-
 
 
   <div class="actions" id="submit">
-    <%= form.submit %>
+    <%= form.submit t("sheet.Save")%>
+  </div>
+  <div class="actions" id="submit">
+    <%= form.submit t("sheet.Continue") %>
   </div>
 <% end %>
 
@@ -147,6 +146,8 @@
       set_hp();
       resistence_mods();
       update_skill_points();
+      update_bab();
+      update_aligments();
     }
 
     function race_update(){
@@ -167,10 +168,151 @@
       change_hability("cha");
     }
 
+    function update_aligments(){
+      var dnd_class = get_int_value("class-id");
+      if(dnd_class == 1 || dnd_class == 2){
+        no_loyal();
+      } else if(dnd_class == 4) {
+        just_neutral();
+      } else if(dnd_class == 9) {
+        just_loyal();
+      } else if(dnd_class == 10) {
+        hero();
+      }else {
+        all_aligments();
+      }
+    }
+
+    function clear_all_aligments(){
+      var select = document.getElementById("alignment-id");
+      var tam = select.length 
+      for (var i=0; i<tam; i++){
+        select.remove(0);
+      }
+    }
+
+    function no_loyal(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cb = document.createElement("option");
+      cb.text = "Caótico e Bom";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      var cm = document.createElement("option");
+      cm.text = "Caótico e Mau"; 
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cb); 
+      select.add(cn); 
+      select.add(cm); 
+    }
+
+    
+
+    function just_loyal(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var lm = document.createElement("option");
+      lm.text = "Leal e Mau";
+      select.add(lb);
+      select.add(ln);
+      select.add(lm); 
+    }
+
+    function just_neutral(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      select.add(ln);
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cn); 
+    }
+
+    function hero(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      select.add(lb); 
+    }
+
+
+
+
+    function all_aligments(){
+      clear_all_aligments();
+      var select = document.getElementById("alignment-id");
+      var lb = document.createElement("option");
+      lb.text = "Leal e Bom";
+      var ln = document.createElement("option");
+      ln.text = "Leal e Neutro";
+      var lm = document.createElement("option");
+      lm.text = "Leal e Mau";
+      var nb = document.createElement("option");
+      nb.text = "Neutro e Bom";
+      var nn = document.createElement("option");
+      nn.text = "Neutro Puro";
+      var nm = document.createElement("option");
+      nm.text = "Neutro e Mau";
+      var cb = document.createElement("option");
+      cb.text = "Caótico e Bom";
+      var cn = document.createElement("option");
+      cn.text = "Caótico e Neutro";
+      var cm = document.createElement("option");
+      cm.text = "Caótico e Mau";
+      select.add(lb);
+      select.add(ln);
+      select.add(lm); 
+      select.add(nb); 
+      select.add(nn); 
+      select.add(nm); 
+      select.add(cb); 
+      select.add(cn); 
+      select.add(cm);   
+    }
+
+
+
+
+
+
+
+
     function change_hability(tag) {
       check_mod(tag);
       calculate_point(tag);
       count_all_points();
+    }
+
+    function update_bab(){
+      var dnd_class = get_int_value("class-id");
+      var valor = 0;
+      if (dnd_class == 1 || dnd_class == 6 || dnd_class == 10 || dnd_class == 11) {
+        valor += 1;
+      }
+      set_inner_html("bab", valor);
     }
 
     function get_cost_points(tag){
@@ -254,16 +396,20 @@
     function update_skill_points(){
       var mod = get_int_html("intel");
       var dnd_class = get_int_value("class-id");
-      var race = get_int_value("race-id");
-      var valor = 0; 
-      if (race <=3) {
-        valor  = 1;
+      var race = get_int_value("race-id"); 
+      if (race <=4) {
+        mod  += 1;
       } 
-      if (dnd_class == 1){
-        valor = (4+valor)*4;
+      if (dnd_class == 1 || dnd_class == 4 || dnd_class == 9){
+        mod = (4+mod)*4;
+      } else if (dnd_class == 2 || dnd_class == 11){
+        mod = (6+mod)*4;
+      } else if (dnd_class == 3 || dnd_class == 5 || dnd_class == 6 || dnd_class == 8 || dnd_class == 10){
+        mod = (2+mod)*4;
+      } else if (dnd_class == 7){
+        mod = (8+mod)*4;
       }
-      set_inner_html("skill-pts", valor);
-
+      set_inner_html("skill-pts", mod);
     }
 
     function fortitude_mod(class_id){
