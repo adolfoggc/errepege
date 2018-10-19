@@ -37,21 +37,73 @@ module PlayersHelper
 	def racial_mod(player, ability_name)
 		race = player.race_id
 		mod = 0
-		if race <=3
 		
-		elsif race <=8  
+		if race == 5 #elfo da lua
+			if ability_name == 'Constituição'
+				mod = -2
+			elsif ability_name == 'Destreza'
+				mod = 2
+			end
+
+		elsif race == 6 #elfo do sol
+			if ability_name == 'Constituição'
+				mod = -2
+			elsif ability_name == 'Inteligência'
+				mod = 2
+			end
+
+		elsif race == 7 #elfo do selvagem
+			if ability_name == 'Inteligência'
+				mod = -2
+			elsif ability_name == 'Destreza'
+				mod = 2
+			end
+
+		elsif race == 8 #drow
 			if ability_name == 'Destreza'
 				mod = 2
 			elsif ability_name == 'Constituição'
 				mod = -2
+			elsif ability_name == 'Inteligência'
+				mod = 2
+			elsif ability_name == 'Carisma'
+				mod = 2
 			end
-		elsif race <= 11
+
+		elsif race ==9  #elfo da floresta
+			if ability_name == 'Destreza'
+				mod = 2
+			elsif ability_name == 'Constituição'
+				mod = -2
+			elsif ability_name == 'Força'
+				mod = 2
+			elsif ability_name == 'Inteligência'
+				mod = -2
+			elsif ability_name == 'Carisma'
+				mod = -2
+			end
+		elsif race == 10 #anão escudo
 			if ability_name == 'Constituição'
 				mod = 2
 			elsif ability_name == 'Carisma'
 				mod = -2
 			end
-		elsif race == 12
+
+		elsif race == 11 #anão dourado
+			if ability_name == 'Constituição'
+				mod = 2
+			elsif ability_name == 'Destreza'
+				mod = -2
+			end
+
+		elsif race == 12 #anão cinzento
+			if ability_name == 'Constituição'
+				mod = 2
+			elsif ability_name == 'Carisma'
+				mod = -4
+			end
+
+		elsif race == 13 #meio-orc
 			if ability_name == "Força"
 				mod = 2
 			elsif ability_name == 'Inteligência'
@@ -78,12 +130,12 @@ module PlayersHelper
 			end
 		end
 
-		return mod
-			
-			
+		return mod	
 	end
 
 	def racial_skill_mods(skill_id, player)
+		if true == false
+		end
 
 	end
 
