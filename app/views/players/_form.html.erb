@@ -130,12 +130,25 @@
     <%= form.submit t("sheet.Save")%>
   </div>
   <div class="actions" id="submit">
-    <%= form.submit t("sheet.Continue") %>
+    <%= form.submit t("sheet.Add_Skills") %>
   </div>
 <% end %>
 
 <%# // IDADES POR RAÇAS E CLASSES %>
 <script>
+
+    //gets e sets
+    function get_int_html(target){
+      return parseInt(document.getElementById(target).innerHTML);
+    }
+
+    function get_int_value(target){
+      return parseInt(document.getElementById(target).value);
+    }
+
+    function set_inner_html(target, value) {
+      document.getElementById(target).innerHTML = value;
+    }
 
     update();
 
@@ -166,6 +179,7 @@
       change_intel();
       change_wis();
       change_hability("cha");
+      age_change();
     }
 
     function update_aligments(){
@@ -292,12 +306,6 @@
       select.add(cn); 
       select.add(cm);   
     }
-
-
-
-
-
-
 
 
     function change_hability(tag) {
@@ -525,17 +533,6 @@
       return num;
     }
 
-    function get_int_html(target){
-      return parseInt(document.getElementById(target).innerHTML);
-    }
-
-    function get_int_value(target){
-      return parseInt(document.getElementById(target).value);
-    }
-
-    function set_inner_html(target, value) {
-      document.getElementById(target).innerHTML = value;
-    }
 
     function check_all_mods(){
       check_mod("str");

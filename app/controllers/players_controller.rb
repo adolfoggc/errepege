@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.order(:id)
   end
 
   # GET /players/1
@@ -19,7 +19,11 @@ class PlayersController < ApplicationController
 
   # GET /players/1/edit
   def edit
+    @skills = Skill.all
+    @classes_skills = DndClassesSkill.all
+    @searcher = DndClassesSkill.new
   end
+
 
   # POST /players
   # POST /players.json
@@ -59,7 +63,11 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         if user_signed_in?
-          format.html { redirect_to user_chars_path }#, notice: 'Player was successfully created.' }
+          if params[:commit] == t('sheet.Add_Skills')
+            format.html {redirect_to edit_player_path(@player)}
+          else
+            format.html { redirect_to user_chars_path }#, notice: 'Player was successfully created.' }
+          end
         elsif master_signer_in?
           format.html { redirect_to dm_char_maker_path } #, notice: 'Player was successfully created.' }
         end
@@ -80,71 +88,77 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
-
-    @player =  Player.find(params[:id])
-    @player.name = player_params[:name]
-    @player.dnd_class_id = player_params[:dnd_class_id]
-    @player.age = player_params[:age]
-    @player.race_id = player_params[:race_id]
-    @player.hit_points = @player.dnd_class.hit_die
-    @player.user_id = current_user.id
-    @player.str = player_params[:str]
-    @player.dex = player_params[:dex]
-    @player.con = player_params[:con]
-    @player.intel = player_params[:intel]
-    @player.wis = player_params[:wis]
-    @player.cha = player_params[:cha]
-    @player.age = player_params[:age]
-
-    #if true == false
-    #puts @player.alignment_id
-    if player_params[:gender] == '1'
-      @player.gender = "Feminino"
+    if params[:commit] == 'Escolher Talentos'
+      redirect_to root_path
     else
-      @player.gender = "Masculino"
-    end
+      @player =  Player.find(params[:id])
+      @player.name = player_params[:name]
+      @player.dnd_class_id = player_params[:dnd_class_id]
+      @player.age = player_params[:age]
+      @player.race_id = player_params[:race_id]
+      @player.hit_points = @player.dnd_class.hit_die
+      @player.user_id = current_user.id
+      @player.str = player_params[:str]
+      @player.dex = player_params[:dex]
+      @player.con = player_params[:con]
+      @player.intel = player_params[:intel]
+      @player.wis = player_params[:wis]
+      @player.cha = player_params[:cha]
+      @player.age = player_params[:age]
 
-      if player_params[:alignment_id].eql? 'Leal e Bom'
-        @player.alignment_id = 1
-      elsif player_params[:alignment_id].eql? 'Leal e Neutro'
-        @player.alignment_id = 2
-      elsif player_params[:alignment_id].eql? 'Leal e Mau'
-        @player.alignment_id = 3
-      elsif player_params[:alignment_id].eql? 'Neutro e Bom'
-        @player.alignment_id = 4
-      elsif player_params[:alignment_id].eql? 'Neutro Puro'
-        @player.alignment_id = 5
-      elsif player_params[:alignment_id].eql? 'Neutro e Mau'
-        @player.alignment_id = 6
-      elsif player_params[:alignment_id].eql? 'Caótico e Bom'
-        @player.alignment_id = 7
-      elsif player_params[:alignment_id].eql? 'Caótico e Neutro'
-        @player.alignment_id = 8
-      elsif player_params[:alignment_id].eql? 'Caótico e Mau'
-        @player.alignment_id = 9
-      end
-    #end
-    
-    respond_to do |format|
-      if @player.save
-        if user_signed_in?
-          format.html { redirect_to user_chars_path }#, notice: 'Player was successfully created.' }
-        elsif master_signer_in?
-          format.html { redirect_to dm_char_maker_path } #, notice: 'Player was successfully created.' }
-        end
-        format.json { render :show, status: :created, location: @player }
+      #if true == false
+      #puts @player.alignment_id
+      if player_params[:gender] == '1'
+        @player.gender = "Feminino"
       else
-        
-        
-        if user_signed_in?
-          format.html { redirect_to user_new_player_path }#, notice: 'Player was successfully created.' }
-        else
-          format.html { render :new }
-        end
-        format.json { render json: @player.errors, status: :unprocessable_entity }
+        @player.gender = "Masculino"
       end
-    end    
 
+        if player_params[:alignment_id].eql? 'Leal e Bom'
+          @player.alignment_id = 1
+        elsif player_params[:alignment_id].eql? 'Leal e Neutro'
+          @player.alignment_id = 2
+        elsif player_params[:alignment_id].eql? 'Leal e Mau'
+          @player.alignment_id = 3
+        elsif player_params[:alignment_id].eql? 'Neutro e Bom'
+          @player.alignment_id = 4
+        elsif player_params[:alignment_id].eql? 'Neutro Puro'
+          @player.alignment_id = 5
+        elsif player_params[:alignment_id].eql? 'Neutro e Mau'
+          @player.alignment_id = 6
+        elsif player_params[:alignment_id].eql? 'Caótico e Bom'
+          @player.alignment_id = 7
+        elsif player_params[:alignment_id].eql? 'Caótico e Neutro'
+          @player.alignment_id = 8
+        elsif player_params[:alignment_id].eql? 'Caótico e Mau'
+          @player.alignment_id = 9
+        end
+      #end
+      
+      respond_to do |format|
+        if @player.save
+          if user_signed_in?
+            if params[:commit] == 'Continuar'
+              format.html {redirect_to edit_player_path(@player)}
+            else
+              format.html { redirect_to user_chars_path }#, notice: 'Player was successfully created.' }
+            end
+          elsif master_signer_in?
+            format.html { redirect_to dm_char_maker_path } #, notice: 'Player was successfully created.' }
+          end
+          format.json { render :show, status: :created, location: @player }
+        else
+          
+          
+          if user_signed_in?
+            format.html { redirect_to user_new_player_path }#, notice: 'Player was successfully created.' }
+          else
+            format.html { render :new }
+          end
+          format.json { render json: @player.errors, status: :unprocessable_entity }
+        end
+      end    
+    end #fim seleção por commit
 
     if true == false
       respond_to do |format|
@@ -216,7 +230,7 @@ class PlayersController < ApplicationController
   end
 
   def user_players
-    @players = Player.where(user_id: current_user.id)
+    @players = Player.where(user_id: current_user.id).order(:id)
   end
 
   private

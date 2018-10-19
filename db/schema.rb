@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013002946) do
+ActiveRecord::Schema.define(version: 20181019003046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20181013002946) do
     t.integer "learning"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "player_id"
+    t.index ["player_id"], name: "index_player_skills_on_player_id"
     t.index ["skill_id"], name: "index_player_skills_on_skill_id"
   end
 
@@ -210,6 +212,7 @@ ActiveRecord::Schema.define(version: 20181013002946) do
   add_foreign_key "monsters", "environments"
   add_foreign_key "npcs", "races"
   add_foreign_key "npcs", "roles"
+  add_foreign_key "player_skills", "players"
   add_foreign_key "player_skills", "skills"
   add_foreign_key "players", "alignments"
   add_foreign_key "players", "dnd_classes"

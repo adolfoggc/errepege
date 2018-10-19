@@ -2,7 +2,7 @@
 <div class="site-body"> 
   <h1>Seus Personagens</h1>
 <% if @players.count != 0 %>
-  <table class="full-table">
+  <table class="full-table"  style="width: 100%;">
     <thead>
       <tr>
         <th><%= t(:'sheet.name')%></th>
@@ -147,40 +147,31 @@
           <td class="index-cell"><%= player.age %></td>
           <td class="index-cell"><%= player.gender %></td>
           <td class="index-cell"><%= dnd_class %></td>
-          <td class="index-cell">
-            <% if player.dnd_class.name == 'Bárbaro' %>
-              <%= image_tag("S_Buff14.png", class: "line_img") %>
-            <% elsif player.dnd_class.name == 'Bardo' %>
-              <%= image_tag("I_Key04.png") %>
-            <% elsif player.dnd_class.name == 'Clérigo' %>
-              <%= image_tag("Ac_Medal01.png") %>
-            <% elsif player.dnd_class.name == 'Druida' %>
-              <%= image_tag("I_Leaf.png") %>
-            <% elsif player.dnd_class.name == 'Feiticeiro' %>
-              <%= image_tag("S_Shadow03.png") %>
-            <% elsif player.dnd_class.name == 'Guerreiro' %>
-              <%= image_tag("C_Elm03.png") %>
-            <% elsif player.dnd_class.name == 'Ladino' %>
-              <%= image_tag("W_Dagger006.png") %>
-            <% elsif player.dnd_class.name == 'Mago' %>
-              <%= image_tag("C_Hat01.png") %>
-            <% elsif player.dnd_class.name == 'Monge' %>
-              <%= image_tag("S_Buff03.png") %>
-            <% elsif player.dnd_class.name == 'Paladino' %>
-              <%= image_tag("S_Holy07.png") %>
-            <% elsif player.dnd_class.name == 'Ranger' %>
-              <%= image_tag("W_Bow02.png") %>
-            <% end %>
-          </td>
+          <td class="index-cell"><%= image_tag(get_picture(player)) %></td>
           <td class="index-cell"><%= player.alignment.kind %></td>
          <!-- <td class="index-cell"><%# link_to 'Show', player %></td> -->
           <td class="index-cell"><%= link_to t(:'Edit'), edit_player_path(player) %></td>
+          <td class="index-cell"><%= link_to t("sheet.Continue"), edit_player_path(player) %></td>
           <td class="index-cell"><%= link_to t(:'Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
 
       <% end %>
     </tbody>
   </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <% if true == false %>
   <% @players.each do |player| %>
     <div class="char-line" style="width: 100%; border: 3px solid blue; border-radius: 5px;">

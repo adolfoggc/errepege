@@ -1,0 +1,326 @@
+<%= form_with(model: player, local: true) do |form| %>
+  <% if player.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+      <ul>
+      <% player.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<h1>  
+	<%= "#{player.name}," %>
+	<% if player.gender == "Feminino" %>
+		<%= "a " %>
+		<% case player.race_id %>
+		<% when 1 %>
+			<%= t(:f_human_oc) %>
+		<% when 2 %>
+			<%= t(:f_human_or) %>
+		<% when 3 %>
+			<%= t(:f_human_s) %>
+		<% when 4 %>
+			<%= t(:f_human_m) %>
+		<% when 5 %>
+			<%= t(:f_elf_m) %>
+		<% when 6 %>
+			<%= t(:f_elf_s) %>
+		<% when 7 %>
+			<%= t(:f_elf_w) %>
+		<% when 8 %>
+			<%= t(:f_elf_d) %>
+		<% when 9 %>
+			<%= t(:f_elf_f) %>
+		<% when 10 %>
+			<%= t(:f_dwarf_s) %>
+		<% when 11 %>
+			<%= t(:f_dwarf_go) %>
+		<% when 12 %>
+			<%= t(:f_dwarf_gr) %>
+		<% when 13 %>
+			<%= t(:half_orc) %>
+		<% when 14 %>
+			<%= t(:f_h_elf_m) %>
+		<% when 15 %>
+			<%= t(:f_h_elf_s) %>
+		<% when 16 %>
+			<%= t(:f_h_elf_w) %>
+		<% when 17 %>
+			<%= t(:f_h_elf_d) %>
+		<% when 18 %>
+			<%= t(:f_h_elf_f) %>
+		<% end %>
+
+		<% case player.dnd_class_id %>
+		<% when 1 %>
+			<%= t(:f_barbarian) %>
+			<% dnd_class = t(:u_f_barbarian) %>
+		<% when 2 %>
+			<%= t(:f_bard) %>
+			<% dnd_class = t(:u_f_bard) %>
+		<% when 3 %>
+			<%= t(:f_cleric) %>
+			<% dnd_class = t(:u_f_cleric) %>
+		<% when 4 %>
+			<%= t(:druid) %>
+			<% dnd_class = t(:u_druid) %>
+		<% when 5 %>
+			<%= t(:f_sorcerer) %>
+			<% dnd_class = t(:u_f_sorcerer) %>
+		<% when 6 %>
+			<%= t(:f_fighter) %>
+			<% dnd_class = t(:u_f_fighter) %>
+		<% when 7 %>
+			<%= t(:f_rouge) %>
+			<% dnd_class = t(:u_f_rouge) %>
+		<% when 8 %>
+			<%= t(:f_wizard) %>
+			<% dnd_class = t(:u_f_wizard) %>
+		<% when 9 %>
+			<%= t(:f_monk) %>
+			<% dnd_class = t(:u_f_monk) %>
+		<% when 10 %>
+			<%= t(:f_paladin) %>
+			<% dnd_class = t(:u_f_paladin) %>
+		<% when 11 %>
+			<%= t(:ranger) %>
+			<% dnd_class = t(:u_ranger) %>
+		<% end %>
+	<% else %>
+		<%= "o " %>
+		<% case player.race_id %>
+		<% when 1 %>
+			<%= t(:m_human_oc) %>
+		<% when 2 %>
+			<%= t(:m_human_or) %>
+		<% when 3 %>
+			<%= t(:m_human_s) %>
+		<% when 4 %>
+			<%= t(:m_human_m) %>
+		<% when 5 %>
+			<%= t(:m_elf_m) %>
+		<% when 6 %>
+			<%= t(:m_elf_s) %>
+		<% when 7 %>
+			<%= t(:m_elf_w) %>
+		<% when 8 %>
+			<%= t(:m_elf_d) %>
+		<% when 9 %>
+			<%= t(:m_elf_f) %>
+		<% when 10 %>
+			<%= t(:m_dwarf_s) %>
+		<% when 11 %>
+			<%= t(:m_dwarf_go) %>
+		<% when 12 %>
+			<%= t(:m_dwarf_gr) %>
+		<% when 13 %>
+			<%= t(:half_orc) %>
+		<% when 14 %>
+			<%= t(:m_h_elf_m) %>
+		<% when 15 %>
+			<%= t(:m_h_elf_s) %>
+		<% when 16 %>
+			<%= t(:m_h_elf_w) %>
+		<% when 17 %>
+			<%= t(:m_h_elf_d) %>
+		<% when 18 %>
+			<%= t(:m_h_elf_f) %>
+		<% end %>
+
+		<% case player.dnd_class_id %>
+		<% when 1 %>
+			<%= t(:m_barbarian) %>
+			<% dnd_class = t(:u_m_barbarian) %>
+		<% when 2 %>
+			<%= t(:m_bard) %>
+			<% dnd_class = t(:u_m_bard) %>
+		<% when 3 %>
+			<%= t(:m_cleric) %>
+			<% dnd_class = t(:u_m_cleric) %>
+		<% when 4 %>
+			<%= t(:druid) %>
+			<% dnd_class = t(:u_druid) %>
+		<% when 5 %>
+			<%= t(:m_sorcerer) %>
+			<% dnd_class = t(:u_m_sorcerer) %>
+		<% when 6 %>
+			<%= t(:m_fighter) %>
+			<% dnd_class = t(:u_m_fighter) %>
+		<% when 7 %>
+			<%= t(:m_rouge) %>
+			<% dnd_class = t(:u_m_rouge) %>
+		<% when 8 %>
+			<%= t(:m_wizard) %>
+			<% dnd_class = t(:u_m_wizard) %>
+		<% when 9 %>
+			<%= t(:m_monk) %>
+			<% dnd_class = t(:u_m_monk) %>
+		<% when 10 %>
+			<%= t(:m_paladin) %>
+			<% dnd_class = t(:u_m_paladin) %>
+		<% when 11 %>
+			<%= t(:ranger) %>
+			<% dnd_class = t(:u_ranger) %>
+		<% end %>
+	<% end %>
+</h1>
+<div class="sheet-block" id="sheet-title"><%= t(:Skills)%></div>
+<style>
+table {
+	border-collapse: collapse;
+	font-size: 0.8em;
+	width: 100%;
+}
+
+td {
+
+	height: 1.5em;
+	vertical-align: middle;
+	padding-bottom: 0px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:hover{
+	background-color: #333;
+	/*font-weight: bold; */
+	color: #FFF;
+}
+
+#sheet-title {
+	text-align: center;
+	font-size: 2em;
+	margin: 0 0 .5em 0; 
+}
+
+#header:hover {
+	color: rgb(51, 51, 51);
+	background-color: #FFF;
+}
+
+th {
+	padding: 0 10px 0 10px;
+}
+
+</style>
+
+<% points = player.intel %>
+<% if player.race_id <=4 %>
+	<% points +=4%>
+<% end %>
+
+<div class="sheet-block">
+	<table>
+		<tr id="header">
+			<th><%= t('sheet.skill') %></th>
+			<th><%= t('sheet.Key_ability') %></th>
+			<th><%= t('sheet.Skill_for')+"#{dnd_class}?"%></th>
+			<th><%= t('sheet.Trained_only') %></th>
+			<th><%= t('sheet.Armor_penalty') %></th>
+			<th><%= t('sheet.Weigth_penalty') %></th>
+			<th><%= t('sheet.short_Ability_mod') %></th>
+			<th><%= t('sheet.short_Race_mod') %></th>
+			<th><%= t('sheet.Graduation') %></th>
+			<th>Total</th>
+			<th>Custo</th>
+		</tr>
+		<% skill_id = 1%>
+		<% @skills.each do |s| %>
+			<tr>
+				<td class="table-line" ><%= s.name %></td>
+				<td class="table-line" ><%= ability_name(s.related_ability) %></td>
+				<td class="table-line" >
+					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
+						<%= image_tag(get_picture(player)) %>
+					<% end %>
+					</td>
+				<td class="table-line" ><% if s.trained? %><%= t('Yeah') %><% end %></td>
+				<td class="table-line" ><% if s.dex_penalty? %><%= t('Yeah') %><% end %></td>
+				<td class="table-line" ><% if s.weight_penalty? %><%= t('Yeah') %><% end %></td>
+				<% case s.related_ability %>
+				<% when 0 %>
+					<% mod  = ability_mod(player.str) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% when 1 %>
+					<% mod  = ability_mod(player.dex) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% when 2 %>
+					<% mod  = ability_mod(player.con) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% when 3 %>
+					<% mod  = ability_mod(player.intel) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% when 4 %>
+					<% mod  = ability_mod(player.wis) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% when 5 %>
+					<% mod  = ability_mod(player.cha) + racial_mod(player, ability_name(s.related_ability)) %>
+				<% end %>
+				<td class="table-line" id="<%= "mod_skill_"+"#{skill_id}" %>"><%= mod %></td>
+				<td class="table-line" id="<%= "racial_mod_"+"#{skill_id}" %>"><%= racial_mod(player, ability_name(s.related_ability)) %></td>
+				<td class="table-line" >
+					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
+						<%= form.number_field skill_id, min: 0, max: 4, value: 0, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
+					<% else %>
+						<%= form.number_field skill_id, min: 0, max: 2, value: 0, step: 0.5, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
+					<% end %>						
+				</td>
+				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + racial_mod(player, ability_name(s.related_ability))%> </td>
+				<td class="table-line" id="<%= "skill_cost_"+"#{skill_id}" %>">0</td>
+			</tr>
+			<% skill_id +=1%>
+		<% end %>
+	</table>
+</div>
+
+<div class="actions" id="submit">
+    <%= form.submit "Escolher Talentos" %>
+  </div>
+<% end %>
+
+<script >
+	//gets e sets
+	function get_int_html(target){
+      return parseInt(document.getElementById(target).innerHTML);
+    }
+
+    function get_float_html(target){
+      return parseFloat(document.getElementById(target).innerHTML);
+    }
+
+    function get_int_value(target){
+      return parseInt(document.getElementById(target).value);
+    }
+
+    function get_float_value(target){
+      return parseFloat(document.getElementById(target).value);
+    }
+
+    function set_inner_html(target, value) {
+      document.getElementById(target).innerHTML = value;
+    }
+
+    function get_step(target){
+    	return document.getElementById(target).step;
+    }
+
+    //code
+
+
+    function update_skill(target){
+    	var value = get_float_html("mod_skill_"+target);
+    	value += get_float_html("racial_mod_"+target);
+    	value += get_float_value(target);
+    	set_inner_html("total_skill_"+target, value);
+
+    	var cost = get_float_value(target);
+    	if (get_step(target) == 0.5){
+    		cost *=2;
+    	}
+    	set_inner_html("skill_cost_"+target, cost);
+
+    }
+
+
+
+</script>

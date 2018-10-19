@@ -1,7 +1,12 @@
 <div class="site-body"> 
-<h1>Editar Personagem</h1>
 
-<%= render 'form', player: @player %>
+<% if @player.name == nil %>
+	<h1>Editar Personagem</h1>
+	<%= render 'form', player: @player %>
+<% else %>
+	
+	<%= render 'continue_player', player: @player %>
+<% end %>
 
 <%# link_to 'Show', @player %>
 <% if user_signed_in? %>

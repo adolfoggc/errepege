@@ -1,51 +1,51 @@
 <%= render 'public/menu' %>
-<p id="notice"><%= notice %></p>
+<div class="site-body">
+  <p>
+    <strong>Nome:</strong>
+    <%= @npc.name %>
+  </p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @npc.name %>
-</p>
+  <p>
+    <strong>Raça:</strong>
+    <%= link_to @npc.race.name, @npc.race %>
+  </p>
 
-<p>
-  <strong>Raça:</strong>
-  <%= link_to @npc.race.name, @npc.race %>
-</p>
+  <p>
+    <strong>Background:</strong>
+    <%= @npc.background %>
+  </p>
 
-<p>
-  <strong>Background:</strong>
-  <%= @npc.background %>
-</p>
+  <p>
+    <strong>Descrição:</strong>
+    <%= @npc.description %>
+  </p>
 
-<p>
-  <strong>Descrição:</strong>
-  <%= @npc.description %>
-</p>
-
-<p>
-  <strong>Idade:</strong>
-  <%= "#{@npc.age} anos " %>
-  <% if @npc.age <= @npc.race.child %>
-    <%= '(Criança)' %>
-  <% elsif @npc.age <= @npc.race.teen %>
-    <%= '(Adolescente)' %>
-  <% elsif @npc.age <= @npc.race.adult %>
-    <% if @npc.gender == 'Feminino' %>
-      <%= '(Adulta)' %>
-    <% else %>
-      <%= '(Adulto)' %>
+  <p>
+    <strong>Idade:</strong>
+    <%= "#{@npc.age} anos " %>
+    <% if @npc.age <= @npc.race.child %>
+      <%= '(Criança)' %>
+    <% elsif @npc.age <= @npc.race.teen %>
+      <%= '(Adolescente)' %>
+    <% elsif @npc.age <= @npc.race.adult %>
+      <% if @npc.gender == 'Feminino' %>
+        <%= '(Adulta)' %>
+      <% else %>
+        <%= '(Adulto)' %>
+      <% end %>
+    <% elsif @npc.age <= @npc.race.ancient %>
+      <% if @npc.gender == 'Feminino' %>
+        <%= '(Idosa)' %>
+      <% else %>
+        <%= '(Idoso)' %>
+      <% end %>
     <% end %>
-  <% elsif @npc.age <= @npc.race.ancient %>
-    <% if @npc.gender == 'Feminino' %>
-      <%= '(Idosa)' %>
-    <% else %>
-      <%= '(Idoso)' %>
-    <% end %>
-  <% end %>
-</p>
+  </p>
 
-<p>
-  <strong>Sexo:</strong>
-  <%= @npc.gender %>
-</p>
+  <p>
+    <strong>Sexo:</strong>
+    <%= @npc.gender %>
+  </p>
 
-<%= link_to 'Back', npc_list_path %>
+  <%= link_to 'Back', npc_list_path %>
+</div>
