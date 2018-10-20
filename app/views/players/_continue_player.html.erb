@@ -244,20 +244,20 @@ th {
 				<td class="table-line" ><% if s.weight_penalty? %><%= t('Yeah') %><% end %></td>
 				<% case s.related_ability %>
 				<% when 0 %>
-					<% mod  = ability_mod(player.str) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.str) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 1 %>
-					<% mod  = ability_mod(player.dex) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.dex) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 2 %>
-					<% mod  = ability_mod(player.con) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.con) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 3 %>
-					<% mod  = ability_mod(player.intel) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.intel) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 4 %>
-					<% mod  = ability_mod(player.wis) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.wis) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 5 %>
-					<% mod  = ability_mod(player.cha) + racial_mod(player, ability_name(s.related_ability)) %>
+					<% mod  = ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% end %>
 				<td class="table-line" id="<%= "mod_skill_"+"#{skill_id}" %>"><%= mod %></td>
-				<td class="table-line" id="<%= "racial_mod_"+"#{skill_id}" %>"><%= racial_mod(player, ability_name(s.related_ability)) %></td>
+				<td class="table-line" id="<%= "racial_mod_"+"#{skill_id}" %>"><%= racial_skill_mods(s.id, player.race_id) %></td>
 				<td class="table-line" >
 					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
 						<%= form.number_field skill_id, min: 0, max: 4, value: 0, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
@@ -265,15 +265,26 @@ th {
 						<%= form.number_field skill_id, min: 0, max: 2, value: 0, step: 0.5, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
 					<% end %>						
 				</td>
-				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + racial_mod(player, ability_name(s.related_ability))%> </td>
+				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) + racial_skill_mods(s.id, player.race_id) %> </td>
 				<td class="table-line" id="<%= "skill_cost_"+"#{skill_id}" %>">0</td>
 			</tr>
 			<% skill_id +=1%>
 		<% end %>
 	</table>
 </div>
-
-<div class="actions" id="submit">
+<br><br>
+<div style="display: inline-block;">
+	Pontos: <%=total_skill_points(player) %> 
+</div>
+<br>
+<div style="display: inline-block;">
+	Pontos Gastos: 
+</div>
+<div id="total_pts" style="display: inline-block;">
+	0
+</div>
+<br><br>
+<div class="actions" id="submit" style="display: none;">
     <%= form.submit "Escolher Talentos" %>
   </div>
 <% end %>
@@ -318,8 +329,54 @@ th {
     		cost *=2;
     	}
     	set_inner_html("skill_cost_"+target, cost);
+    	update_points();
     }
 
+    function update_points(){
+    	var cont = 1;
+    	var total  = 0;
+    	for( ; cont <= <%=Skill.last.id %> ;){
+    		total += get_int_html("skill_cost_"+cont);
+    		cont += 1;
+    	}
+    	set_inner_html("total_pts", total);
+    	if(total == <%= total_skill_points(player) %>){
+    		document.getElementById("total_pts").style.color="green";
+    		document.getElementById("submit").style.display = "initial";
+    	} else if(total > <%= total_skill_points(player) %>)  {
+    		document.getElementById("total_pts").style.color="red";
+    		document.getElementById("submit").style.display = "none";
+    	} else {
+    		document.getElementById("total_pts").style.color="rgb(51, 51, 51)";
+    	}
+    }
 
+    function update_all(){
+    	var target  = 1;
+    	var value = 0;
+    	var cost = 0;
+    	for ( ; target <= <%=Skill.last.id %>  ;){
+	    	value = get_float_html("mod_skill_"+target);
+	    	value += get_float_html("racial_mod_"+target);
+	    	value += get_float_value(target);
+	    	set_inner_html("total_skill_"+target, value);
+
+	    	cost = get_float_value(target);
+	    	if (get_step(target) == 0.5){
+	    		cost *=2;
+    		}
+    		set_inner_html("skill_cost_"+target, cost);
+    		target+=1;
+    	}
+    	update_points();
+    }
+
+    //primeira execução:
+
+
+
+    update_all();
+
+    
 
 </script>

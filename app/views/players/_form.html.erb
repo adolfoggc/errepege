@@ -62,7 +62,7 @@
   </tr>
   <tr>
     <td class="table-line" id="str-line"><%= form.label :str, t('sheet.str') %></td>
-    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", onchange: "change_hability('str')" %></td>
+    <td class="table-line" ><%= form.number_field :str, id: :player_str, min: 3, max: 18, class: "hability-area", onchange: "change_ability('str')" %></td>
     <td class="table-line" id="race-str">0</td>
     <td class="table-line" id="str">-1</td>
     <td class="table-line" id="str-cost">0</td>
@@ -114,7 +114,7 @@
   </tr>
   <tr>
     <td class="table-line" id="cha-line" ><%= form.label :cha, t('sheet.cha') %></td>
-    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", onchange: "change_hability('cha')" %></td>
+    <td class="table-line" ><%= form.number_field :cha, id: :player_cha, min: 3, max: 18, class: "hability-area", onchange: "change_ability('cha')" %></td>
     <td class="table-line" id="race-cha">0</td>
     <td class="table-line" id="cha">-1</td>
     <td class="table-line" id="cha-cost">0</td>
@@ -173,12 +173,12 @@
     }
 
     function update(){
-      change_hability("str");
+      change_ability("str");
       change_dex();
       change_con();
       change_intel();
       change_wis();
-      change_hability("cha");
+      change_ability("cha");
       age_change();
     }
 
@@ -308,7 +308,7 @@
     }
 
 
-    function change_hability(tag) {
+    function change_ability(tag) {
       check_mod(tag);
       calculate_point(tag);
       count_all_points();
@@ -487,6 +487,8 @@
     function race_hability_change(){
       var race = parseInt(document.getElementById("race-id").selectedIndex);
       var st = 0, dx = 0, cn = 0, intel = 0, ws = 0, ch = 0;
+      
+      /*
       if (race<=3) { //humanos
         //nothing here, just some kisses =***
       } else if (race >=4 && race <=8)  { //elfos
@@ -501,7 +503,81 @@
         ch = -2;
       } else if (race >=13 && race <=18){ //meio-elfos
         // wanna more kisses? not this time, smart ass! _|_
+      } */
+
+      if (race == 5){ //elfo da lua
+        st = <%= racial_mod(5, "Força") %>;
+        dx = <%= racial_mod(5, "Destreza") %>;
+        cn = <%= racial_mod(5, "Constituição") %>;
+        intel = <%= racial_mod(5, "Inteligência") %>;
+        ws = <%= racial_mod(5, "Sabedoria") %>;
+        ch = <%= racial_mod(5, "Carisma") %>;
+      } 
+      else if (race == 6){ //#elfo do sol
+        st = <%= racial_mod(6, "Força") %>;
+        dx = <%= racial_mod(6, "Destreza") %>;
+        cn = <%= racial_mod(6, "Constituição") %>;
+        intel = <%= racial_mod(6, "Inteligência") %>;
+        ws = <%= racial_mod(6, "Sabedoria") %>;
+        ch = <%= racial_mod(6, "Carisma") %>;
       }
+      else if (race == 7){ //#elfo do selvagem
+        st = <%= racial_mod(7, "Força") %>;
+        dx = <%= racial_mod(7, "Destreza") %>;
+        cn = <%= racial_mod(7, "Constituição") %>;
+        intel = <%= racial_mod(7, "Inteligência") %>;
+        ws = <%= racial_mod(7, "Sabedoria") %>;
+        ch = <%= racial_mod(7, "Carisma") %>;
+      }
+      else if (race == 8){ //#drow
+        st = <%= racial_mod(8, "Força") %>;
+        dx = <%= racial_mod(8, "Destreza") %>;
+        cn = <%= racial_mod(8, "Constituição") %>;
+        intel = <%= racial_mod(8, "Inteligência") %>;
+        ws = <%= racial_mod(8, "Sabedoria") %>;
+        ch = <%= racial_mod(8, "Carisma") %>;
+      }
+      else if (race ==9){  //#elfo da floresta
+        st = <%= racial_mod(9, "Força") %>;
+        dx = <%= racial_mod(9, "Destreza") %>;
+        cn = <%= racial_mod(9, "Constituição") %>;
+        intel = <%= racial_mod(9, "Inteligência") %>;
+        ws = <%= racial_mod(9, "Sabedoria") %>;
+        ch = <%= racial_mod(9, "Carisma") %>;
+      }
+      else if (race == 10){ //#anão escudo
+        st = <%= racial_mod(10, "Força") %>;
+        dx = <%= racial_mod(10, "Destreza") %>;
+        cn = <%= racial_mod(10, "Constituição") %>;
+        intel = <%= racial_mod(10, "Inteligência") %>;
+        ws = <%= racial_mod(10, "Sabedoria") %>;
+        ch = <%= racial_mod(10, "Carisma") %>;
+      }
+      else if (race == 11){ //#anão dourado
+        st = <%= racial_mod(11, "Força") %>;
+        dx = <%= racial_mod(11, "Destreza") %>;
+        cn = <%= racial_mod(11, "Constituição") %>;
+        intel = <%= racial_mod(11, "Inteligência") %>;
+        ws = <%= racial_mod(11, "Sabedoria") %>;
+        ch = <%= racial_mod(11, "Carisma") %>;
+      }
+      else if (race == 12){ //#anão cinzento
+        st = <%= racial_mod(12, "Força") %>;
+        dx = <%= racial_mod(12, "Destreza") %>;
+        cn = <%= racial_mod(12, "Constituição") %>;
+        intel = <%= racial_mod(12, "Inteligência") %>;
+        ws = <%= racial_mod(12, "Sabedoria") %>;
+        ch = <%= racial_mod(12, "Carisma") %>;
+      }
+      else if (race == 13){ //#meio-orc
+        st = <%= racial_mod(13, "Força") %>;
+        dx = <%= racial_mod(13, "Destreza") %>;
+        cn = <%= racial_mod(13, "Constituição") %>;
+        intel = <%= racial_mod(13, "Inteligência") %>;
+        ws = <%= racial_mod(13, "Sabedoria") %>;
+        ch = <%= racial_mod(13, "Carisma") %>;
+      }
+
       verify_colors(st,"race-str");
       verify_colors(dx,"race-dex");
       verify_colors(cn,"race-con");
