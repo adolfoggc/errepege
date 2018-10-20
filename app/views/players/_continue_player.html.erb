@@ -230,10 +230,11 @@ th {
 			<th>Custo</th>
 		</tr>
 		<% skill_id = 1%>
+		<% this_skill = 0 %>
 		<% @skills.each do |s| %>
 			<tr>
 				<td class="table-line" ><%= s.name %></td>
-				<td class="table-line" ><%= ability_name(s.related_ability) %></td>
+				<td class="table-line" ><%= ability_name(@related_ability[this_skill]) %></td>
 				<td class="table-line" >
 					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
 						<%= image_tag(get_picture(player)) %>
@@ -242,7 +243,7 @@ th {
 				<td class="table-line" ><% if s.trained? %><%= t('Yeah') %><% end %></td>
 				<td class="table-line" ><% if s.dex_penalty? %><%= t('Yeah') %><% end %></td>
 				<td class="table-line" ><% if s.weight_penalty? %><%= t('Yeah') %><% end %></td>
-				<% case s.related_ability %>
+				<% case @related_ability[this_skill] %>
 				<% when 0 %>
 					<% mod  = ability_mod(player.str) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 1 %>
@@ -268,6 +269,7 @@ th {
 				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) + racial_skill_mods(s.id, player.race_id) %> </td>
 				<td class="table-line" id="<%= "skill_cost_"+"#{skill_id}" %>">0</td>
 			</tr>
+			<% this_skill += 1 %>
 			<% skill_id +=1%>
 		<% end %>
 	</table>
@@ -380,3 +382,8 @@ th {
     
 
 </script>
+
+<% @skills.each do |s| %>
+	<% hue = s.related_ability %>
+	<%= "#{hue}, " %>
+<% end %>

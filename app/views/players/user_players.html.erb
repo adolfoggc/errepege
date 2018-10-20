@@ -150,8 +150,8 @@
           <td class="index-cell"><%= image_tag(get_picture(player)) %></td>
           <td class="index-cell"><%= player.alignment.kind %></td>
          <!-- <td class="index-cell"><%# link_to 'Show', player %></td> -->
-          <td class="index-cell"><%= link_to t(:'Edit'), edit_player_path(player,1) %></td>
-          <td class="index-cell"><%= link_to t("sheet.Continue"), edit_player_path(player) %></td>
+          <td class="index-cell"><%= link_to t(:'Edit'), edit_player_path(player) %></td>
+          <td class="index-cell"><%= link_to t("sheet.Continue"), user_player_skills_path(player) %></td>
           <td class="index-cell"><%= link_to t(:'Destroy'), player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
 

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       get '/npcs', to: 'npcs#index', as: :user_npc_list
       get '/npcs/:id', to: 'npcs#show', as: :user_npc_show
 
+      get '/new_player_skills/:id', to: 'players#player_skills', as: :user_player_skills
+
+
       root 'home#index'
     end
   end

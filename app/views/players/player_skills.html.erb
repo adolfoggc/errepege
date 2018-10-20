@@ -1,11 +1,8 @@
 <div class="site-body"> 
 
-
-<h1>Editar Personagem</h1>
-<%= render 'form', player: @player %>
+<%= render 'continue_player', player: @player %>
 
 
-<%# link_to 'Show', @player %>
 <% if user_signed_in? %>
 	<%= link_to 'Voltar', user_chars_path %>
 <% elsif master_signed_in? %>

@@ -2,17 +2,17 @@ module PlayersHelper
 
 	def ability_name(v)
 		case v
-		when 0
-			return t("sheet.str")
 		when 1
-			return t("sheet.dex")
+			return t("sheet.str")
 		when 2
-			return t("sheet.con")
+			return t("sheet.dex")
 		when 3
-			return t("sheet.intel")
+			return t("sheet.con")
 		when 4
-			return t("sheet.wis")
+			return t("sheet.intel")
 		when 5
+			return t("sheet.wis")
+		when 6
 			return t("sheet.cha")
 		end
 	end
