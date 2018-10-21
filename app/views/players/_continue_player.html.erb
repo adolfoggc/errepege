@@ -231,42 +231,42 @@ th {
 		</tr>
 		<% skill_id = 1%>
 		<% this_skill = 0 %>
-		<% @skills.each do |s| %>
+		<% @skill_names.each do |s| %>
 			<tr>
-				<td class="table-line" ><%= s.name %></td>
+				<td class="table-line" ><%=  @skill_names[this_skill] %></td>
 				<td class="table-line" ><%= ability_name(@related_ability[this_skill]) %></td>
 				<td class="table-line" >
-					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
+					<% if search_class_skill(player.dnd_class_id, skill_id) == true %>
 						<%= image_tag(get_picture(player)) %>
 					<% end %>
 					</td>
-				<td class="table-line" ><% if s.trained? %><%= t('Yeah') %><% end %></td>
-				<td class="table-line" ><% if s.dex_penalty? %><%= t('Yeah') %><% end %></td>
-				<td class="table-line" ><% if s.weight_penalty? %><%= t('Yeah') %><% end %></td>
+				<td class="table-line" ><% if @skill_trained[this_skill] == true %><%= t('Yeah') %><% end %></td>
+				<td class="table-line" ><% if @skill_dex_penalty[this_skill] == true %><%= t('Yeah') %><% end %></td>
+				<td class="table-line" ><% if @skill_weight_penalty[this_skill] == true %><%= t('Yeah') %><% end %></td>
 				<% case @related_ability[this_skill] %>
-				<% when 0 %>
-					<% mod  = ability_mod(player.str) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
 				<% when 1 %>
-					<% mod  = ability_mod(player.dex) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
+					<% mod  = ability_mod(player.str) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
 				<% when 2 %>
-					<% mod  = ability_mod(player.con) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
+					<% mod  = ability_mod(player.dex) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
 				<% when 3 %>
-					<% mod  = ability_mod(player.intel) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
+					<% mod  = ability_mod(player.con) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
 				<% when 4 %>
-					<% mod  = ability_mod(player.wis) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
+					<% mod  = ability_mod(player.intel) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
 				<% when 5 %>
-					<% mod  = ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) %>
+					<% mod  = ability_mod(player.wis) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
+				<% when 6 %>
+					<% mod  = ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(@related_ability[this_skill])))/2) %>
 				<% end %>
 				<td class="table-line" id="<%= "mod_skill_"+"#{skill_id}" %>"><%= mod %></td>
-				<td class="table-line" id="<%= "racial_mod_"+"#{skill_id}" %>"><%= racial_skill_mods(s.id, player.race_id) %></td>
+				<td class="table-line" id="<%= "racial_mod_"+"#{skill_id}" %>"><%= racial_skill_mods(skill_id, player.race_id) %></td>
 				<td class="table-line" >
-					<% if search_class_skill(player.dnd_class_id, s.id) == true %>
+					<% if search_class_skill(player.dnd_class_id, skill_id) == true %>
 						<%= form.number_field skill_id, min: 0, max: 4, value: 0, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
 					<% else %>
 						<%= form.number_field skill_id, min: 0, max: 2, value: 0, step: 0.5, class: "hability-area", id: skill_id, onchange: "update_skill(#{skill_id})"  %>
 					<% end %>						
 				</td>
-				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + ((racial_mod(player.race_id, ability_name(s.related_ability)))/2) + racial_skill_mods(s.id, player.race_id) %> </td>
+				<td class="table-line" id="<%= "total_skill_"+"#{skill_id}" %>" ><%= ability_mod(player.cha) + ((racial_mod(player.race_id, @related_ability[this_skill]))/2) + racial_skill_mods(skill_id, player.race_id) %> </td>
 				<td class="table-line" id="<%= "skill_cost_"+"#{skill_id}" %>">0</td>
 			</tr>
 			<% this_skill += 1 %>
@@ -287,7 +287,7 @@ th {
 </div>
 <br><br>
 <div class="actions" id="submit" style="display: none;">
-    <%= form.submit "Escolher Talentos" %>
+    <%= form.submit "Finalizar Perícias" %>
   </div>
 <% end %>
 
@@ -350,6 +350,7 @@ th {
     		document.getElementById("submit").style.display = "none";
     	} else {
     		document.getElementById("total_pts").style.color="rgb(51, 51, 51)";
+    		document.getElementById("submit").style.display = "none";
     	}
     }
 
@@ -382,8 +383,3 @@ th {
     
 
 </script>
-
-<% @skills.each do |s| %>
-	<% hue = s.related_ability %>
-	<%= "#{hue}, " %>
-<% end %>

@@ -156,7 +156,7 @@ module PlayersHelper
 		mod = 0
 		if race <= 4
 
-		elsif race >= 5 || race <= 9 #elfo da lua
+		elsif race >= 5 && race <= 9 #elfo da lua
 			if skill_id == 73 #ouvir
 				mod = 2
 			elsif skill_id == 75 #procurar
@@ -165,9 +165,9 @@ module PlayersHelper
 				mod = 2
 			end
 
-		elsif race >= 10 && race <= 12 #anão escudo
-
-		elsif race == 13 #meio-orc
+		#elsif race >= 10 && race <= 12 #anão escudo
+			
+		#elsif race == 13 #meio-orc
 			
 		
 		elsif race >= 14 #meio-elfos

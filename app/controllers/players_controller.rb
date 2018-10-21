@@ -88,25 +88,34 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json
   def update
-    if params[:commit] == 'Escolher Talentos'
+    if params[:commit] == 'Finalizar Perícias'
+      #if true == false #
+      delete_associated_skills(@player) #deletando valores anteriores
       count = 1
-      params.each do |skill|
-        if skill.to_i > 0
+      skills = params[:player]
+      skills.each do |skill, value|
+        if value.to_i > 0
           @player_skill = PlayerSkill.new
-          @player_skill.graduation = skill.to_i
+          @player_skill.graduation = value.to_i
           @player_skill.skill_id = count
           @player_skill.player_id = @player.id
 
           if @player_skill.save
           else
-            redirect_to skills_path
+            redirect_to root_path
           end
         end
         count+=1
       end
-
-      redirect_to root_path
-    else
+      #end #
+      #@player_skill = PlayerSkill.new
+      #@player_skill.graduation = 4
+      #@player_skill.skill_id = 1
+      #@player_skill.player_id = @player.id
+      #@player_skill.save
+      redirect_to user_chars_path
+    
+    else #update normal
       @player =  Player.find(params[:id])
       @player.name = player_params[:name]
       @player.dnd_class_id = player_params[:dnd_class_id]
@@ -154,8 +163,8 @@ class PlayersController < ApplicationController
       respond_to do |format|
         if @player.save
           if user_signed_in?
-            if params[:commit] == 'Continuar'
-              format.html {redirect_to edit_player_path(@player)}
+            if params[:commit] == 'Adicionar Perícias'
+              format.html {redirect_to user_player_skills_path(@player)}
             else
               format.html { redirect_to user_chars_path }#, notice: 'Player was successfully created.' }
             end
@@ -252,9 +261,12 @@ class PlayersController < ApplicationController
   end
 
   def player_skills
-    @skills = Skill.order(:id)
-    #@related_ability = ['Abrir Fechaduras', 'Acrobacia', 'Adestrar Animais', 'Arte da Fuga', 'Atuação: Canto', 'Atuação: Dança', 'Atuação: Dramaturgia', 'Atuação: Humor', 'Atuação: Instrumentos de Corda', 'Atuação: Instrumentos de Percussão', 'Atuação: Instrumentos de Sopro', 'Atuação: Instrumentos de Teclas', 'Atuação: Oratória', 'Avaliação', 'Blefar', 'Cavalgar', 'Concentração', 'Conhecimento: Arcano', 'Conhecimento: Arquitetura e Engenharia', 'Conhecimento: Geografia', 'Conhecimento: História', 'Conhecimento: Local', 'Conhecimento: Masmorras', 'Conhecimento: Natureza', 'Conhecimento: Nobreza e Realeza', 'Conhecimento: Planos', 'Conhecimento: Religião', 'Cura', 'Decifrar Escrita', 'Diplomacia', 'Disfarces', 'Equilíbrio', 'Escalar', 'Esconder-se', 'Falar Idioma: Abissal', 'Falar Idioma: Anão', 'Falar Idioma: Aquan', 'Falar Idioma: Auran', 'Falar Idioma: Celestial', 'Falar Idioma: Comum', 'Falar Idioma: Dracônico', 'Falar Idioma: Druidico', 'Falar Idioma: Élfico', 'Falar Idioma: Gnomo', 'Falar Idioma: Goblin', 'Falar Idioma: Gigante', 'Falar Idioma: Gnoll', 'Falar Idioma: Halfling', 'Falar Idioma: Ignan', 'Falar Idioma: Infernal', 'Falar Idioma: Língua de Sinais Drow', 'Falar Idioma: Ore', 'Falar Idioma: Silvestre', 'Falar Idioma: Suberrâneo', 'Falar Idioma: Terran', 'Falsificação', 'Furtividade', 'Identificar Magia', 'Intimidação', 'Natação', 'Observar', 'Obter Informação', 'Ofícios: Alquimia', 'Ofícios: Alfaiataria', 'Ofícios: Armadilharia', 'Ofícios: Armeiro', 'Ofícios: Arquearia', 'Ofícios: Carpintaria', 'Ofícios: Ferreraria', 'Ofícios: Ourives', 'Ofícios: Sapateiro', 'Operar Mecanismos', 'Ouvir', 'Prestidigitação', 'Procurar', 'Profissão: Boticário', 'Profissão: Banqueiro', 'Profissão: Caçador', 'Profissão: Cervejeiro', 'Profissão: Cozinheiro', 'Profissão: Curtidor', 'Profissão: Engenheiro', 'Profissão: Escriba', 'Profissão: Estalajadeiro', 'Profissão: Fazendeiro', 'Profissão: Guia', 'Profissão: Herborista', 'Profissão: Lenhador', 'Profissão: Marinheiro', 'Profissão: Mineiro', 'Profissão: Minerador', 'Profissão: Moleiro', 'Profissão: Pastor', 'Profissão: Pescador', 'Profissão: Rancheiro', 'Saltar', 'Sentir Motivação', 'Sobrevivência', 'Usar Cordas', 'Usar Instrumento Mágico']
+    #@skills = Skill.order(:id)
+    @skill_names = ['Abrir Fechaduras', 'Acrobacia', 'Adestrar Animais', 'Arte da Fuga', 'Atuação: Canto', 'Atuação: Dança', 'Atuação: Dramaturgia', 'Atuação: Humor', 'Atuação: Instrumentos de Corda', 'Atuação: Instrumentos de Percussão', 'Atuação: Instrumentos de Sopro', 'Atuação: Instrumentos de Teclas', 'Atuação: Oratória', 'Avaliação', 'Blefar', 'Cavalgar', 'Concentração', 'Conhecimento: Arcano', 'Conhecimento: Arquitetura e Engenharia', 'Conhecimento: Geografia', 'Conhecimento: História', 'Conhecimento: Local', 'Conhecimento: Masmorras', 'Conhecimento: Natureza', 'Conhecimento: Nobreza e Realeza', 'Conhecimento: Planos', 'Conhecimento: Religião', 'Cura', 'Decifrar Escrita', 'Diplomacia', 'Disfarces', 'Equilíbrio', 'Escalar', 'Esconder-se', 'Falar Idioma: Abissal', 'Falar Idioma: Anão', 'Falar Idioma: Aquan', 'Falar Idioma: Auran', 'Falar Idioma: Celestial', 'Falar Idioma: Comum', 'Falar Idioma: Dracônico', 'Falar Idioma: Druidico', 'Falar Idioma: Élfico', 'Falar Idioma: Gnomo', 'Falar Idioma: Goblin', 'Falar Idioma: Gigante', 'Falar Idioma: Gnoll', 'Falar Idioma: Halfling', 'Falar Idioma: Ignan', 'Falar Idioma: Infernal', 'Falar Idioma: Língua de Sinais Drow', 'Falar Idioma: Ore', 'Falar Idioma: Silvestre', 'Falar Idioma: Suberrâneo', 'Falar Idioma: Terran', 'Falsificação', 'Furtividade', 'Identificar Magia', 'Intimidação', 'Natação', 'Observar', 'Obter Informação', 'Ofícios: Alquimia', 'Ofícios: Alfaiataria', 'Ofícios: Armadilharia', 'Ofícios: Armeiro', 'Ofícios: Arquearia', 'Ofícios: Carpintaria', 'Ofícios: Ferreraria', 'Ofícios: Ourives', 'Ofícios: Sapateiro', 'Operar Mecanismos', 'Ouvir', 'Prestidigitação', 'Procurar', 'Profissão: Boticário', 'Profissão: Banqueiro', 'Profissão: Caçador', 'Profissão: Cervejeiro', 'Profissão: Cozinheiro', 'Profissão: Curtidor', 'Profissão: Engenheiro', 'Profissão: Escriba', 'Profissão: Estalajadeiro', 'Profissão: Fazendeiro', 'Profissão: Guia', 'Profissão: Herborista', 'Profissão: Lenhador', 'Profissão: Marinheiro', 'Profissão: Mineiro', 'Profissão: Minerador', 'Profissão: Moleiro', 'Profissão: Pastor', 'Profissão: Pescador', 'Profissão: Rancheiro', 'Saltar', 'Sentir Motivação', 'Sobrevivência', 'Usar Cordas', 'Usar Instrumento Mágico']
     @related_ability = [2, 2, 6, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 4, 6, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 4, 6, 6, 2, 1, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2, 4, 6, 1, 5, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 5, 5, 2, 6]
+    @skill_trained = [true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, false, true, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, true, true, false, false, false, false, true, true, true, true, true, true, true, true, true, true, false, true, false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, true]
+    @skill_dex_penalty = [false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    @skill_weight_penalty = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, false, false]
     @classes_skills = DndClassesSkill.all
     @searcher = DndClassesSkill.new
   end
@@ -270,5 +282,12 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:name, :race_id, :age, :gender, :dnd_class_id, :str, :dex, :con, :intel, :wis, :cha, :hit_points, :alignment_id)
       #params[:alignment_id] = 10
       #params[:alignment_id] = "Masculino"
+    end
+
+    def delete_associated_skills(player)
+      losers = PlayerSkill.where(player_id: player.id)
+      losers.each do |x|
+        x.delete
+      end
     end
 end
