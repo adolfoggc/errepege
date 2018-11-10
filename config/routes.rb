@@ -70,7 +70,7 @@ Rails.application.routes.draw do
       get '/npcs/:id', to: 'npcs#show', as: :npc_show
 
       #get '/continue_player/:id', to: 'player#continue_player', as: :continue_player
-
+      get '/vaquinha', to: 'home#vaquinha', as: :open_vaquinha
       root 'home#index'
       #get '/logar', to: 'users/sessions#new', as: :user_login
       #get '/dm/logar', to: 'masters/sessions#new', as: :master_login
