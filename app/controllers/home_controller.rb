@@ -42,6 +42,9 @@ def calculadora
 end
 
 def char_maker
+end
+
+def vaquinha
 end 
 
 end

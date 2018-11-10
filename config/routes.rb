@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       get '/npcs/:id', to: 'npcs#show', as: :user_npc_show
 
       get '/new_player_skills/:id', to: 'players#player_skills', as: :user_player_skills
-
+      get '/vaquinha', to: 'home#vaquinha', as: :vaquinha
 
       root 'home#index'
     end
