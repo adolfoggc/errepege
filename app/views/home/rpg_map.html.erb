@@ -38,21 +38,23 @@
 	</div> -->
 
 	<div class="interface">
-		<div class="turn">Turno 1</div>
+		<div class="time">12:00</div>
 		<div class="msg"></div> 
 		
-		<div class="button_area">
-			 <div class="no_button"></div><button type="button" class="up" onclick="up()">Cima</button><div class="no_button"></div>
-			 <br>
-		</div>
-		<div class="button_area">
-			 <button type="button" class="left" onclick="left()">Esquerda</button><button type="button" class="stay" onclick="end_turn()">Ficar Parado</button><button type="button" class="right"  onclick="right()">Direita</button> 
-		</div>
-		<div class="button_area">
-			<div class="no_button"></div><button type="button" class="down" onclick="down()">Baixo</button><div class="no_button"></div>
-		</div>
-		<div class="reset" style="display: none; text-align: center;">
-			<button type="button" class="reset" onclick="new_game()">Reiniciar</button>
+		<div class="button_interface">
+			<div class="button_area">
+				 <div class="no_button"></div><button type="button" class="up" onclick="up()">Cima</button><div class="no_button"></div>
+				 <br>
+			</div>
+			<div class="button_area">
+				 <button type="button" class="left" onclick="left()">Esquerda</button><button type="button" class="stay" onclick="end_turn()">Ficar Parado</button><button type="button" class="right"  onclick="right()">Direita</button> 
+			</div>
+			<div class="button_area">
+				<div class="no_button"></div><button type="button" class="down" onclick="down()">Baixo</button><div class="no_button"></div>
+			</div>
+			<div class="reset" style="display: none; text-align: center;">
+				<button type="button" class="reset" onclick="new_game()">Reiniciar</button>
+			</div>
 		</div>
 	</div>
 
@@ -66,6 +68,9 @@
 	var $evil_x = 0;
 	var $evil_y = 0;
 	var $turn = -3;
+	var $hour = 8;
+	var $min = 0;
+	var $day = 1;
 	var $water_step = 0;
 	var $max_hunger = 12;
 	var $hunger = $max_hunger + 4;
@@ -75,6 +80,9 @@
 	$(document).ready(new_game());
 
 	function new_game(){
+		$turn = -3;
+		$hour = 8;
+		$min = 0;
 		$water_step = 0;
 		$hunger = $max_hunger + 4;
 		//codigo para rodar no começo
@@ -93,10 +101,42 @@
 		cow_msg();
 		check_interface();
    // jQuery methods go here...
-   		//var $dano = '<div class="damage">10</div>';
-   		//$("#id_0_0").append($dano);
-   		show_damage(71, 1, 1);
+   		//show_damage(71, 1, 1);
 	};
+
+	function get_time(){ 
+		//$(".time").html($hour+":"+$min);
+		var $time_msg;
+		if( 4 <= $hour && $hour < 7 ){
+			$time_msg = "Alvorecer"
+			is_night(true);
+		} else if( 7 <= $hour && $hour < 11 ){
+			$time_msg = "Manhã";
+			is_night(false);
+		} else if (11 <= $hour && $hour < 14){
+			$time_msg = "Sol Alto";
+			is_night(false);
+		} else if (14 <= $hour && $hour < 17){
+			$time_msg = "Tarde";
+			is_night(false);
+		} else if (17 <= $hour && $hour < 19) {
+			$time_msg = "Longas Sombras";
+			is_night(false);
+		} else if (19 <= $hour && $hour < 23) {
+			$time_msg = "Noite";
+			is_night(true);
+		} else if (23 <= $hour || $hour < 2) {
+			$time_msg = "Lua Alta";
+			is_night(true);
+		} else if (2 <= $hour || $hour < 4) {
+			$time_msg = "Hora do Caçador";
+			is_night(true);
+		} 
+		
+		//guardar
+		//$(".time").html($hour+":"+$min+"||"+$time_msg);
+		$(".time").html("Dia "+$day+" - "+$time_msg);
+	}
 
 	function put_tiles(){
 		$(".grass").removeClass("grass");
@@ -122,20 +162,26 @@
         }
 	}
 
+	function is_night(state){
+		if (state == true){
+			shadows();
+			lights($line_sight);
+		} else {
+			$(".shadow").remove();
+		}
+	}
 
 	function show_damage(dmg, x, y){
-		//var $dano = '<div class="damage">10</div>';
+
 		var $location = "#id_"+x+"_"+y;
 		var $dano = '<div class="damage">';
 		$dano = $dano + dmg;
 		$dano = $dano + "</div>";
-		//$dano = $dano+dmg+"</div>";
    		$($location).append($dano);
 		$(".damage").show();
-		//$(".damage").animate({margin-top: "-50px"}, "1500", function(){});
-		$(".damage").animate({ marginTop: "-30px" }, 1500,function() {     // Animation complete.
+		$(".damage").animate({ marginTop: "-30px" }, 1500,function() { 
  			$(".damage").remove();});
-		//$(".damage").delay("1500").fadeOut();
+
 	}
 
 	function random(min,max)
@@ -149,7 +195,7 @@
 		}
 		if (check_alive()==true){
 			$turn +=1;
-			$(".turn").html("Turno "+$turn);
+			//$(".turn").html("Turno "+$turn);
 			if (check_alive() == false){
 				$hunger = 0;
 			}
@@ -160,6 +206,13 @@
 		//shadows();
 		//lights($line_sight);
 		check_interface();
+		$hour += 1;
+		if($hour > 23){
+			$hour = 0;
+			$day += 1;
+			//$(".day").html("Dia "+$day);
+		}
+		get_time();
 	}
 
 	function check_hunger(){
@@ -373,7 +426,7 @@
 			}
 			if ($hunger == 0){
 				check_alive();
-				$msg = "MATOU A VAQUINHA, MONSTR@!!!";
+				$msg = "MATOU A VAQUINHA, MONSTR@!";
 			}
 		}
 		if ($cow_x == $evil_x && $cow_y == $evil_y){
@@ -456,7 +509,7 @@
 
 
 .msg, .turn {
-	font-size: 2em;
+	font-size: 1em;
 }
 
 .grid {
@@ -470,15 +523,31 @@
 }
 
 .interface {
-	height: 550px;
 	position: fixed;
-	top: 50%;
+	top: 10%;
 	vertical-align: top;
-	background-color: gray;
+	background-color: #808080;
 	z-index: 1200;
 	height: 257px;
+	/*width: 33%;*/
+	width: 450px;
+	text-align: center;
+	height: 90vh;
 }
 
+.interface:hover{
+	background-color:  rgba(128,128,128,0.4);
+	color: rgba(0,0,0,0.4);
+}
+
+.button_interface {
+	position: fixed;
+	bottom: 0px;
+	display: block;
+	width: 450px;
+	margin-right: 225px;
+
+}
 
 .row {
 	border-width: 0px 0px 1px 0px;
@@ -502,8 +571,9 @@ img {
 
 .button_area {
 	display: flex;
-	background-color: gray;
+	background-color:  none;
 	width: 450px;
+	margin: auto;
 }
 
 .turn {
