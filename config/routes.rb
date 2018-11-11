@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
       get '/new_player_skills/:id', to: 'players#player_skills', as: :user_player_skills
       get '/vaquinha', to: 'home#vaquinha', as: :vaquinha
+      get '/adventure', to: 'home#rpg_map', as: :adventure
 
       root 'home#index'
     end

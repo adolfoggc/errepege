@@ -45,6 +45,14 @@ def char_maker
 end
 
 def vaquinha
-end 
+end
+
+def rpg_map
+	@x_max = 45;
+	@y_max = 45;
+	@count_x = 0;
+	@count_y = 0;
+	@this_id;
+end
 
 end

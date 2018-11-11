@@ -1,0 +1,535 @@
+<div class="wraper"> 
+	<div class="grid">
+		<% while @count_y < @y_max %>
+			<div class="row">
+				<% @count_x = 0 %>
+				<!--
+				<% while @count_x < @x_max %>
+					<% @this_id = "id_#{@count_x}_#{@count_y}" %>
+					--><div id="<%=@this_id%>" class="cell"></div><!-- 
+					<% @count_x +=1 %>
+				<% end %>
+				-->
+				<% @count_y +=1 %>
+			</div>
+		<% end %> 
+	</div>
+</div>
+
+	<!--
+<div class="wraper">
+
+	<div class="grid">
+		<div class="row">
+			<div id="id_0_0" class="cell"></div><div id="id_1_0" class="cell"></div><div id="id_2_0" class="cell"></div><div id="id_3_0" class="cell"></div><div id="id_4_0" class="cell"></div>
+		</div>
+		<div class="row">
+			<div id="id_0_1" class="cell"></div><div id="id_1_1" class="cell"></div><div id="id_2_1" class="cell"></div><div id="id_3_1" class="cell"></div><div id="id_4_1" class="cell"></div>
+		</div>
+		<div class="row">
+			<div id="id_0_2" class="cell"></div><div id="id_1_2" class="cell"></div><div id="id_2_2" class="cell"></div><div id="id_3_2" class="cell"></div><div id="id_4_2" class="cell"></div>
+		</div>
+		<div class="row">
+			<div id="id_0_3" class="cell"></div><div id="id_1_3" class="cell"></div><div id="id_2_3" class="cell"></div><div id="id_3_3" class="cell"></div><div id="id_4_3" class="cell"></div>
+		</div>
+		<div class="row">
+			<div id="id_0_4" class="cell"></div><div id="id_1_4" class="cell"></div><div id="id_2_4" class="cell"></div><div id="id_3_4" class="cell"></div><div id="id_4_4" class="cell"></div>
+		</div>
+	</div> -->
+
+	<div class="interface">
+		<div class="turn">Turno 1</div>
+		<div class="msg"></div> 
+		
+		<div class="button_area">
+			 <div class="no_button"></div><button type="button" class="up" onclick="up()">Cima</button><div class="no_button"></div>
+			 <br>
+		</div>
+		<div class="button_area">
+			 <button type="button" class="left" onclick="left()">Esquerda</button><button type="button" class="stay" onclick="end_turn()">Ficar Parado</button><button type="button" class="right"  onclick="right()">Direita</button> 
+		</div>
+		<div class="button_area">
+			<div class="no_button"></div><button type="button" class="down" onclick="down()">Baixo</button><div class="no_button"></div>
+		</div>
+		<div class="reset" style="display: none; text-align: center;">
+			<button type="button" class="reset" onclick="new_game()">Reiniciar</button>
+		</div>
+	</div>
+
+	
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	var $cow_x = 0;
+	var $cow_y = 0;
+	var $evil_x = 0;
+	var $evil_y = 0;
+	var $turn = -3;
+	var $water_step = 0;
+	var $max_hunger = 12;
+	var $hunger = $max_hunger + 4;
+	var $x_max = <%= @x_max %>-1;
+	var $y_max = <%= @y_max %>-1;
+	var $line_sight = 9;
+	$(document).ready(new_game());
+
+	function new_game(){
+		$water_step = 0;
+		$hunger = $max_hunger + 4;
+		//codigo para rodar no começo
+		$(".button_area").show();
+		$(".reset").hide();
+		
+		put_tiles();//);
+        $cow_x = random(0, <%= @x_max %>-1);
+       	$cow_y = random(0, <%= @y_max %>-1);
+        draw_cow();
+
+		
+		place_evil();
+		//shadows();
+		//lights($line_sight);
+		cow_msg();
+		check_interface();
+   // jQuery methods go here...
+   		//var $dano = '<div class="damage">10</div>';
+   		//$("#id_0_0").append($dano);
+   		show_damage(71, 1, 1);
+	};
+
+	function put_tiles(){
+		$(".grass").removeClass("grass");
+		$(".water").removeClass("water");
+		$(".ground").removeClass("ground");
+		var $rand;
+		for ($x = 0 ; $x <= <%= @x_max %>-1 ; $x+=1){
+
+            var $x_val = $x;
+
+            for ($y = 0 ; $y <= <%= @y_max %>-1 ; $y+=1){
+            	var $y_val = $y;
+        		var $elemento = "#id_"+$x_val+"_"+$y_val;
+        		$rand = random(0, 4);
+        		if ($rand == 0  ){
+        			$($elemento).addClass("grass");
+        		} else if($rand == 1 ) {
+        			$($elemento).addClass("water");
+        		} else {
+        			$($elemento).addClass("ground");
+        		}
+        	}//);	
+        }
+	}
+
+
+	function show_damage(dmg, x, y){
+		//var $dano = '<div class="damage">10</div>';
+		var $location = "#id_"+x+"_"+y;
+		var $dano = '<div class="damage">';
+		$dano = $dano + dmg;
+		$dano = $dano + "</div>";
+		//$dano = $dano+dmg+"</div>";
+   		$($location).append($dano);
+		$(".damage").show();
+		//$(".damage").animate({margin-top: "-50px"}, "1500", function(){});
+		$(".damage").animate({ marginTop: "-30px" }, 1500,function() {     // Animation complete.
+ 			$(".damage").remove();});
+		//$(".damage").delay("1500").fadeOut();
+	}
+
+	function random(min,max)
+	{
+		return Math.floor(Math.random()*(max-min+1)+min);
+	}
+
+	function end_turn(){
+		if ($turn>1){
+			evil_walk();
+		}
+		if (check_alive()==true){
+			$turn +=1;
+			$(".turn").html("Turno "+$turn);
+			if (check_alive() == false){
+				$hunger = 0;
+			}
+			check_hunger();
+			
+		}
+		cow_msg();
+		//shadows();
+		//lights($line_sight);
+		check_interface();
+	}
+
+	function check_hunger(){
+		//var className = $(cell_id).attr('class').split(' ')[1];
+		if (get_cell_type() == "grass"){
+			if ($hunger < $max_hunger){
+				$hunger +=3;
+				if ($hunger > $max_hunger){
+					$hunger = $max_hunger;
+				}
+				
+			}
+			
+			
+		} else {//if (className == "water" ){
+			$hunger -=1;
+		}
+		
+	}
+
+	function get_position(){
+		return "#id_"+$cow_x+"_"+$cow_y;
+	}
+
+	function get_cell_type(){
+		return $(get_position()).attr('class').split(' ')[1];
+	}
+
+	function check_water(){
+		if(get_cell_type() == "water"){
+			$water_step +=1;
+			if ($water_step == 3){
+				$water_step = 0;
+			}
+		}
+	}
+
+
+
+	function check_alive(){
+		var $cow_pos = "#id_"+$cow_x+"_"+$cow_y;
+		if ($hunger < 1){ //morrer de fome
+			$(".cow").remove();
+			$($cow_pos).prepend('<img src="ghost.png" class="cow">');
+			$(".button_area").hide();
+			$(".reset").show();
+			return false;
+		} else if (($cow_x == $evil_x) && ($cow_y == $evil_y && $turn > 1)){
+			$(".cow").remove();
+			$(".evil").remove();
+			$($cow_pos).prepend('<img src="evil_happy.png" class="evil">');
+			$(".button_area").hide();
+			$(".reset").show();
+			return false;
+		} else  {
+			return true;
+		}
+	}
+
+	function draw_cow(){
+			$(".cow").remove();
+			var $cow_pos = "#id_"+$cow_x+"_"+$cow_y;
+			$($cow_pos).append('<img src="cow.png" class="cow">');
+	};
+
+	function place_evil(){
+		$(".evil").remove();
+		$evil_x = $cow_x;
+		$evil_y = $cow_y;
+		while ($evil_x == $cow_x && $evil_y == $cow_y){
+			$evil_x = random(0,<%= @x_max %>-1);
+			$evil_y = random(0,<%= @y_max %>-1);
+		}
+		var $evil_pos = "#id_"+$evil_x+"_"+$evil_y;
+		$($evil_pos).prepend('<img src="evil.png" class="evil">');
+	};
+
+	function evil_walk(){
+		var sentido = random(0,1);
+		if (sentido == 0){ //mover por x
+			if ($evil_x != $cow_x){ 
+				if($evil_x > $cow_x){
+					$evil_x -=1;
+				} else if ($evil_x < $cow_x) {
+					$evil_x +=1;
+				}
+			} else { //só precisa mover em y
+				sentido = 1;
+			} 
+		}
+		if (sentido == 1){ //move pot y
+			if ($evil_y != $cow_y){
+				if($evil_y > $cow_y){
+					$evil_y -=1;
+				} else if ($evil_y < $cow_y) {
+					$evil_y +=1;
+				}
+			} else { //move por x
+				if($evil_x > $cow_x){
+					$evil_x -=1;
+				} else if ($evil_x < $cow_x) {
+					$evil_x +=1;
+				}
+			}
+		}
+		$(".evil").remove();
+		var $evil_pos = "#id_"+$evil_x+"_"+$evil_y;
+		$($evil_pos).prepend('<img src="evil.png" class="evil">');
+	}
+
+	function up(){
+		check_water();
+		if ($cow_y > 0 && $water_step == 0 && check_alive() == true){
+			$cow_y -= 1;
+			draw_cow();
+		}
+		end_turn();
+	};
+
+	function down(){
+		check_water();
+		if ($cow_y < <%= @y_max %>-1 && $water_step == 0 && check_alive() == true){
+			$cow_y += 1;
+			draw_cow();
+		}
+		end_turn();
+	};
+
+	function left(){
+		check_water();
+		if ($cow_x > 0 && $water_step == 0 && check_alive() == true){
+			$cow_x -= 1;
+			draw_cow();
+		}
+		end_turn();
+	};
+
+	function right(){
+		check_water();
+		if ($cow_x < <%= @x_max %>-1 && $water_step == 0 && check_alive() == true){
+			$cow_x += 1;
+			draw_cow();
+		}
+		end_turn();
+	};
+
+
+
+	//eventos
+		$(".up").click(up());
+		$(".down").click(down());
+		$(".left").click(left());
+		$(".right").click(right());
+	function shadows(){
+		var $position;
+		$(".cell").each ( function (){
+			x = $(this).attr('id').split('_')[1];
+			y = $(this).attr('id').split('_')[2];
+			if( $("#shadow_"+x+"_"+y).length == 0 ){ //verificando se já existe essa id na página
+				x = $(this).attr('id').split('_')[1];
+				y = $(this).attr('id').split('_')[2];
+				position = "shadow_"+x+"_"+y;
+				$(this).append('<img src="shadow.jpg" class="shadow" id="temp">');
+				$('#temp').attr('id', position);
+			}
+		});		
+	}
+
+	function lights(rng){
+		var $t_x = $cow_x-rng;
+		var $t_y = $cow_y;
+		var move = 0;
+		for( ; $t_x <= $cow_x+rng + rng; $t_x += 1){
+			for ($t_y = $cow_y-move; $t_y <= $cow_y+move; $t_y +=1){
+				$position = "#shadow_"+$t_x+"_"+$t_y;
+				$($position).remove();		
+			}
+			if($t_x < $cow_x){
+				move +=1;
+			} else {
+				move -=1;
+			}
+
+		}
+	}
+
+
+	function cow_msg(){
+		var $msg;
+		if (get_cell_type() == "grass"){
+			if ($hunger == $max_hunger){
+				$msg = "Carai, mucei!!!";
+			} else {
+				$msg = "Nham! Nham!";
+			}
+		} else if (get_cell_type() == "water"){
+			if ($hunger <= $max_hunger/3){
+				$msg = "Splash, splash!";	
+			} else if ($hunger <= $max_hunger/3){
+				$msg = "SPLASH! SPLASH! SPLASH!!!"
+			} else {
+				$msg = "Splash..."
+			}
+		}  else {
+			if ($hunger <= $max_hunger/2 && get_cell_type() != "grass" && $hunger > $max_hunger/3) {
+				$msg = "...";
+			} else if ($hunger <= $max_hunger/3) {
+				$msg = "Fome do carai...";
+			} else if($hunger > $max_hunger/3 && get_cell_type() != "grass"){
+				$msg = "Moo moo moo!";
+			}
+			if ($hunger == 0){
+				check_alive();
+				$msg = "MATOU A VAQUINHA, MONSTR@!!!";
+			}
+		}
+		if ($cow_x == $evil_x && $cow_y == $evil_y){
+			check_alive();
+			$msg = "VAQUINHA MORREU!!! =(";
+		}
+
+		$(".msg").html($msg);
+	}
+
+
+
+	function check_interface(){
+		if ($cow_x <= 19){
+			
+			$(".interface").css("right", "0");
+			$(".interface").css("left","");
+		} else if ($cow_x >= 25){
+			$(".interface").css("left","0");
+			$(".interface").css("right","");			
+		}
+	}
+
+
+</script>
+
+<style>
+/*zindex
+	cow = 0
+	evil = 1
+	damage = 2
+	shadow = 3
+
+*/
+
+.damage {
+	color: red;
+	position: absolute;
+	z-index: 2;
+	text-align: center;
+}
+
+
+.cell {
+	border-width: 0px 1px 0px 0px;
+	border-color: black;
+	border-style: solid;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+
+.shadow{
+	position: absolute;
+	z-index: 4;
+}
+
+.grass {
+	background-color: #1cc613;
+}
+
+.ground {
+	background-color: #876b4d;
+}
+
+.water {
+	background-color: #2662ef;
+}
+
+.evil{
+	z-index: 1;
+	position: absolute;
+}
+
+.cow {
+	z-index: 0;
+	position: absolute;
+}
+
+
+
+.msg, .turn {
+	font-size: 2em;
+}
+
+.grid {
+	border-width: 1px 0px 0px 1px;
+	border-color: black;
+	border-style: solid;
+	width: 1395px;
+	height: 1395px;
+	display: block;
+	margin: auto;
+}
+
+.interface {
+	height: 550px;
+	position: fixed;
+	top: 50%;
+	vertical-align: top;
+	background-color: gray;
+	z-index: 1200;
+	height: 257px;
+}
+
+
+.row {
+	border-width: 0px 0px 1px 0px;
+	border-color: black;
+	border-style: solid;
+	width: 1395px;
+	height: 30px;
+	display: block;
+}
+img {
+	width: 30px;
+	height: 30px;
+}
+
+.wraper{
+	margin-top: 200px;
+	color: #000;
+	background-color: #FFF;
+	padding: 100px 0px;
+}
+
+.button_area {
+	display: flex;
+	background-color: gray;
+	width: 450px;
+}
+
+.turn {
+	border: none;
+}
+
+.no_button {
+	display: inline-block;
+	flex-grow: 1;
+}
+
+.stay{
+	background-color: blue;
+}
+
+button {
+	max-width: 150px;
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    flex-grow: 1;
+    font-weight: bold;
+}
+</style>
