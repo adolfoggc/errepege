@@ -53,8 +53,31 @@ def rpg_map
 	@count_x = 0;
 	@count_y = 0;
 	@this_id;
+	@map = generate_map(@x_max, @y_max)
 
 	#mapa geral com 675m para cada celula com 15m
 end
+
+
+private
+	def generate_map(x_max, y_max)
+		@map = Array.new
+		@tiles = [0,1,2,3] #cada uma é uma coluna
+		@x = 0
+		y_max.times do 
+			@temp = Array.new
+			@x = 0
+			x_max.times do
+				if @x == 0
+					@temp << 1
+				else
+					@temp << @tiles.sample
+				end
+				@x+=1
+			end
+			@map<<@temp
+		end
+		return @map
+	end
 
 end

@@ -76,7 +76,7 @@
 	var $hunger = $max_hunger + 4;
 	var $x_max = <%= @x_max %>-1;
 	var $y_max = <%= @y_max %>-1;
-	var $line_sight = 9;
+	var $line_sight = 2;
 	$(document).ready(new_game());
 
 	function new_game(){
@@ -102,13 +102,19 @@
 		check_interface();
    // jQuery methods go here...
    		//show_damage(71, 1, 1);
+   		build_map();
 	};
 
 	function get_time(){ 
 		//$(".time").html($hour+":"+$min);
 		var $time_msg;
 		if( 4 <= $hour && $hour < 7 ){
-			$time_msg = "Alvorecer"
+			$time_msg = "Alvorecer";
+			if ($hour == 4){
+				$line_sight = 6;
+			} else {
+				$line_sight = 12;
+			}
 			is_night(true);
 		} else if( 7 <= $hour && $hour < 11 ){
 			$time_msg = "Manhã";
@@ -121,15 +127,23 @@
 			is_night(false);
 		} else if (17 <= $hour && $hour < 19) {
 			$time_msg = "Longas Sombras";
-			is_night(false);
+			if ($hour == 17){
+				$line_sight = 12;
+			} else {
+				$line_sight = 6;
+			}
+			is_night(true);
 		} else if (19 <= $hour && $hour < 23) {
 			$time_msg = "Noite";
+			$line_sight = 2;
 			is_night(true);
 		} else if (23 <= $hour || $hour < 2) {
 			$time_msg = "Lua Alta";
+			$line_sight = 2;
 			is_night(true);
 		} else if (2 <= $hour || $hour < 4) {
 			$time_msg = "Hora do Caçador";
+			$line_sight = 2;
 			is_night(true);
 		} 
 		
@@ -448,6 +462,27 @@
 			$(".interface").css("left","0");
 			$(".interface").css("right","");			
 		}
+	}
+
+	function build_map(){
+		var $tile;
+		var $rand;
+		<% @x = 0 %>
+		<% @y = 0 %> 
+		<% @y_max.times do |y| %>
+			$tile = "#id_";
+			<% @x_max.times do |x| %> 
+				$tile = "#id_"+<%= x %>+"_"+<%= y %>;
+				$rand = <%= @map[y][x] %> 
+        		if ($rand == 0  ){
+        			$($tile).addClass("grass");
+        		} else if($rand == 1 ) {
+        			$($tile).addClass("water");
+        		} else {
+        			$($tile).addClass("ground");
+        		}
+			<% end %>
+		<% end %>
 	}
 
 
