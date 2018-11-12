@@ -72,6 +72,7 @@ Rails.application.routes.draw do
 
       #get '/continue_player/:id', to: 'player#continue_player', as: :continue_player
       get '/vaquinha', to: 'home#vaquinha', as: :open_vaquinha
+      get '/adventure', to: 'home#rpg_map', as: :open_adventure
       root 'home#index'
       #get '/logar', to: 'users/sessions#new', as: :user_login
       #get '/dm/logar', to: 'masters/sessions#new', as: :master_login
