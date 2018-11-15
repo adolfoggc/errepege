@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       get '/new_player_skills/:id', to: 'players#player_skills', as: :user_player_skills
       get '/vaquinha', to: 'home#vaquinha', as: :vaquinha
       get '/adventure', to: 'home#rpg_map', as: :adventure
-
+      get '/adventure_c', to: 'home#rpg_map_close', as: :adventure_c
       root 'home#index'
     end
   end
@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       #get '/continue_player/:id', to: 'player#continue_player', as: :continue_player
       get '/vaquinha', to: 'home#vaquinha', as: :open_vaquinha
       get '/adventure', to: 'home#rpg_map', as: :open_adventure
+      get '/adventure_c', to: 'home#rpg_map_close', as: :open_adventure_c
       root 'home#index'
       #get '/logar', to: 'users/sessions#new', as: :user_login
       #get '/dm/logar', to: 'masters/sessions#new', as: :master_login

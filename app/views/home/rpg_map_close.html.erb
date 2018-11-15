@@ -15,13 +15,32 @@
 		<% end %> 
 	</div>
 
-	<div>
-			Artes:
-			<br>
-			<a href="https://opengameart.org/content/10-basic-rpg-enemies-the-goblin-supplement" target="_blank">Goblins</a> de Stephen Challener (Redshrike)
-			
-		</div>
+	<br><br><br><br><br><br><br><br><br><br><br>
+	<div class="new_grid">
+		<% map_x = 0 %>
+		<% map_y = 0 %> 
+		<% while map_y < 9 %>
+			<div class="new_row">
+				<% map_x = 0 %>
+				<!--
+				<% while map_x < 9 %>
+					<% @this_id = "new_id_#{map_x}_#{map_y}" %>
+					--><div id="<%=@this_id%>" class="new_cell"></div><!-- 
+					<% map_x +=1 %>
+				<% end %>
+				-->
+				<% map_y +=1 %>
+			</div>
+		<% end %>
+	</div>
 
+	<div>
+		Artes:
+		<br>
+		<a href="https://opengameart.org/content/10-basic-rpg-enemies-the-goblin-supplement" target="_blank">Goblins</a> de Stephen Challener (Redshrike)
+	</div>
+
+	
 </div>
 
 	<div class="interface">
@@ -95,10 +114,19 @@
    // jQuery methods go here...
    		//show_damage(71, 1, 1);
    		build_map();
-
-
+   		get_width();
+draw_map();
 
 	};
+
+
+	//CSS
+	function get_width(){
+		//var width = $(".new_cell").css("width");
+		//$(".new_cell").css("height", width);
+		//$(".new_cell").css("width", width);
+	}
+
 
 	function get_time(){ 
 		//$(".time").html($hour+":"+$min);
@@ -210,6 +238,7 @@
 			//$(".day").html("Dia "+$day);
 		}
 		get_time();
+		draw_map();
 		//new_monster();
 		//walk_monster();
    		//place_all_monsters();
@@ -575,6 +604,60 @@
 		is_night(false);
 	}
 
+	//MAP
+	function draw_map(){
+		//var $local_map = <%= @map %>;
+		var $x = 0;
+		var $y = 0;
+		var $new_x = $cow_x - 4;
+		var $new_y = $cow_y -4;
+		var realoc = 0;
+		if($new_x+9 > $x_max ){
+			$(".new_cow").remove();
+			$new_x += $x_max-($new_x+9);
+			console.log("Agora new_x é "+$new_x);
+		}
+		if($new_y+9 > $y_max ){
+			$(".new_cow").remove();
+			$new_y += $y_max-($new_y+9); 
+			console.log("Agora new_y é "+$new_y); 
+		}
+		for( ;$y < 9; $y+=1){
+			$new_y = $cow_y-4;
+			$new_x = $cow_x-4;
+			
+			for($x=0 ;$x < 9; $x+=1){
+				$position = "#new_id_"+$x+"_"+$y;
+				$rand = $local_map[$new_y+$y][$new_x+$x];
+				if ( $new_x+$x == $cow_x && $new_y+$y == $cow_y  ){
+					$($position).append('<img src="cow.png" class="new_cow">');
+					//$($position).html("coo");
+				}
+				if ( $($position).hasClass("ground") ){
+					$($position).removeClass("ground");
+				}
+				if ( $($position).hasClass("grass") ){
+					$($position).removeClass("grass");
+				}
+				if ( $($position).hasClass("water") ){
+					$($position).removeClass("water");
+				}
+				if ( 1<= $rand  && $rand <= 2   ){
+	        		$($position).addClass("ground");
+	        	} else if($rand == 0 ) {
+	        		$($position).addClass("water");
+	        	} else {
+	        		$($position).addClass("grass");
+	        	}
+	        	//if ($t_x == $evil_x && $t_y == $evil_y){
+	        	//	//$($position).prepend('<img src="evil.png" class="evil">');
+	        	//	$($position).prepend('<img src="goblin_1.png" class="evil">');
+	        	//}
+
+			}	
+		}
+	}
+
 
 </script>
 
@@ -614,7 +697,7 @@
 }
 
 .grass {
-	background-color: #1cc613;
+	background-color: #88e560;/*#1cc613; */
 }
 
 .ground {
@@ -622,7 +705,7 @@
 }
 
 .water {
-	background-color: #2662ef;
+	background-color: #63b7e8; /*#2662ef;*/
 }
 
 .evil{
@@ -634,8 +717,6 @@
 	z-index: 0;
 	position: absolute;
 }
-
-
 
 .msg, .turn {
 	font-size: 1em;
@@ -730,6 +811,30 @@ button {
     display: inline-block;
     flex-grow: 1;
     font-weight: bold;
+}
+
+.new_grid {
+	width: 50vw;
+
+}
+
+.new_cell{
+	width: 5vw;
+	height: 5vw;
+	display: inline-block;
+}
+
+.new_row {
+	display: block;
+	border: none;
+	font-size: 0;
+}
+
+.new_cow {
+	z-index: 0;
+	position: absolute;
+	width: 5vw;
+	height: 5vw;
 }
 
 /* para mobile */
