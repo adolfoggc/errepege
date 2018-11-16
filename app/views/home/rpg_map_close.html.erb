@@ -114,7 +114,6 @@
    // jQuery methods go here...
    		//show_damage(71, 1, 1);
    		build_map();
-   		get_width();
 draw_map();
 
 	};
@@ -134,9 +133,9 @@ draw_map();
 		if( 4 <= $hour && $hour < 7 ){
 			$time_msg = "Alvorecer";
 			if ($hour == 4){
-				$line_sight = 6;
+				$line_sight = 3;
 			} else {
-				$line_sight = 12;
+				$line_sight = 4;
 			}
 			is_night(true);
 		} else if( 7 <= $hour && $hour < 11 ){
@@ -152,22 +151,22 @@ draw_map();
 		} else if (17 <= $hour && $hour < 19) {
 			$time_msg = "Longas Sombras";
 			if ($hour == 17){
-				$line_sight = 12;
+				$line_sight = 4;
 			} else {
-				$line_sight = 6;
+				$line_sight = 3;
 			}
 			is_night(true);
 		} else if (19 <= $hour && $hour < 23) {
 			$time_msg = "Noite";
-			$line_sight = 2;
+			$line_sight = 1;
 			is_night(true);
 		} else if (23 <= $hour || $hour < 2) {
 			$time_msg = "Lua Alta";
-			$line_sight = 2;
+			$line_sight = 1;
 			is_night(true);
 		} else if (2 <= $hour || $hour < 4) {
 			$time_msg = "Hora do Caçador";
-			$line_sight = 2;
+			$line_sight = 1;
 			is_night(true);
 		} 
 		
@@ -228,8 +227,6 @@ draw_map();
 			
 		}
 		cow_msg();
-		//shadows();
-		//lights($line_sight);
 		check_interface();
 		$hour += 1;
 		if($hour > 23){
@@ -456,9 +453,9 @@ draw_map();
 			lights($line_sight);
 		} else {
 			var $t_x = 0, $t_y = 0;
-			for( ; $t_x <= 44; $t_x += 1){
-				for ($t_y = 0; $t_y <= 44; $t_y +=1){
-					$position = "#id_"+$t_x+"_"+$t_y;
+			for( ; $t_x <= $x_max; $t_x += 1){
+				for ($t_y = 0; $t_y <= $y_max; $t_y +=1){
+					$position = "#new_id_"+$t_x+"_"+$t_y;
 					$rand = $local_map[$t_y][$t_x];
 					if ($($position).hasClass("shadow_cell")){
 						$($position).removeClass("shadow_cell");
@@ -506,7 +503,7 @@ draw_map();
 		var move = 0;
 		for( ; $t_x <= $cow_x+rng + rng; $t_x += 1){
 			for ($t_y = $cow_y-move; $t_y <= $cow_y+move; $t_y +=1){
-				$position = "#id_"+$t_x+"_"+$t_y;
+				$position = "#new_id_"+$t_x+"_"+$t_y;
 				if ($($position).hasClass("shadow_cell")){
 					$($position).removeClass("shadow_cell");
 					$rand = $local_map[$t_y][$t_x];
@@ -607,28 +604,39 @@ draw_map();
 	//MAP
 	function draw_map(){
 		//var $local_map = <%= @map %>;
+		//console.clear();
 		var $x = 0;
 		var $y = 0;
 		var $new_x = $cow_x - 4;
 		var $new_y = $cow_y -4;
 		var realoc = 0;
-		if($new_x+9 > $x_max ){
-			$(".new_cow").remove();
-			$new_x += $x_max-($new_x+9);
-			console.log("Agora new_x é "+$new_x);
-		}
-		if($new_y+9 > $y_max ){
-			$(".new_cow").remove();
-			$new_y += $y_max-($new_y+9); 
-			console.log("Agora new_y é "+$new_y); 
-		}
+		var msg;
+		var local_x = 0;
+		var local_y = 0;
+		$(".new_cow").remove();
 		for( ;$y < 9; $y+=1){
 			$new_y = $cow_y-4;
 			$new_x = $cow_x-4;
+
+			local_y = $new_y;
+			while ($new_y < 0){
+				$new_y +=1;
+			}
+			while ($new_y + 8 > $y_max){
+				$new_y -=1;
+			}
 			
 			for($x=0 ;$x < 9; $x+=1){
+				local_x = $new_x;
+				while ($new_x < 0){
+					$new_x +=1;
+				}
+				while ($new_x + 8 > $x_max){
+					$new_x -=1;
+				}
 				$position = "#new_id_"+$x+"_"+$y;
 				$rand = $local_map[$new_y+$y][$new_x+$x];
+			
 				if ( $new_x+$x == $cow_x && $new_y+$y == $cow_y  ){
 					$($position).append('<img src="cow.png" class="new_cow">');
 					//$($position).html("coo");
@@ -656,6 +664,8 @@ draw_map();
 
 			}	
 		}
+		console.log("-----");
+		console.log($cow_x+","+$cow_y+" em turno "+$turn);
 	}
 
 
