@@ -15,32 +15,58 @@
 		<% end %> 
 	</div>
 
-	<br><br><br><br><br><br><br><br><br><br><br>
-	<div class="new_grid">
-		<% map_x = 0 %>
-		<% map_y = 0 %> 
-		<% while map_y < 9 %>
-			<div class="new_row">
-				<% map_x = 0 %>
-				<!--
-				<% while map_x < 9 %>
-					<% @this_id = "new_id_#{map_x}_#{map_y}" %>
-					--><div id="<%=@this_id%>" class="new_cell"></div><!-- 
-					<% map_x +=1 %>
-				<% end %>
-				-->
-				<% map_y +=1 %>
-			</div>
-		<% end %>
-	</div>
-
 	<div>
 		Artes:
 		<br>
 		<a href="https://opengameart.org/content/10-basic-rpg-enemies-the-goblin-supplement" target="_blank">Goblins</a> de Stephen Challener (Redshrike)
 	</div>
+</div>
+	<br><br><br><br><br><br><br><br><br><br><br>
 
-	
+<div class="new_wrapper">
+		<div class="new_grid">
+			<% map_x = 0 %>
+			<% map_y = 0 %> 
+			<% while map_y < 9 %>
+				<div class="new_row">
+					<% map_x = 0 %>
+					<!--
+					<% while map_x < 9 %>
+						<% @this_id = "new_id_#{map_x}_#{map_y}" %>
+						--><div id="<%=@this_id%>" class="new_cell"></div><!-- 
+						<% map_x +=1 %>
+					<% end %>
+					-->
+					<% map_y +=1 %>
+				</div>
+			<% end %>
+		</div>
+		<div class="new_interface">
+		<div class="time">12:00</div>
+		<div class="msg"></div> 
+		
+		<div class="new_button_interface">
+			<div class="new_button_area">
+				 <div class="no_button"></div><button type="button" class="up" onclick="up()">Cima</button><div class="no_button"></div>
+				 <br>
+			</div>
+			<div class="new_button_area">
+				 <button type="button" class="left" onclick="left()">Esquerda</button><button type="button" class="stay" onclick="end_turn()">Ficar Parado</button><button type="button" class="right"  onclick="right()">Direita</button> 
+			</div>
+			<div class="new_button_area">
+				<div class="no_button"></div><button type="button" class="down" onclick="down()">Baixo</button><div class="no_button"></div>
+			</div>
+			<div class="reset" style="display: none; text-align: center;">
+				<button type="button" class="reset" onclick="new_game()">Reiniciar</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="credits">
+		Artes:
+		<br>
+		<a href="https://opengameart.org/content/10-basic-rpg-enemies-the-goblin-supplement" target="_blank">Goblins</a> de Stephen Challener (Redshrike)
+	</div>
 </div>
 
 	<div class="interface">
@@ -753,6 +779,7 @@ draw_map();
 	width: 450px;
 	text-align: center;
 	height: 90vh;
+	display: none;
 }
 
 .interface:hover{
@@ -824,7 +851,8 @@ button {
 }
 
 .new_grid {
-	width: 50vw;
+	width: 45vw;
+	display: inline-block;
 
 }
 
@@ -845,6 +873,34 @@ button {
 	position: absolute;
 	width: 5vw;
 	height: 5vw;
+}
+
+.new_interface{
+	display: inline-block;
+	height: 45vw;
+	vertical-align: top;
+}
+
+.new_wrapper{
+	background-color: #FFF;
+	display: inline-block;
+	width: 100vw;
+}
+
+.new_button_area {
+	display: flex;
+	background-color:  none;
+	width: 450px;
+	margin: auto;
+}
+
+.new_interface,div{
+	font-size: 1em;
+}
+
+.credits {
+	display: block;
+	width: 100%;
 }
 
 /* para mobile */
